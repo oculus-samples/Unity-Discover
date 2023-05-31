@@ -1,0 +1,400 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1e130e850cd9e428420225fc02a719, type: 3}
+  m_Name: XRInputControlActions
+  m_EditorClassIdentifier: 
+  LeftController:
+    ButtonOne:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button One
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: b6ab68fa-e663-45e7-9eee-02c20c35e27c
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 665aabdc-c7f0-43af-a162-612641bd5fc8
+          m_Path: <XRController>{LeftHand}/primaryButton
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button One
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    ButtonTwo:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button Two
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 5c20f58c-dc55-4270-bd18-bf67e465eb95
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: cbe3d188-408a-43c3-b102-5450984b9644
+          m_Path: <XRController>{LeftHand}/secondaryButton
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button Two
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    ButtonThree:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button Three
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 7affd6ad-cd75-4c4a-a14a-713b111bfa9a
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 1e1e5b05-c8fa-40cb-a852-1aa590cb7347
+          m_Path: <XRController>/menuButton
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button Three
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    ButtonPrimaryThumbstick:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button Primary Thumbstick
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 8eaf374b-4c82-4949-8583-1ae8950190c1
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 62a5db84-dd1f-49e3-96d4-d4042f392fcf
+          m_Path: <XRController>{LeftHand}/thumbstick
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button Primary Thumbstick
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchOne:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch One
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 9ced802d-2236-4c20-b531-cbb4205ab68e
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 82e5b667-66e1-40f6-95ce-b9fa6ad96c50
+          m_Path: <XRController>{LeftHand}/primaryTouch
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Touch One
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchTwo:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch Two
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 421d0ea5-64d5-4c06-a716-5c4b23a22053
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: f97bcaf5-b048-4480-b04c-fc9906c5a579
+          m_Path: <XRController>{LeftHand}/secondaryTouch
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Touch Two
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchPrimaryThumbstick:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch Primary Thumbstick
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: f61c1560-370e-4715-99b1-aae11fa12b6c
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: e3522529-7d4c-4feb-a6ec-2eded1b59452
+          m_Path: <XRController>{LeftHand}/primary2DAxisTouch
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Touch Primary Thumbstick
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchPrimaryThumbRest:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch Primary Thumb Rest
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: d7197516-28a2-423e-a2cd-433e65be2a99
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    AxisIndexTrigger:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Axis Index Trigger
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 71b2ace8-b92e-45be-a76a-1420eb3e0c95
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: b08ebe30-7ee9-4c0e-ba50-471480b0ebf3
+          m_Path: <XRController>{LeftHand}/trigger
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Axis Index Trigger
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    AxisHandTrigger:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Axis Hand Trigger
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 691183d2-0120-4931-bdcc-48434b16030d
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 4209d127-cdd9-4119-b4db-d8688fb81fa3
+          m_Path: <XRController>{LeftHand}/grip
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Axis Hand Trigger
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+  RightController:
+    ButtonOne:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button One
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 5101df85-b903-44d6-834b-fcd7da4f34a8
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 80523105-5403-4688-9f93-673b998c24fc
+          m_Path: <XRController>{RightHand}/primaryButton
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button One
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    ButtonTwo:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button Two
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: aa51c20e-dcb1-48e0-8259-3d343ac0ffb5
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: db5b3eee-7d3d-4aba-9662-6e1f92fb815a
+          m_Path: <XRController>{RightHand}/secondaryButton
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button Two
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    ButtonThree:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button Three
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 4a162f27-5ceb-44c0-a494-4f4e7d32d45b
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: e01bce36-99fb-4a50-a975-74d1c291006e
+          m_Path: <XRController>/menuButton
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button Three
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    ButtonPrimaryThumbstick:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Button Primary Thumbstick
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 05c09761-fc36-4023-8fd3-1a2db1623bd0
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: d00a6af5-077a-46ca-8b3d-e42849e77eba
+          m_Path: <XRController>{RightHand}/thumbstick
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Button Primary Thumbstick
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchOne:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch One
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: bd46eea3-fa5f-4580-9a43-c5d2fa45d8b5
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: fc7bda9b-d126-4ab7-aad5-1977678d006c
+          m_Path: <XRController>{RightHand}/primaryTouch
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Touch One
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchTwo:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch Two
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: f0da4a78-f53b-4164-a383-aec02a5d5e3b
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 3a7c0072-507d-4e19-9be4-d0d1cf84d5f6
+          m_Path: <XRController>{RightHand}/secondaryTouch
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Touch Two
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchPrimaryThumbstick:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch Primary Thumbstick
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 50076666-6f02-43b6-a273-ab70619e7442
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: af1811fc-3738-4367-b1fe-5937c74603e6
+          m_Path: <XRController>{RightHand}/primary2DAxisTouch
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Touch Primary Thumbstick
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    TouchPrimaryThumbRest:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Touch Primary Thumb Rest
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 8896445a-109d-44f9-b68f-b13217dcbd5f
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    AxisIndexTrigger:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Axis Index Trigger
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: faf1f1aa-11d5-4d46-b68b-52b5bdae41bd
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: 19985650-b0a0-47fb-9d7b-dde4a6aac60b
+          m_Path: <XRController>{RightHand}/trigger
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Axis Index Trigger
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}
+    AxisHandTrigger:
+      m_UseReference: 0
+      m_Action:
+        m_Name: Axis Hand Trigger
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: aa2b6949-cc4c-4335-8799-d43dda5227de
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings:
+        - m_Name: 
+          m_Id: f3539750-083a-4800-9631-25970ef88ec6
+          m_Path: <XRController>{RightHand}/grip
+          m_Interactions: 
+          m_Processors: 
+          m_Groups: 
+          m_Action: Axis Hand Trigger
+          m_Flags: 0
+        m_Flags: 0
+      m_Reference: {fileID: 0}

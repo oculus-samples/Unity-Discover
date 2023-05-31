@@ -1,0 +1,17 @@
+{
+    "name": "Oculus.Interaction.AvatarIntegration",
+    "rootNamespace": "",
+    "references": [
+        "GUID:64a5e78bc3a487e4785840abcc411b13",
+        "GUID:2a230cb87a1d3ba4a98bdc0ddae76e6c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

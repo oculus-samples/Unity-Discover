@@ -1,0 +1,451 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1819655302111354767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819655302111354765}
+  - component: {fileID: 1819655302111354766}
+  - component: {fileID: 71601535237985672}
+  m_Layer: 0
+  m_Name: XRDeviceFpsSimulator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1819655302111354765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819655302111354767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1819655302111354766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819655302111354767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cde28ae0be56a248a2f91f09d9b8e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_disableIfRealHmdConnected: 1
+  m_captureMouse: 1
+  m_requireFocus: 1
+  m_releaseMouseCaptureAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Release Mouse Capture
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 5238943e-f119-482f-bf6a-550d4a6b16d2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 493079fb-103c-4964-b928-5d2b0b6b95e0
+        m_Path: <Keyboard>/leftAlt
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Release Mouse Capture
+        m_Flags: 0
+      m_Flags: 1
+    m_Reference: {fileID: 0}
+  m_rotationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Mouse Delta
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 9641163d-2688-42f5-82d6-42e3c41a44da
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: Mouse Delta (Without Middle Click)
+        m_Id: 33918422-b11f-4d7c-9875-9deab25f5e7c
+        m_Path: InverseModifierComposite
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Mouse Delta
+        m_Flags: 4
+      - m_Name: m_modifier
+        m_Id: 77521abe-9db3-41f1-83bc-4c783aca4f4e
+        m_Path: <Mouse>/middleButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Mouse Delta
+        m_Flags: 8
+      - m_Name: m_binding
+        m_Id: acce6e06-9f83-4ed2-b35a-feaa02447880
+        m_Path: <Mouse>/delta
+        m_Interactions: 
+        m_Processors: ScaleVector2(x=0.1,y=-0.1)
+        m_Groups: 
+        m_Action: Mouse Delta
+        m_Flags: 8
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_headMovementAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Head Movement
+      m_Type: 0
+      m_ExpectedControlType: Vector3
+      m_Id: 3aba4a57-8c54-4646-98d7-297a04daff55
+      m_Processors: ScaleVector3(x=0.05,y=0.05,z=0.05)
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: Space/Ctrl
+        m_Id: fb8d7a04-7c8d-46ce-aca3-caa74427ed21
+        m_Path: 3DVector
+        m_Interactions: 
+        m_Processors: ScaleVector3(x=0.1,y=0.1,z=0.1)
+        m_Groups: 
+        m_Action: Head Movement
+        m_Flags: 4
+      - m_Name: up
+        m_Id: bdaf4f7c-c5a0-4c93-82c7-4327134ddd9f
+        m_Path: <Keyboard>/space
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Head Movement
+        m_Flags: 8
+      - m_Name: down
+        m_Id: 5826dc34-ecb2-4211-935f-31da61bc9d3b
+        m_Path: <Keyboard>/leftCtrl
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Head Movement
+        m_Flags: 8
+      - m_Name: left
+        m_Id: 05d54aff-e18b-4662-960a-3cbbcb8d134e
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Head Movement
+        m_Flags: 8
+      - m_Name: right
+        m_Id: 6a846bfd-1340-47ee-ba43-b856d744661b
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Head Movement
+        m_Flags: 8
+      - m_Name: forward
+        m_Id: 95b40a59-bae4-4e92-81d2-3a8ea9d974ab
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Head Movement
+        m_Flags: 8
+      - m_Name: backward
+        m_Id: a66aaf48-0cce-4cc1-807b-2ace8e7a5ef6
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Head Movement
+        m_Flags: 8
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_leftThumbstickAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Thumbstick
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4a80f6e7-f8ba-41d1-862a-a11624b786af
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: WASD
+        m_Id: 83e8a70b-b065-469f-8bf6-159c47b91419
+        m_Path: 2DVector
+        m_Interactions: 
+        m_Processors: ScaleVector3(x=0.1,y=0.1,z=0.1)
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 4
+      - m_Name: Up
+        m_Id: 202cfc41-317a-4c86-8af2-e91e4214c85d
+        m_Path: <Keyboard>/w
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      - m_Name: Down
+        m_Id: e69b514e-10e4-473a-a603-dc38b01b64ef
+        m_Path: <Keyboard>/s
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      - m_Name: Left
+        m_Id: 83be51f0-cb03-4b63-b1ac-bf5e4afedf92
+        m_Path: <Keyboard>/a
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      - m_Name: Right
+        m_Id: f5c4473e-17b3-474d-bc78-828b334662a6
+        m_Path: <Keyboard>/d
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_rightThumbstickAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Thumbstick
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4a80f6e7-f8ba-41d1-862a-a11624b786af
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: IJKL
+        m_Id: 83e8a70b-b065-469f-8bf6-159c47b91419
+        m_Path: 2DVector
+        m_Interactions: 
+        m_Processors: ScaleVector3(x=0.1,y=0.1,z=0.1)
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 4
+      - m_Name: Up
+        m_Id: 202cfc41-317a-4c86-8af2-e91e4214c85d
+        m_Path: <Keyboard>/i
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      - m_Name: Down
+        m_Id: e69b514e-10e4-473a-a603-dc38b01b64ef
+        m_Path: <Keyboard>/k
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      - m_Name: Left
+        m_Id: 83be51f0-cb03-4b63-b1ac-bf5e4afedf92
+        m_Path: <Keyboard>/j
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      - m_Name: Right
+        m_Id: f5c4473e-17b3-474d-bc78-828b334662a6
+        m_Path: <Keyboard>/l
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 8
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_leftGrabAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Grab
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: ce6022f4-8de9-4692-8c21-8d43f94d739a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 356fa054-6832-4c8a-a1d5-f08b54cf3fe5
+        m_Path: <Mouse>/leftButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Grab
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_rightGrabAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Grab
+      m_Type: 0
+      m_ExpectedControlType: Analog
+      m_Id: 1504cc06-f8e6-4241-a020-f6b3dc6ddb98
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 1fddce28-72db-49b0-91bc-053c415c7b18
+        m_Path: <Mouse>/rightButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Grab
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_leftTriggerAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: fec88f5d-e074-456e-aac6-6e23bb7be925
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 78b1f398-a4b0-4f85-9a4a-b57983cb7c47
+        m_Path: <Keyboard>/q
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Trigger
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_rightTriggerAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: dbe7d685-707d-4b50-8b3f-30b70140d717
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 3fe21b7f-8e01-4341-9090-77eb884cfc12
+        m_Path: <Keyboard>/e
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Trigger
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_rightHandMovementAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Hand Movement
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: a1434a1e-6547-4b96-ad65-88b1fd89e565
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: Mouse Delta (With Middle Click)
+        m_Id: dddc6549-a355-4a3d-b26a-51c289c87bdd
+        m_Path: OneModifier
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Hand Movement
+        m_Flags: 4
+      - m_Name: modifier
+        m_Id: 4b8f8792-554d-4eef-b43e-bbc16f95456e
+        m_Path: <Mouse>/middleButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Hand Movement
+        m_Flags: 8
+      - m_Name: binding
+        m_Id: b80f53f7-b314-427c-8cb7-c22b4ffec912
+        m_Path: <Mouse>/delta
+        m_Interactions: 
+        m_Processors: ScaleVector2(x=0.001,y=0.001)
+        m_Groups: 
+        m_Action: Right Hand Movement
+        m_Flags: 8
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_rightHandMovementZAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Hand Movement Z
+      m_Type: 0
+      m_ExpectedControlType: Analog
+      m_Id: 2c0c0cb9-c464-4219-b415-acbdf5203822
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: a0b9eae9-d479-47c0-8759-543464ef5853
+        m_Path: <Mouse>/scroll/y
+        m_Interactions: 
+        m_Processors: Scale(factor=0.0002)
+        m_Groups: 
+        m_Action: Right Hand Movement Z
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_leftHandMenuAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Hand Menu
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 0c1de2e5-64c3-4194-a9bb-1cb53a9d2d90
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 271f3fa0-e45f-414c-bb7f-534d65aabb53
+        m_Path: <Keyboard>/backquote
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Hand Menu
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_centerEyeStartPosition: {x: 0, y: 1.5, z: 0}
+  m_leftControllerOffset: {x: -0.1, y: -0.1, z: 0.5}
+  m_leftControllerRotation: {x: -30, y: 0, z: -60}
+  m_rightControllerOffset: {x: 0.1, y: -0.1, z: 0.5}
+  m_rightControllerRotation: {x: -30, y: 0, z: 60}
+--- !u!114 &71601535237985672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819655302111354767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6823dc4c1ad1e45bf5437acd89fd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,0 +1,17 @@
+{
+    "name": "Oculus.AvatarSDK2.Example.Editor",
+    "references": [
+        "Oculus.AvatarSDK2",
+        "Oculus.AvatarSDK2.Example"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

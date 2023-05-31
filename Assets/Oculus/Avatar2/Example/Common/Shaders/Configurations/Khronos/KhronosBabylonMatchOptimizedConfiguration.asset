@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3861555276e1a07489d3c0971e091e46, type: 3}
+  m_Name: KhronosBabylonMatchOptimizedConfiguration
+  m_EditorClassIdentifier: 
+  Material: {fileID: 0}
+  Shader: {fileID: 4800000, guid: 2a6c569e922c5e34e9c05f146aaf9c78, type: 3}
+  NameTextureParameter_baseColorTexture: u_BaseColorSampler
+  NameTextureParameter_diffuseTexture: u_BaseColorSampler
+  NameTextureParameter_metallicRoughnessTexture: u_MetallicRoughnessSampler
+  NameTextureParameter_specularGlossiness: u_MetallicRoughnessSampler
+  NameTextureParameter_normalTexture: u_NormalSampler
+  NameTextureParameter_occlusionTexture: u_OcclusionSampler
+  NameTextureParameter_emissiveTexture: u_EmissiveSampler
+  NameTextureParameter_flowTexture: _FlowMap
+  NameColorParameter_BaseColorFactor: _Color
+  UseColorParameter_BaseColorFactor: 0
+  NameFloatParameter_MetallicFactor: _Metallic
+  UseFloatParameter_MetallicFactor: 0
+  NameFloatParameter_RoughnessFactor: _Roughness
+  UseFloatParameter_RoughnessFactor: 0
+  NameColorParameter_DiffuseFactor: _Diffuse
+  UseColorParameter_DiffuseFactor: 0
+  KeywordsEnumerations:
+  - BRDF_LUT_MODE_ON
+  - BRDF_LUT_MODE_OFF
+  - LIGHTING_MODE_IBL_PLUS_PUNCTUAL
+  - LIGHTING_MODE_SH_PLUS_PUNCTUAL
+  - LIGHTING_MODE_IBL_ONLY
+  - LIGHTING_MODE_SH_ONLY
+  - LIGHTING_MODE_PUNCTUAL_ONLY
+  - MATERIAL_MODE_TEXTURE
+  - MATERIAL_MODE_VERTEX
+  KeywordsToEnable:
+  - BRDF_LUT_MODE_OFF
+  - LIGHTING_MODE_IBL_PLUS_PUNCTUAL
+  - MATERIAL_MODE_TEXTURE
+  NameFloatConstants:
+  - u_F0Factor
+  - u_DiffuseSmoothingFactor
+  - BRDF_LUT_Mode
+  - Lighting_Mode
+  - Material_Mode
+  ValueFloatConstants:
+  - 0
+  - 4
+  - 1
+  - 1
+  - 0

@@ -1,0 +1,422 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+
+// Until Unity 2020, setting keywords is not supported. Instead have to have different kernels
+// with the different keywords defined like this
+#pragma kernel CSMain
+#pragma kernel CSMainWithTangents OVR_HAS_TANGENTS
+#pragma kernel CSMainDoubleBuffer OVR_DOUBLE_BUFFER_OUTPUT
+#pragma kernel CSMainDoubleBufferWithTangents OVR_HAS_TANGENTS OVR_DOUBLE_BUFFER_OUTPUT
+#pragma kernel CSMainTripleBuffer OVR_TRIPLE_BUFFER_OUTPUT
+#pragma kernel CSMainTripleBufferWithTangents OVR_HAS_TANGENTS OVR_TRIPLE_BUFFER_OUTPUT
+
+#include "OvrVertexCompute.cginc"
+#include "OvrOutputBufferCompute.cginc"
+#include "OvrMorphsCompute.cginc"
+#include "OvrSkinningCompute.cginc"
+
+////////////////////////////////////////////////////////////////////////////
+// Data Layout(s)
+////////////////////////////////////////////////////////////////////
+///
+/// There are 4 buffers
+///
+/// "StaticDataBuffer" - All the 'static data' for any number of "mesh entries".
+/// There can be multiple "mesh entries" in the buffer to facilitate batching setups.
+///
+/// {
+///   [static_mesh_meta_data] -> Array of "headers" which holds byte offsets and other metadata about the static mesh data
+///   [neutral_positions] -> An array of "neutral pose positions"
+///   [neutral_normals] -> An array of "neutral pose normals"
+///   [neutral_tangents] -> An array (might be if no tangents) of "neutral pose tangents"
+///   [joint_weights] -> An array of joint weights
+///   [joint_indices] -> An array of joint indices
+///   [output_indices] -> An array of output indices per vertex. Serves as a mapping from input vertex order to output vertex order
+///   [morph_target_deltas] -> Arrays of morph target related information
+/// }
+///
+///  "Dynamic Buffer" - Stores all of the "dynamic" (can change frequently) data for a mesh.
+///  {
+///     [vertex_instance_data] -> An array of all the "vertex instance data" potentially across multiple "mesh instances"
+///     [mesh_instance_meta_data] -> An array of "mesh instance meta data" for the different "mesh instances"
+///     [joint_matrices] -> An array joint matrices for all mesh instances
+///     [joint_weights] -> An array of joint weights for all mesh instances
+///  }
+///
+///  "Position output buffer" - Stores only the positions of the final output.
+///  // Might be interleaved "double buffered" output for same vertex next to each other
+///  [positions] -> An array of output positions
+///
+///  "Frenet output buffer" - Stores interleaved normal + tangents (if applicable) information
+///  // Might be interleaved with "double buffered" output
+///  [normal, tangents] -> An array of interleaved normals and tangents (if applicable)
+
+
+////////////////////////////////
+// Data Structures
+////////////////////////////////
+struct StaticMeshMetaData {
+  // Static data offsets
+
+  // Offset to an array of positions(x), normals(y), tangents(z), joint weights (w)
+  uint4 attributeAndJointWeightsOffsetBytes;
+
+  // Morph target deltas offset bytes(x), numMorphs(y), numMorphedVertices(z), joint indices (w)
+  uint4 morphTargetInfoAndJointIndicesOffsetBytes;
+
+  // Offset of an array of output indices (x) (yzw) - unused
+  uint4 outputIndexOffset;
+
+  float4 vertexInputPositionBias; // Float4s for alignment, w unused (is this needed?)
+  float4 vertexInputPositionScale;
+  float4 vertexOutputPositionBias; // Float4s for alignment, w unused (is this needed?)
+  float4 vertexOutputPositionScale;
+
+  float4 morphTargetsPosRange;
+  float4 morphTargetsNormRange;
+  float4 morphTargetsTanRange;
+
+  // TODO* Padding/Alignment?
+};
+
+struct MeshInstanceMetaData {
+  // meshStaticDataOffsetBytes(x) morphTargetWeightsOffsetBytes(y) jointMatricesOffsetBytes(z) writeToSecondSliceAddress (w)
+  uint4 properties;
+
+  // outputPositionBufferOffsetBytes(x) outputBufferOffsetBytes(y)
+  uint4 outputOffsets;
+
+  // TODO* Padding/Alignment?
+};
+
+struct VertexInstanceData {
+  // meshInstanceDataOffsetBytes(x) vertexIndexInMesh(y)
+  uint4 properties;
+
+  // TODO* Padding/Alignment?
+};
+
+////////////////////////////////////////////
+/// Uniforms and Buffers
+////////////////////////////////////////////
+
+// TODO*: Layout diagram
+ByteAddressBuffer _StaticDataBuffer; // "Bag of Bytes" (really bag of dwords)
+ByteAddressBuffer _DynamicDataBuffer; // "Bag of Bytes" (really bag of dwords)
+RWByteAddressBuffer _PositionOutputBuffer; // "Bag of Bytes" (really bag of dwords)
+RWByteAddressBuffer _FrenetOutputBuffer; // "Bag of Bytes" (really bag of dwords)
+
+int _DispatchStartVertIndex;
+int _DispatchEndVertIndex;
+
+// Using these below instead of #ifdefs to decrease variants (at the cost of
+// a "static" branch) at least until Unity 2020. There would be too large of
+// an explosion of variants to manually track
+bool _EnableMorphTargets; // 0 = false, 1 = true
+bool _EnableSkinning; // 0 = false, 1 = true
+int _MaxJointsToSkin;
+int _VertexPositionsDataFormat;
+int _MorphTargetDeltasDataFormat;
+int _JointIndicesDataFormat;
+int _PositionOutputBufferDataFormat;
+
+////////////////////////////////////////////////////////
+// Helper Functions
+////////////////////////////////////////////////////////
+
+uint GetMorphTargetDeltasOffsetBytes(StaticMeshMetaData static_mesh_meta_data) {
+  // Morph target deltas offset bytes(x)
+  return static_mesh_meta_data.morphTargetInfoAndJointIndicesOffsetBytes.x;
+}
+
+uint GetNumMorphs(StaticMeshMetaData static_mesh_meta_data) {
+  // numMorphs(y)
+  return static_mesh_meta_data.morphTargetInfoAndJointIndicesOffsetBytes.y;
+}
+
+uint GetNumMorphedVertices(StaticMeshMetaData static_mesh_meta_data) {
+  // numMorphedVertices(z)
+  return static_mesh_meta_data.morphTargetInfoAndJointIndicesOffsetBytes.z;
+}
+
+uint GetJointIndicesOffsetBytes(StaticMeshMetaData static_mesh_meta_data) {
+  return static_mesh_meta_data.morphTargetInfoAndJointIndicesOffsetBytes.w;
+}
+
+uint GetOutputPositionBufferOffsetBytes(MeshInstanceMetaData mesh_instance_meta_data) {
+  // outputPositionBufferOffsetBytes(x)
+  return mesh_instance_meta_data.outputOffsets.x;
+}
+
+uint GetOutputBufferOffsetBytes(MeshInstanceMetaData mesh_instance_meta_data) {
+  // outputPositionBufferOffsetBytes(x)
+  return mesh_instance_meta_data.outputOffsets.y;
+}
+
+uint GetMeshStaticDataOffsetBytes(MeshInstanceMetaData mesh_instance_meta_data) {
+  return mesh_instance_meta_data.properties.x;
+}
+
+uint GetMorphTargetWeightsOffetBytes(MeshInstanceMetaData mesh_instance_meta_data) {
+  return mesh_instance_meta_data.properties.y;
+}
+
+uint GetJointMatricesOffsetBytes(MeshInstanceMetaData mesh_instance_meta_data) {
+  // jointMatricesOffsetBytes(z)
+  return mesh_instance_meta_data.properties.z;
+}
+
+// "Slice" here meaning which of the double/triple buffer entries to write to
+uint GetOutputSlice(MeshInstanceMetaData mesh_instance_meta_data, ByteAddressBuffer data_buffer) {
+  // Grab address to read from from the mesh instance meta data
+  const int address = mesh_instance_meta_data.properties.w;
+
+  return data_buffer.Load(address);
+}
+
+uint GetMeshInstanceDataOffsetBytes(VertexInstanceData vertex_instance_data) {
+  return vertex_instance_data.properties.x;
+}
+
+uint GetVertexIndexWithinMesh(VertexInstanceData vertex_instance_data) {
+  return vertex_instance_data.properties.y;
+}
+
+uint GetInputPositionOffsetBytes(StaticMeshMetaData static_mesh_meta_data) {
+  return static_mesh_meta_data.attributeAndJointWeightsOffsetBytes.x;
+}
+
+uint GetInputNormalOffsetBytes(StaticMeshMetaData static_mesh_meta_data) {
+  return static_mesh_meta_data.attributeAndJointWeightsOffsetBytes.y;
+}
+
+uint GetInputTangentOffsetBytes(StaticMeshMetaData static_mesh_meta_data) {
+  return static_mesh_meta_data.attributeAndJointWeightsOffsetBytes.z;
+}
+
+uint GetJointWeightsOffsetBytes(StaticMeshMetaData static_mesh_meta_data) {
+  return static_mesh_meta_data.attributeAndJointWeightsOffsetBytes.w;
+}
+
+uint GetOutputIndexOffsetBytes(StaticMeshMetaData static_mesh_meta_data) {
+  return static_mesh_meta_data.outputIndexOffset.x;
+}
+
+StaticMeshMetaData GetStaticMeshMetaData(ByteAddressBuffer data_buffer, MeshInstanceMetaData mesh_instance) {
+  StaticMeshMetaData meta_data;
+
+  // meshStaticDataHeaderOffsetBytes(y)
+  const uint address = GetMeshStaticDataOffsetBytes(mesh_instance); // in bytes
+
+  // NOTE!!!!!!
+  // Order here is very important and must match struct declaration
+  // Until Shader Model 6.2 is supported by Unity, this will remain in all its fragile glory
+
+  // 4 byte stride per uint
+  // 16 byte stride per float4/uint4
+  meta_data.attributeAndJointWeightsOffsetBytes = OvrLoadUint4(data_buffer, address);
+  meta_data.morphTargetInfoAndJointIndicesOffsetBytes = OvrLoadUint4(data_buffer, address + 16u);
+  meta_data.outputIndexOffset = OvrLoadUint4(data_buffer, address + 32u);
+  meta_data.vertexInputPositionBias = OvrUnpackFloat4x32(data_buffer, address + 48u);
+  meta_data.vertexInputPositionScale = OvrUnpackFloat4x32(data_buffer, address + 64u);
+  meta_data.vertexOutputPositionBias = OvrUnpackFloat4x32(data_buffer, address + 80u);
+  meta_data.vertexOutputPositionScale = OvrUnpackFloat4x32(data_buffer, address + 96u);
+  meta_data.morphTargetsPosRange = OvrUnpackFloat4x32(data_buffer, address + 112u);
+  meta_data.morphTargetsNormRange = OvrUnpackFloat4x32(data_buffer, address + 128u);
+  meta_data.morphTargetsTanRange = OvrUnpackFloat4x32(data_buffer, address + 144u);
+
+  return meta_data;
+}
+
+MeshInstanceMetaData GetMeshInstanceMetaData(ByteAddressBuffer data_buffer, VertexInstanceData vert_instance) {
+  MeshInstanceMetaData mesh_instance_data;
+
+  const uint address = GetMeshInstanceDataOffsetBytes(vert_instance);
+
+  // NOTE!!!!!!
+  // Order here is very important
+  // Until Shader Model 6.2 is supported by Unity, this will remain in all its fragile glory
+  mesh_instance_data.properties = OvrLoadUint4(data_buffer, address);
+  mesh_instance_data.outputOffsets = OvrLoadUint4(data_buffer, address + 16u);
+
+  return mesh_instance_data;
+}
+
+VertexInstanceData GetVertexInstanceData(ByteAddressBuffer data_buffer, uint address) {
+  VertexInstanceData vertex_instance_data;
+
+  // NOTE!!!!!!
+  // Order here is very important
+  // Until Shader Model 6.2 is supported by Unity, this will remain in all its fragile glory
+  vertex_instance_data.properties = OvrLoadUint4(data_buffer, address);
+
+  return vertex_instance_data;
+}
+
+Vertex GetVertexStaticData(
+  StaticMeshMetaData static_mesh_meta_data,
+  uint vertex_index)
+{
+  return GetVertexStaticData(
+    _StaticDataBuffer,
+    GetInputPositionOffsetBytes(static_mesh_meta_data),
+    GetInputNormalOffsetBytes(static_mesh_meta_data),
+    GetJointWeightsOffsetBytes(static_mesh_meta_data),
+    OVR_FORMAT_FLOAT_32,
+    GetJointIndicesOffsetBytes(static_mesh_meta_data),
+    _JointIndicesDataFormat,
+    GetOutputIndexOffsetBytes(static_mesh_meta_data),
+    _VertexPositionsDataFormat,
+    static_mesh_meta_data.vertexInputPositionBias.xyz,
+    static_mesh_meta_data.vertexInputPositionScale.xyz,
+    vertex_index);
+}
+
+VertexInstanceData GetVertexInstanceData(uint vert_instances_index) {
+  // ASSUMPTION: The vertex instance data is the first data in the dynamic buffer
+  static const uint STRIDE = 4u * 4u; // 4 32-bit uints
+  const int address = vert_instances_index * STRIDE;
+
+  VertexInstanceData vertex_instance_data;
+  vertex_instance_data.properties = OvrLoadUint4(_DynamicDataBuffer, address);
+
+  return vertex_instance_data;
+}
+
+////////////////////////////////////////
+// Main
+////////////////////////////////////////
+
+void ApplyMorphsAndSkinning(uint vert_instances_index) {
+  // Benchmark if this or just having some "empty" data is faster (though more memory)
+  if (vert_instances_index > (uint)_DispatchEndVertIndex) {
+    return;
+  }
+
+  // ASSUMPTION: The vertex instance data is the first data in the dynamic buffer
+  const VertexInstanceData vertex_instance = GetVertexInstanceData(vert_instances_index);
+
+  // From that data, grab the mesh instance data and mesh static data
+  const MeshInstanceMetaData mesh_instance_meta_data = GetMeshInstanceMetaData(
+    _DynamicDataBuffer,
+    vertex_instance);
+
+  const StaticMeshMetaData static_mesh_meta_data = GetStaticMeshMetaData(
+    _StaticDataBuffer,
+    mesh_instance_meta_data);
+
+  // Get the vertex id "within the mesh"
+  const uint vertex_index = GetVertexIndexWithinMesh(vertex_instance);
+
+  // Grab "vertex static data" out of the static data
+  Vertex vertex = GetVertexStaticData(static_mesh_meta_data, vertex_index);
+
+  // Compiler should hopefully optimize out any potential branches due to static const bool values,
+  // and otherwise, branches should be based on uniform parameters passed in which
+  // should make their just the branch and not cause diverging branches across workgroups
+  // Compiler should also optimize out unused parameters
+#if defined(OVR_HAS_TANGENTS)
+  static const bool has_tangents = true;
+#else
+  static const bool has_tangents = false;
+#endif
+
+#if defined(OVR_DOUBLE_BUFFER_OUTPUT)
+  static const uint num_slices_per_attribute = 2;
+  const uint output_slice = GetOutputSlice(mesh_instance_meta_data, _DynamicDataBuffer);
+#elif defined(OVR_TRIPLE_BUFFER_OUTPUT)
+  static const uint num_slices_per_attribute = 3;
+  const uint output_slice = GetOutputSlice(mesh_instance_meta_data, _DynamicDataBuffer);
+#else
+  static const uint num_slices_per_attribute = 1;
+  static const uint output_slice = 0;
+#endif
+
+
+  float4 vertex_tangent = float4(0.0, 0.0, 1.0, 1.0);
+  if (has_tangents) {
+    uint tangents_start_address = GetInputTangentOffsetBytes(static_mesh_meta_data);
+    vertex_tangent = GetNeutralPoseTangent(_StaticDataBuffer, tangents_start_address, vertex_index);
+  }
+
+  // Apply morphs
+  [branch]
+  if (_EnableMorphTargets) {
+    ApplyRectangularMorphs(
+      _StaticDataBuffer,
+      _DynamicDataBuffer,
+      GetMorphTargetDeltasOffsetBytes(static_mesh_meta_data),
+      GetMorphTargetWeightsOffetBytes(mesh_instance_meta_data),
+      GetNumMorphs(static_mesh_meta_data),
+      GetNumMorphedVertices(static_mesh_meta_data),
+      _MorphTargetDeltasDataFormat,
+      vertex.position,
+      static_mesh_meta_data.morphTargetsPosRange.xyz,
+      vertex.normal,
+      static_mesh_meta_data.morphTargetsNormRange.xyz,
+      vertex_tangent,
+      static_mesh_meta_data.morphTargetsTanRange.xyz,
+      vertex.vertexIndex,
+      has_tangents);
+  }
+
+  // Apply skinning
+  [branch]
+  if (_EnableSkinning && _MaxJointsToSkin > 0) {
+    ApplySkinning(
+      _MaxJointsToSkin,
+      _DynamicDataBuffer,
+      GetJointMatricesOffsetBytes(mesh_instance_meta_data),
+      vertex.position,
+      vertex.normal,
+      vertex_tangent.xyz,
+      vertex.jointWeights,
+      vertex.jointIndices,
+      has_tangents);
+  }
+
+  StoreVertexOutput(
+    _PositionOutputBuffer,
+    _FrenetOutputBuffer,
+    GetOutputPositionBufferOffsetBytes(mesh_instance_meta_data),
+    GetOutputBufferOffsetBytes(mesh_instance_meta_data),
+    static_mesh_meta_data.vertexOutputPositionBias.xyz,
+    1.0 / static_mesh_meta_data.vertexOutputPositionScale.xyz,
+    _PositionOutputBufferDataFormat,
+    vertex.position,
+    vertex.normal,
+    vertex_tangent,
+    vertex.outputIndex,
+    has_tangents,
+    num_slices_per_attribute,
+    output_slice);
+}
+
+[numthreads(64,1,1)]
+void CSMain(uint3 id : SV_DispatchThreadID) {
+  ApplyMorphsAndSkinning((uint)_DispatchStartVertIndex + id.x);
+}
+
+[numthreads(64,1,1)]
+void CSMainWithTangents(uint3 id : SV_DispatchThreadID) {
+  ApplyMorphsAndSkinning((uint)_DispatchStartVertIndex + id.x);
+}
+
+[numthreads(64,1,1)]
+void CSMainDoubleBuffer(uint3 id : SV_DispatchThreadID) {
+  ApplyMorphsAndSkinning((uint)_DispatchStartVertIndex + id.x);
+}
+
+[numthreads(64,1,1)]
+void CSMainDoubleBufferWithTangents(uint3 id : SV_DispatchThreadID) {
+  ApplyMorphsAndSkinning((uint)_DispatchStartVertIndex + id.x);
+}
+
+[numthreads(64,1,1)]
+void CSMainTripleBuffer(uint3 id : SV_DispatchThreadID) {
+  ApplyMorphsAndSkinning((uint)_DispatchStartVertIndex + id.x);
+}
+
+[numthreads(64,1,1)]
+void CSMainTripleBufferWithTangents(uint3 id : SV_DispatchThreadID) {
+  ApplyMorphsAndSkinning((uint)_DispatchStartVertIndex + id.x);
+}

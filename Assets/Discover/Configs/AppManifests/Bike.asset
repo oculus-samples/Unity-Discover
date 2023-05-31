@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894b034db1e646d0856d4351fa3881fd, type: 3}
+  m_Name: Bike
+  m_EditorClassIdentifier: 
+  UniqueName: bike
+  DisplayName: Bike
+  Icon: {fileID: 21300000, guid: aff9426407149294c9ee519cbd90f4af, type: 3}
+  DisplayType: 0
+  IconSurfaceOrientation: 0
+  IconSurfaceType: 1
+  IconStartRotation: 90
+  IconPrefab: {fileID: 7408312654150406980, guid: 3ddc5280582d7e64a8efeb681c99e48b, type: 3}
+  DropIndicator: {fileID: 2324615606433838838, guid: 15114f4a53b63ab4cadd175e50705d1d, type: 3}
+  AppPrefab: {fileID: 6173619910865530596, guid: 8f98da64f5400a94487aaf9ec77afddc, type: 3}

@@ -1,0 +1,20 @@
+{
+    "name": "PhotonVoice.Fusion",
+    "rootNamespace": "",
+    "references": [
+        "PhotonVoice",
+        "PhotonRealtime",
+        "PhotonVoice.API"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FUSION_WEAVER"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

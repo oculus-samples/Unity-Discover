@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TopCaps
+  m_Shader: {fileID: 4800000, guid: 794d4451bc6e84319ac32421ba4b701f, type: 3}
+  m_ValidKeywords:
+  - IBL
+  - SPECULAR_IN_ALPHA
+  - _DIFFUSE_OREN
+  - _SPECULAR_BLINNPHONG
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlbedoTexture:
+        m_Texture: {fileID: 2800000, guid: 1fc1a1f0e21264dd7b8474dde2600549, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IBLTex:
+        m_Texture: {fileID: 2800000, guid: 561056b0a4802434a80345bad0ffc2fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 2800000, guid: 4a6cfccb7d45843d2b4b040d4dd6b5e3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints:
+    - _SpecularMIP: 6
+    m_Floats:
+    - _AnisoU: 0.1
+    - _AnisoV: 0.9
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _Diffuse: 1
+    - _DiffuseRoughness: 0.68
+    - _DstBlend: 0
+    - _Eta: 6.6
+    - _Exposure: 0.9
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _IBL: 1
+    - _Kaffordance: 0
+    - _Kd: 0
+    - _Kf: 0.061
+    - _Kr: 0.665
+    - _Ks: 0.625
+    - _Metallic: 0
+    - _Metalness: 0.787
+    - _MikktNormals: 0
+    - _Mode: 0
+    - _NormalBlend: 1
+    - _OcclusionStrength: 1
+    - _Opacity: 1
+    - _OrthoRoughness: 0.1
+    - _OutlineWidth: 0.1
+    - _Parallax: 0.02
+    - _Roughness: 0.82
+    - _SmoothnessTextureChannel: 0
+    - _Specular: 0
+    - _SpecularHighlights: 1
+    - _SpecularInAlpha: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _UseOcclusionMap: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _AffordanceColor: {r: 1, g: 0, b: 0, a: 1}
+    - _AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecularTint: {r: 0.29503384, g: 0.5464482, b: 0.9622642, a: 1}
+  m_BuildTextureStacks: []

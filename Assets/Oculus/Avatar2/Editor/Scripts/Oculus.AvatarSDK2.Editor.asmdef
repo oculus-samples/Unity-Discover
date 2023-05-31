@@ -1,0 +1,32 @@
+{
+    "name": "Oculus.AvatarSDK2.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Oculus.AvatarSDK2",
+        "Oculus.AvatarSDK2.Example",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.management",
+            "expression": "",
+            "define": "USING_XR_MANAGEMENT"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "",
+            "define": "USING_XR_SDK_OCULUS"
+        }
+    ],
+    "noEngineReferences": false
+}

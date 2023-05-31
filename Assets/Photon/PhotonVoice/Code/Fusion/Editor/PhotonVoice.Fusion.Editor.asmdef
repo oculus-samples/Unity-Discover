@@ -1,0 +1,22 @@
+{
+    "name": "PhotonVoice.Fusion.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Fusion.Editor",
+        "PhotonVoice.Fusion",
+        "PhotonVoice.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FUSION_WEAVER"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
