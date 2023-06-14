@@ -209,13 +209,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.search.extensions": {
-      "version": "https://github.com/Unity-Technologies/com.unity.search.extensions.git?path=package",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "12f447a7638af7a4a3b337df32f1343aad232b99"
-    },
     "com.unity.test-framework": {
       "version": "1.1.33",
       "depth": 1,
