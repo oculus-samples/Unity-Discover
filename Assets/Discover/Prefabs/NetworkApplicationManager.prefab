@@ -86,7 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  m_ceilingFadeDuration: 3
   m_altWallMaterials:
   - {fileID: 2100000, guid: 0999eaf8fc989f543887c49a2996bbf4, type: 2}
   - {fileID: 2100000, guid: 7529866f795dfee4684c60ecea6554a3, type: 2}

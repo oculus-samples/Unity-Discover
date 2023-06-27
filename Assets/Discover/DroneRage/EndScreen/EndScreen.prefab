@@ -2080,7 +2080,7 @@ RectTransform:
   - {fileID: 865543837782972985}
   - {fileID: 7078851976071931340}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2104,6 +2104,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2449,7 +2450,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8286702893298926004}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
           m_Mode: 1
@@ -3167,7 +3168,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3327608896254510125}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
           m_Mode: 1
@@ -3356,7 +3357,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7769525894818808542}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
           m_Mode: 1
@@ -4024,11 +4025,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 1325678333149925970, guid: e133ecacc30c241db97de9b1e9218d41, type: 3}
   m_PrefabInstance: {fileID: 2852632933983878884}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &8286702893298926004 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6095304243554074448, guid: e133ecacc30c241db97de9b1e9218d41, type: 3}
-  m_PrefabInstance: {fileID: 2852632933983878884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3891177941666760205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4133,11 +4129,6 @@ PrefabInstance:
 --- !u!82 &859699510445569635 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4462638004163145838, guid: adaebe47875804581af21005ccd9e428, type: 3}
-  m_PrefabInstance: {fileID: 3891177941666760205}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &3327608896254510125 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1742390654648713760, guid: adaebe47875804581af21005ccd9e428, type: 3}
   m_PrefabInstance: {fileID: 3891177941666760205}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &3926286989572663191 stripped
@@ -4254,10 +4245,5 @@ RectTransform:
 --- !u!82 &5836730527059884898 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1903759124276074564, guid: cd8b4cf72fcf84fbb810b2ac22470a53, type: 3}
-  m_PrefabInstance: {fileID: 5434641520373752614}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &7769525894818808542 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2358020375631667704, guid: cd8b4cf72fcf84fbb810b2ac22470a53, type: 3}
   m_PrefabInstance: {fileID: 5434641520373752614}
   m_PrefabAsset: {fileID: 0}

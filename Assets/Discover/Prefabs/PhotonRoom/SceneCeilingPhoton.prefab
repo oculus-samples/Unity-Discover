@@ -117,10 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  m_type: 2
   m_highlightObject: {fileID: 6872954401102906086}
   <Renderer>k__BackingField: {fileID: 6177686283322639518}
-  _Labels: 
 --- !u!1 &5129851568263076484
 GameObject:
   m_ObjectHideFlags: 0

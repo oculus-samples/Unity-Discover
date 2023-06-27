@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: vr_table
   m_Shader: {fileID: 4800000, guid: 936664a2ff965a145ac3ea134787a966, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DIFFUSE_OREN
   - _SPECULAR_BLINNPHONG
@@ -24,6 +26,7 @@ Material:
   disabledShaderPasses:
   - DepthOnly
   - SHADOWCASTER
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:

@@ -108,7 +108,6 @@ MonoBehaviour:
   m_networking: {fileID: 453862449296571400}
   m_lipSync: {fileID: 5765091252785137564}
   m_isLocalIfNotNetworked: 1
-  m_enableCameraTracking: 0
   OnJointLoadedEvents: []
   m_facePoseProvider: {fileID: 0}
   m_eyePoseProvider: {fileID: 0}
@@ -140,6 +139,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 6697775241635718865}
     m_Modifications:
     - target: {fileID: 2430523750807860354, guid: c019572605bc29e42b3ed5a058599618, type: 3}
@@ -171,6 +171,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c019572605bc29e42b3ed5a058599618, type: 3}
 --- !u!114 &5765091252785137564 stripped
 MonoBehaviour:

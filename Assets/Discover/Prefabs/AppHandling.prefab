@@ -66,3 +66,5 @@ MonoBehaviour:
   m_appFloatDistance: 1
   m_rotationControllerThreshold: 0.6
   m_rotSpeed: 1
+  m_handRotationMultiplier: 200
+  m_handRotationThreshold: 0.0005

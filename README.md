@@ -21,7 +21,7 @@ The project also includes the [Meta Utilities](./Packages/com.meta.utilities/REA
 ## How to run the project in Unity
 
 1. [Configure the project](./Documentation/Configuration.md) with Meta Quest and Photon
-2. Make sure you're using  *Unity 2022.2.12f1* or newer.
+2. Make sure you're using  *Unity 2022.3.1f1* or newer.
 3. Load the [Assets/Discover/Scenes/Discover](./Assets/Discover/Scenes/Discover.unity) scene.
 4. To test in Editor you will need to use Quest Link:
     <details>
@@ -38,7 +38,7 @@ The project also includes the [Meta Utilities](./Packages/com.meta.utilities/REA
 
 This project makes use of the following plugins and software:
 
-- [Unity](https://unity.com/download) 2022.2.12f1 or newer
+- [Unity](https://unity.com/download) 2022.3.1f1 or newer
 - [Dependencies Hunter](https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm)
 - [Meta Avatars SDK](https://developer.oculus.com/downloads/package/meta-avatars-sdk/)
 - [Meta XR Utilities](https://developer.oculus.com/documentation/unity/unity-package-manager/)
