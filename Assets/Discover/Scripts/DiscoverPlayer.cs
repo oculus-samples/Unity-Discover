@@ -2,6 +2,7 @@
 
 using Cysharp.Threading.Tasks;
 using Discover.Colocation;
+using Discover.Networking;
 using Discover.Utilities;
 using Fusion;
 using Meta.Utilities;
@@ -79,7 +80,7 @@ namespace Discover
             UpdateVisibility();
         }
 
-        private void UpdateIsMasterClient() => IsMasterClient = Runner.IsSharedModeMasterClient;
+        private void UpdateIsMasterClient() => IsMasterClient = Runner.IsMasterClient();
 
         public static void OnIsMasterClientChanged(Changed<DiscoverPlayer> changed)
         {
@@ -204,6 +205,8 @@ namespace Discover
             do
             {
                 var user = await OculusPlatformUtils.GetLoggedInUser();
+                if (user == null)
+                    return;
                 PlayerName = user.OculusID;
                 ProfilePicUrl = user.ImageURL;
                 await UniTask.Yield();

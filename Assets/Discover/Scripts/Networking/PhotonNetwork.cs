@@ -7,9 +7,13 @@ namespace Discover.Networking
 {
     public static class PhotonNetwork
     {
-        public static NetworkRunner Runner => NetworkRunner.Instances.FirstOrDefault();
+        private static NetworkRunner s_runner;
 
-        public static bool IsMasterClient => Runner?.IsSharedModeMasterClient is true;
+        public static NetworkRunner Runner =>
+            s_runner != null ? s_runner : (s_runner = NetworkRunner.Instances.FirstOrDefault());
+
+        public static bool IsMasterClient(this NetworkRunner r) =>
+            r != null && (r.IsSharedModeMasterClient || r.GameMode is GameMode.Single);
 
         public static OVRCameraRig CameraRig => AppInteractionController.Instance != null ? AppInteractionController.Instance.CameraRig : null;
 

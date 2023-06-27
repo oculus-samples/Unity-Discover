@@ -16,12 +16,13 @@ namespace Discover.Editor
         [InitializeOnLoadMethod]
         private static void Initialize()
         {
-            ToolbarExtender.LeftToolbarGUI.Add(OnGUI);
+            ToolbarExtender.LeftToolbarGUI.Add(OnLeftGUI);
+            ToolbarExtender.RightToolbarGUI.Add(OnRightGUI);
         }
 
         private static string s_roomName;
 
-        private static void OnGUI()
+        private static void OnLeftGUI()
         {
             GUILayout.FlexibleSpace();
 
@@ -29,25 +30,48 @@ namespace Discover.Editor
             {
                 s_roomName = GUILayout.TextField(s_roomName, GUILayout.ExpandWidth(false), GUILayout.MinWidth(100));
 
+                if (GUILayout.Button("Single Player", GUILayout.ExpandWidth(false)))
+                {
+                    DiscoverAppController.Instance.BeginSinglePlayer();
+                }
+
                 if (GUILayout.Button("Host", GUILayout.ExpandWidth(false)))
                 {
                     DiscoverAppController.Instance.BeginHosting(s_roomName);
                 }
+
                 if (GUILayout.Button("Join", GUILayout.ExpandWidth(false)))
                 {
                     DiscoverAppController.Instance.BeginJoining(s_roomName, false);
                 }
+
                 if (GUILayout.Button("Join Remote", GUILayout.ExpandWidth(false)))
                 {
                     DiscoverAppController.Instance.BeginJoining(s_roomName, false);
                 }
+            }
+            else
+            {
+                if (GUILayout.Button("Discover Scene", GUILayout.ExpandWidth(false)))
+                {
+                    _ = EditorSceneManager.OpenScene("Assets/Discover/Scenes/Discover.unity");
+                }
+            }
 
+            GUILayout.FlexibleSpace();
+        }
+
+        private static void OnRightGUI()
+        {
+            if (Application.isPlaying)
+            {
                 GUILayout.FlexibleSpace();
 
                 if (GUILayout.Button("Bike", GUILayout.ExpandWidth(false)))
                 {
                     HostAndLaunchApp("bike");
                 }
+
                 if (GUILayout.Button("DroneRage", GUILayout.ExpandWidth(false)))
                 {
                     HostAndLaunchApp("dronerage");
@@ -73,13 +97,6 @@ namespace Discover.Editor
                     {
                         enemy.DropLargeItem(true);
                     }
-                }
-            }
-            else
-            {
-                if (GUILayout.Button("Discover Scene", GUILayout.ExpandWidth(false)))
-                {
-                    _ = EditorSceneManager.OpenScene("Assets/Discover/Scenes/Discover.unity");
                 }
             }
 

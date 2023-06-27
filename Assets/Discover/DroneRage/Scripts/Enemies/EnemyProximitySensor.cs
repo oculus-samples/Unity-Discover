@@ -23,7 +23,7 @@ namespace Discover.DroneRage.Enemies
 
         private void Start()
         {
-            if (!PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.Runner.IsMasterClient())
             {
                 Destroy(this);
             }

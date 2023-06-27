@@ -17,7 +17,7 @@ namespace Discover.DroneRage.PowerUps
 
         private void Start()
         {
-            if (!PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.Runner.IsMasterClient())
             {
                 Destroy(this);
                 return;

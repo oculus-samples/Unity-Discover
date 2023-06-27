@@ -1,6 +1,7 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System.Linq;
+using Discover.Networking;
 using Fusion;
 using TMPro;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace Discover.Menus
         {
             // disable settings on client headset
             var networkRunner = NetworkRunner.Instances?.FirstOrDefault();
-            if (networkRunner == null || !networkRunner.IsSharedModeMasterClient)
+            if (networkRunner == null || !networkRunner.IsMasterClient())
             {
                 Debug.Log($"{nameof(NetworkedMainMenuController)}: Turning off settings page for client");
                 m_settingsCoverPanel.SetActive(true);

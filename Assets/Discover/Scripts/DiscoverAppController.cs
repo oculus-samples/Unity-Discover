@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Discover.Colocation;
 using Discover.Menus;
+using Discover.Networking;
 using Discover.NUX;
 using Discover.UI.Modal;
 using Fusion;
@@ -73,6 +74,13 @@ namespace Discover
             BeginJoining(m_roomName, true);
         }
 
+        public void StartSinglePlayer()
+        {
+            NUXManager.Instance.StartNux(
+                NUX_EXPERIENCE_KEY,
+                () => StartConnectionAsync(true, GameMode.Single));
+        }
+
         public void StartHost()
         {
             NUXManager.Instance.StartNux(
@@ -100,7 +108,7 @@ namespace Discover
             StartConnectionAsync(isHost);
         }
 
-        private async void StartConnectionAsync(bool isHost)
+        private async void StartConnectionAsync(bool isHost, GameMode mode = GameMode.Shared)
         {
             if (isHost)
             {
@@ -114,23 +122,24 @@ namespace Discover
             NetworkModalWindowController.Instance.ShowMessage("Connecting to Photon...");
             ColocationDriverNetObj.OnColocationCompletedCallback += OnColocationReady;
             ColocationDriverNetObj.SkipColocation = AvatarColocationManager.Instance.IsCurrentPlayerRemote;
-            await Connect(isHost);
+            await Connect(isHost, mode);
         }
 
-        private async UniTask Connect(bool isHost)
+        private async UniTask Connect(bool isHost, GameMode mode)
         {
             var sessionName = string.IsNullOrWhiteSpace(m_roomName) ? null : m_roomName;
             if (isHost && string.IsNullOrWhiteSpace(sessionName))
             {
                 // if we Host and no room name was given we create a random 6 character room name
                 sessionName = RoomNameGenerator.GenerateRoom(6);
+                m_roomName = sessionName;
                 // Given the scope we don't check for collision with existing room name, but checking if the room exists
                 // in the lobby would be a great validator to make sure we don't join someone else session.
             }
 
             var args = new StartGameArgs()
             {
-                GameMode = GameMode.Shared,
+                GameMode = mode,
                 SessionName = sessionName,
                 Scene = SceneManager.GetActiveScene().buildIndex,
                 SceneManager = m_sceneManager,
@@ -169,9 +178,17 @@ namespace Discover
             NetworkModalWindowController.Instance.ShowNetworkSelectionMenu(
                 BeginHosting,
                 BeginJoining,
+                BeginSinglePlayer,
                 OnRegionSelected,
                 m_roomName
             );
+        }
+
+        public void BeginSinglePlayer()
+        {
+            NetworkModalWindowController.Instance.Hide();
+            AvatarColocationManager.Instance.IsCurrentPlayerRemote = false;
+            StartSinglePlayer();
         }
 
         public void BeginHosting(string roomName)
@@ -223,11 +240,29 @@ namespace Discover
             Runner.ProvideInput = true;
         }
 
+        private void OnApplicationPause(bool pauseStatus)
+        {
+            Debug.Log($"OnApplicationPause {pauseStatus}");
+            if (!pauseStatus)
+            {
+                if (Runner != null && !Runner.IsConnectedToServer)
+                {
+                    Debug.LogWarning("Disconnected from room when coming back to application");
+                    DisconnectFromRoom();
+                }
+            }
+        }
+
         #region INetworkRunnerCallbacks
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
             Debug.Log($"OnPlayerJoined playerRef: {player}");
+
+            if (runner.GameMode is GameMode.Single)
+            {
+                OnConnectedToServer(runner);
+            }
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -245,7 +280,7 @@ namespace Discover
         {
             NetworkModalWindowController.Instance.ShowMessage(
                 $"Connected To Photon Session: {runner.SessionInfo.Name}");
-            if (Runner.IsSharedModeMasterClient)
+            if (runner.IsMasterClient())
             {
                 Debug.Log("Instantiate Room Scene objects");
                 foreach (var instantiator in PhotonInstantiator.Instances)
@@ -287,7 +322,7 @@ namespace Discover
         public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
         {
             OnHostMigrationOccured?.Invoke();
-            AppsManager.Instance.CanMoveIcon = runner.IsSharedModeMasterClient;
+            AppsManager.Instance.CanMoveIcon = runner.IsMasterClient();
         }
 
         public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data) { }

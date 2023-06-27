@@ -21,7 +21,7 @@ namespace Discover.DroneRage.Weapons
 
             public override void ResolveHits(Vector3 shotOrigin, Vector3 shotDirection)
             {
-                if (!PhotonNetwork.IsMasterClient)
+                if (!PhotonNetwork.Runner.IsMasterClient())
                 {
                     return;
                 }
@@ -43,7 +43,7 @@ namespace Discover.DroneRage.Weapons
 
         [SerializeField, AutoSetFromChildren]
         private WeaponVisuals m_controlledWeaponVisuals;
-        
+
         [SerializeField, AutoSetFromChildren]
         private PowerUpCollector m_powerUpCollector;
 

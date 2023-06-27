@@ -38,7 +38,7 @@ namespace Discover.DroneRage.Bootstrapper
             {
                 if (m_toDestroy.TryGetComponent(out NetworkObject photonView))
                 {
-                    if (PhotonNetwork.IsMasterClient || photonView.HasStateAuthority)
+                    if (PhotonNetwork.Runner.IsMasterClient() || photonView.HasStateAuthority)
                     {
                         m_toDestroy.Despawn();
                     }

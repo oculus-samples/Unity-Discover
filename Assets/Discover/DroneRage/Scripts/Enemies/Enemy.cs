@@ -655,7 +655,7 @@ namespace Discover.DroneRage.Enemies
         {
             Rigidbody = GetComponent<Rigidbody>();
 
-            if (!PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.Runner.IsMasterClient())
             {
                 Rigidbody.isKinematic = true;
                 Destroy(this);

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Discover.Networking;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -89,7 +90,7 @@ namespace Discover.Colocation.Test
         public void OnConnectedToServer(NetworkRunner runner)
         {
             OnNetworkEvent?.Invoke("Connected To Photon");
-            if (m_networkRunner.IsSharedModeMasterClient)
+            if (m_networkRunner.IsMasterClient())
             {
                 Debug.Log("Spawn Colocation Prefab");
                 _ = m_networkRunner.Spawn(m_colocationPrefab);

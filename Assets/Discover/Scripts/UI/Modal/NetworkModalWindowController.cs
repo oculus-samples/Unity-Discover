@@ -30,12 +30,13 @@ namespace Discover.UI.Modal
         public void ShowNetworkSelectionMenu(
             Action<string> hostAction, // roomName
             Action<string, bool> joinAction, // roomName, isRemote
+            Action singlePlayerAction,
             Action<string> onRegionSelected,
             string defaultRoomName = null
         )
         {
             m_networkSelectionMenu
-              .Initialize(hostAction, joinAction, ShowSettingsPage, defaultRoomName);
+              .Initialize(hostAction, joinAction, singlePlayerAction, ShowSettingsPage, defaultRoomName);
             m_settingsPage.OnNetworkRegionSelected = onRegionSelected;
             m_otherActive = true;
             m_uiParent.SetActive(true);

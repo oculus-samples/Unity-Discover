@@ -91,7 +91,7 @@ namespace Discover.Colocation
             await UniTask.WaitUntil(() => NetworkAdapter.NetworkData != null && NetworkAdapter.NetworkMessenger != null && PlayerIDDictionary != null);
 
             Debug.Log("SetUpAndStartColocation: Add user to Player dictionary");
-            AddToIdDictionary(m_oculusUser.ID, Runner.LocalPlayer.PlayerId, m_headsetGuid);
+            AddToIdDictionary(m_oculusUser?.ID ?? default, Runner.LocalPlayer.PlayerId, m_headsetGuid);
 
             Debug.Log("SetUpAndStartColocation: Initialize messenger");
             var messenger = (PhotonNetworkMessenger)NetworkAdapter.NetworkMessenger;
@@ -115,7 +115,7 @@ namespace Discover.Colocation
 
             m_colocationLauncher = new ColocationLauncher();
             m_colocationLauncher.Init(
-                m_oculusUser.ID,
+                m_oculusUser?.ID ?? default,
                 m_headsetGuid,
                 NetworkAdapter.NetworkData,
                 NetworkAdapter.NetworkMessenger,

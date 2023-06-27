@@ -28,10 +28,12 @@ namespace Discover
             {
                 return false;
             }
+
             if (!await CheckEntitlement(onError))
             {
                 return false;
             }
+
             _ = await LoadLoggedInUser(onError);
 
             return true;
@@ -90,7 +92,11 @@ namespace Discover
             _ = Init();
 #pragma warning restore CS4014
 
-            var loggedInUserResult = await Users.GetLoggedInUser().Gen();
+            var loggedInUserRequest = Users.GetLoggedInUser();
+            if (loggedInUserRequest == null)
+                return false;
+
+            var loggedInUserResult = await loggedInUserRequest.Gen();
             if (loggedInUserResult.IsError)
             {
                 LogError(LOGGED_IN_USER_ERROR_MSG, loggedInUserResult.GetError());

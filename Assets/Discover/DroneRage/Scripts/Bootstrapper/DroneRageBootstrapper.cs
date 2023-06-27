@@ -111,7 +111,7 @@ namespace Discover.DroneRage.Bootstrapper
             DroneRageAppLifecycle.Instance.OnAppStarted();
             AppInteractionController.Instance.DisableSystemInteractorForApp();
 
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.Runner.IsMasterClient())
             {
                 EnvironmentSwapper.Instance.SwapToAltRoomObjects();
 
@@ -164,7 +164,7 @@ namespace Discover.DroneRage.Bootstrapper
 
             DynamicGI.UpdateEnvironment();
 
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.Runner.IsMasterClient())
             {
                 Destroy(m_gameController);
                 Destroy(m_spawner);

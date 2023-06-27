@@ -132,7 +132,7 @@ namespace Discover.DroneRage.PowerUps
         private void Start()
         {
             m_rigidbody = GetComponent<Rigidbody>();
-            if (!PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.Runner.IsMasterClient())
             {
                 m_rigidbody.isKinematic = true;
                 Destroy(this);
