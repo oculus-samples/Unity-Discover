@@ -27,4 +27,5 @@
   <uses-permission android:name="com.oculus.permission.FACE_TRACKING" />
   <uses-feature android:name="oculus.software.eye_tracking" android:required="false" />
   <uses-permission android:name="com.oculus.permission.EYE_TRACKING" />
+  <uses-feature android:glEsVersion="0x00020000"/>
 </manifest>
