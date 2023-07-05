@@ -45,6 +45,7 @@ namespace Discover
 
         protected void Awake()
         {
+            DiscoverAppController.Instance.OnShowPlayerIdChanged += UpdatePlayerName;
             m_avatar.OnCreatedEvent.AddListener(_ => OnAvatarLoaded());
             m_avatar.OnDefaultAvatarLoadedEvent.AddListener(_ => OnAvatarLoaded());
             m_avatar.OnUserAvatarLoadedEvent.AddListener(_ => UpdateVisibility());
@@ -56,7 +57,10 @@ namespace Discover
         protected void OnDestroy()
         {
             if (DiscoverAppController.Instance != null)
+            {
                 DiscoverAppController.Instance.OnHostMigrationOccured.RemoveListener(OnHostMigrationOccured);
+                DiscoverAppController.Instance.OnShowPlayerIdChanged -= UpdatePlayerName;
+            }
 
             AvatarColocationManager.Instance.OnLocalPlayerColocationGroupUpdated -= UpdateVisibility;
         }
@@ -135,7 +139,7 @@ namespace Discover
 
         public static void OnPlayerNameChanged(Changed<DiscoverPlayer> changed)
         {
-            changed.Behaviour.m_onPlayerNameChanged?.Invoke(changed.Behaviour.PlayerName);
+            changed.Behaviour.UpdatePlayerName();
         }
 
         public static void OnProfilePicUrlChanged(Changed<DiscoverPlayer> changed)
@@ -197,6 +201,18 @@ namespace Discover
                     ColocationGroupId = PhotonNetworkData.Instance.GetPlayer(id)?.colocationGroupId ?? uint.MaxValue;
                     AvatarColocationManager.Instance.OnLocalPlayerColocationGroupUpdated?.Invoke();
                 }
+            }
+        }
+
+        private void UpdatePlayerName()
+        {
+            if (DiscoverAppController.Instance.ShowPlayerId)
+            {
+                m_onPlayerNameChanged?.Invoke($"{Object.StateAuthority}");
+            }
+            else
+            {
+                m_onPlayerNameChanged?.Invoke(PlayerName);
             }
         }
 

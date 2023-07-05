@@ -11,7 +11,7 @@ namespace Discover.Menus
     public class CurrentAppMenuController : MonoBehaviour
     {
         [Description("The game object to de-activate/reactivate when launching an app")]
-        [SerializeField] private GameObject m_homeMenu;
+        [SerializeField] private GameObject m_appMenuPageContainer;
         [SerializeField] private AppControlsMenuObjects m_appControlsMenu;
         [SerializeField] private MainMenuController m_mainMenuController;
 
@@ -19,22 +19,14 @@ namespace Discover.Menus
 
         private void Awake()
         {
-            Assert.IsNotNull(m_homeMenu, $"{nameof(m_homeMenu)} cannot be null.");
+            Assert.IsNotNull(m_appMenuPageContainer, $"{nameof(m_appMenuPageContainer)} cannot be null.");
             Assert.IsNotNull(m_appControlsMenu, $"{nameof(m_appControlsMenu)} cannot be null.");
             Assert.IsNotNull(m_mainMenuController, $"{nameof(m_mainMenuController)} cannot be null.");
 
+            NetworkApplicationManager.OnInstanceCreated += OnNetworkManagerCreated;
             if (NetworkApplicationManager.Instance != null)
             {
-                NetworkApplicationManager.Instance.OnAppStarted += OnAppStarted;
-                NetworkApplicationManager.Instance.OnAppClosed += OnAppClosed;
-                if (NetworkApplicationManager.Instance.CurrentApplication != null)
-                {
-                    InitializeApp(NetworkApplicationManager.Instance.GetCurrentAppDisplayName());
-                }
-            }
-            else
-            {
-                NetworkApplicationManager.OnInstanceCreated += OnNetworkManagerCreated;
+                OnNetworkManagerCreated();
             }
         }
 
@@ -45,11 +37,17 @@ namespace Discover.Menus
                 NetworkApplicationManager.Instance.OnAppStarted -= OnAppStarted;
                 NetworkApplicationManager.Instance.OnAppClosed -= OnAppClosed;
             }
+            NetworkApplicationManager.OnInstanceCreated -= OnNetworkManagerCreated;
         }
 
         public void OnEnable()
         {
             m_appControlsMenu.CloseButton.OnClick.AddListener(CloseApp);
+            if (NetworkApplicationManager.Instance != null &&
+                NetworkApplicationManager.Instance.CurrentApplication != null)
+            {
+                InitializeApp(NetworkApplicationManager.Instance.GetCurrentAppDisplayName());
+            }
         }
 
         public void OnDisable()
@@ -70,7 +68,7 @@ namespace Discover.Menus
 
         private void ToggleAppPageOn()
         {
-            m_homeMenu.SetActive(false);
+            m_appMenuPageContainer.SetActive(false);
             m_appControlsMenu.SetAppInfo(m_appName, "");
             m_appControlsMenu.gameObject.SetActive(true);
         }
@@ -87,7 +85,7 @@ namespace Discover.Menus
 
         private void ToggleAppPageOff()
         {
-            m_homeMenu.SetActive(true);
+            m_appMenuPageContainer.SetActive(true);
             m_appControlsMenu.gameObject.SetActive(false);
         }
 
@@ -95,6 +93,10 @@ namespace Discover.Menus
         {
             NetworkApplicationManager.Instance.OnAppStarted += OnAppStarted;
             NetworkApplicationManager.Instance.OnAppClosed += OnAppClosed;
+            if (NetworkApplicationManager.Instance.CurrentApplication != null)
+            {
+                InitializeApp(NetworkApplicationManager.Instance.GetCurrentAppDisplayName());
+            }
         }
 
 #if UNITY_EDITOR

@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Discover.DroneRage.UI.EndScreen;
 using Discover.Menus;
 using Meta.Utilities;
+using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using Oculus.Interaction.Input;
 using UnityEngine;
@@ -33,9 +34,14 @@ namespace Discover.DroneRage.Weapons
 
         private bool m_isTriggerHeld = false;
         private HandGrabInteractor m_currentGrabInteractor;
+        private IActiveState m_currentActiveState;
 
         private HandGrabInteractor m_controllerGrabInteractor;
+        private IActiveState m_controllerActiveState;
         private HandGrabInteractor m_handGrabInteractor;
+        private IActiveState m_handActiveState;
+
+        private bool m_isCurrentInteractorActive;
 
         private bool m_usingHands;
 
@@ -62,7 +68,9 @@ namespace Discover.DroneRage.Weapons
         public async void Setup(HandGrabInteractor controllerGrab, HandGrabInteractor handGrab, Handedness hand)
         {
             m_controllerGrabInteractor = controllerGrab;
+            m_controllerActiveState = controllerGrab.Hand as IActiveState;
             m_handGrabInteractor = handGrab;
+            m_handActiveState = handGrab.Hand as IActiveState;
 
             if (TryGetComponent<WeaponVisuals>(out var weaponVisuals))
             {
@@ -99,24 +107,30 @@ namespace Discover.DroneRage.Weapons
             CleanupInteractor();
             m_usingHands = useHands;
             m_currentGrabInteractor = m_usingHands ? m_handGrabInteractor : m_controllerGrabInteractor;
+            m_currentActiveState = m_usingHands ? m_handActiveState : m_controllerActiveState;
             var interactable = m_weapon.HandGrabInteractable;
-            if (interactable != null && m_currentGrabInteractor != null)
+            if (interactable != null && m_currentGrabInteractor != null && m_currentActiveState.Active)
             {
                 Debug.Log($"Selecting {interactable} with {m_currentGrabInteractor}", this);
                 m_currentGrabInteractor.ForceSelect(interactable);
             }
+
+            m_isCurrentInteractorActive = m_currentActiveState?.Active ?? false;
         }
 
         private void Update()
         {
             var useHands = OVRPlugin.GetHandTrackingEnabled();
-            if (useHands != m_usingHands)
+            var activeStateChanged = m_currentActiveState != null &&
+                                     m_isCurrentInteractorActive != m_currentActiveState.Active;
+            if (useHands != m_usingHands || activeStateChanged)
             {
                 UpdateInteractor(useHands);
             }
 
             var isTriggerHeldThisFrame = false;
-            if (m_weapon.HandGrabInteractable != null && m_currentGrabInteractor != null)
+            if (m_weapon.HandGrabInteractable != null && m_currentGrabInteractor != null &&
+                m_currentGrabInteractor.HasSelectedInteractable)
             {
                 var triggerStrength = m_currentGrabInteractor.HandGrabApi.GetFingerPalmStrength(HandFinger.Index);
                 isTriggerHeldThisFrame = triggerStrength > m_triggerStrengthThreshold;

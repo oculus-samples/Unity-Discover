@@ -6,6 +6,7 @@ using Discover.Networking;
 using Discover.NUX;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Discover.UI.Modal
 {
@@ -14,6 +15,8 @@ namespace Discover.UI.Modal
         [SerializeField] private TMP_Dropdown m_regionDropdown;
 
         public Action<string> OnNetworkRegionSelected;
+
+        public UnityEvent<bool> OnShowPlayerIdUpdated;
 
         private void Awake()
         {
@@ -36,6 +39,11 @@ namespace Discover.UI.Modal
         {
             var region = (RegionMapping.Regions)selectionIndex;
             OnNetworkRegionSelected?.Invoke(RegionMapping.RegionsToCode[region]);
+        }
+
+        public void OnShowPlayerIdChanged(bool value)
+        {
+            OnShowPlayerIdUpdated?.Invoke(value);
         }
     }
 }

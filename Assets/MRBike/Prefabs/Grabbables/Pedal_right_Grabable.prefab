@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b686ec31233464a4eae605c08d38522c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
+  _interpolationDataSource: 3
   m_partNum: 5
   m_visiblePart: {fileID: 5090618395287927113}
   m_startVisible: 1

@@ -33,9 +33,23 @@ namespace Discover
         private NetworkObject m_playerObject;
         private string m_selectedRegionCode = null;
 
+        private bool m_showPlayerId;
+
         public UnityEvent OnHostMigrationOccured;
 
+        public Action OnShowPlayerIdChanged;
+
         public NetworkRunner Runner { get; private set; }
+
+        public bool ShowPlayerId
+        {
+            get => m_showPlayerId;
+            set
+            {
+                m_showPlayerId = value;
+                OnShowPlayerIdChanged?.Invoke();
+            }
+        }
 
         private void Start()
         {
@@ -175,6 +189,9 @@ namespace Discover
 
         private void ShowNetworkSelectionMenu()
         {
+            // Ensure main menu is closed and disabled until we reconnect
+            MainMenuController.Instance.CloseMenu();
+            MainMenuController.Instance.EnableMenuButton(false);
             NetworkModalWindowController.Instance.ShowNetworkSelectionMenu(
                 BeginHosting,
                 BeginJoining,

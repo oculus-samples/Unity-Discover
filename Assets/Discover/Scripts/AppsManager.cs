@@ -118,6 +118,10 @@ namespace Discover
         {
             if (m_movingIcon != null)
             {
+                if (!m_movingIcon.Object.HasStateAuthority)
+                {
+                    m_movingIcon.Object.RequestStateAuthority();
+                }
                 var iconTransform = m_movingIcon.transform;
                 if (iconTransform.TryGetComponent<OVRSpatialAnchor>(out var anchor))
                 {
@@ -143,6 +147,13 @@ namespace Discover
                             m_movingIcon.gameObject.SetActive(true);
                             m_movingIcon = null;
                         });
+                }
+                else
+                {
+                    iconTransform.position = position;
+                    iconTransform.rotation = rotation;
+                    m_movingIcon.gameObject.SetActive(true);
+                    m_movingIcon = null;
                 }
             }
             else
