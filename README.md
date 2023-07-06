@@ -10,7 +10,7 @@ See the [CONTRIBUTING](./CONTRIBUTING.md) file for how to help out.
 
 This project was built using the [Unity engine](https://unity.com/) with [Photon Fusion](https://doc.photonengine.com/fusion/current/getting-started/fusion-intro).
 
-You will be able to test the game out on AppLab - Discover (COMING SOON).
+You will be able to test the game out on [AppLab - Discover](https://www.oculus.com/experiences/quest/7041851792509764/).
 
 ## Project Description
 
