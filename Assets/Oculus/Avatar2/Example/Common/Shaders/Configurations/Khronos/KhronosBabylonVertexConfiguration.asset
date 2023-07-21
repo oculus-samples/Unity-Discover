@@ -48,3 +48,7 @@ MonoBehaviour:
   - 4
   - 1
   - 1
+  ExtensionConfiguration:
+    _extensionNames: []
+    _entryNamesPerExtension: []
+    _replacementNamesPerExtension: []

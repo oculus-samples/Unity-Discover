@@ -66,9 +66,7 @@ Shader "MRBike/LightingAffordance"
 
         Pass
         {
-            Tags { "LightMode" = "ForwardBase" }
-
-            CGPROGRAM
+            HLSLPROGRAM
 
             #pragma vertex vert
             #pragma fragment frag
@@ -85,15 +83,17 @@ Shader "MRBike/LightingAffordance"
             #define AFFORDANCE 1
             #define TRANSPARENT 1
 
-            #include "MRBike_Lighting.cginc"
+            #include "MRBike_Lighting.hlsl"
 
-            ENDCG
+            ENDHLSL
 
         }
 
         Pass
         {
             Name "Outline"
+            
+            Tags { "LightMode" = "UniversalForward" }
 
             Cull Front
 

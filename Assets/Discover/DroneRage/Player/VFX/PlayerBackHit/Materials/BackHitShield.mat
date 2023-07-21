@@ -21,7 +21,7 @@ Material:
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - ALWAYS
+  - GRABPASS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3

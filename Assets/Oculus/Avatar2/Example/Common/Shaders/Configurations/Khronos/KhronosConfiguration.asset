@@ -43,3 +43,7 @@ MonoBehaviour:
   - MATERIAL_MODE_TEXTURE
   NameFloatConstants: []
   ValueFloatConstants: []
+  ExtensionConfiguration:
+    _extensionNames: []
+    _entryNamesPerExtension: []
+    _replacementNamesPerExtension: []

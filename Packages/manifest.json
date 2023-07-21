@@ -17,6 +17,7 @@
     "com.unity.nuget.mono-cecil": "1.11.4",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.performance.profile-analyzer": "1.2.2",
+    "com.unity.render-pipelines.universal": "14.0.8",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.4",
     "com.unity.ugui": "1.0.0",

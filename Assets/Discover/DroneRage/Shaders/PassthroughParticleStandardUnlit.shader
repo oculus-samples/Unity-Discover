@@ -145,7 +145,7 @@ Shader "Passthrough/Particles/Standard Unlit"
 
             Pass
             {
-                Tags { "LightMode"="ForwardBase" }
+                Tags { "LightMode"="UniversalForward" }
 
                 CGPROGRAM
                 //vertInstancingSetup writes to global, not allowed with DXC

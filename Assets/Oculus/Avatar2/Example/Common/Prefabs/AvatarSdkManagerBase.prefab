@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,10 +63,12 @@ MonoBehaviour:
   zipPostfixDefault: Rift
   zipPostfixAndroid: Quest
   zipPostfixQuest2: Quest
+  zipPostfixFastLoad: Fastload
   zipFileExtension: .glb
   streamingAssetPostfixDefault: rift
   streamingAssetPostfixAndroid: quest1
   streamingAssetPostfixQuest2: quest2
+  streamingAssetPostfixFastLoad: fastload
   assetVersionDefault: 3
   assetVersionAndroid: 3
   assetVersionQuest2: 3
@@ -75,9 +78,14 @@ MonoBehaviour:
   ShaderManager: {fileID: 0}
   _useCriticalJointJobs: 0
   _enableDevTools: 0
+  UseFastLoadAvatar: 0
+  _useExperimentalSystems: -1
   _ovrLogLevel: 3
+  automaticallyRequestPermissions: 1
   _skinnersSupported: 4
   _skinQualityPerLOD: 
+  _filterMode: 2
+  _anisoLevel: 1
 --- !u!114 &114428096727327266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,8 +127,7 @@ MonoBehaviour:
   firstPersonAvatarLod: {fileID: 0}
   firstPersonAvatarLodLevel: 0
   firstPersonUpdateImportance: 10000
-  avatarLodDebugCanvas: {fileID: 1316326085530136, guid: 6c859d5f04a0b2d478aeb2732044266c,
-    type: 3}
+  avatarLodDebugCanvas: {fileID: 1316326085530136, guid: 6c859d5f04a0b2d478aeb2732044266c, type: 3}
   debug:
     sceneViewCamera: 1
     displayLODLabels: 0
@@ -147,10 +154,8 @@ MonoBehaviour:
   SkinnerUnormScale: 4
   SupportApplicationSpaceWarp: 0
   MotionSmoothing: 0
-  _CombineMorphTargetsShader: {fileID: 4800000, guid: bef2973cf0137a04fbdd59ed0bab09bc,
-    type: 3}
-  _SkinToTextureShader: {fileID: 4800000, guid: ee1f1406edf162945868fafc408691aa,
-    type: 3}
+  _CombineMorphTargetsShader: {fileID: 4800000, guid: bef2973cf0137a04fbdd59ed0bab09bc, type: 3}
+  _SkinToTextureShader: {fileID: 4800000, guid: ee1f1406edf162945868fafc408691aa, type: 3}
 --- !u!114 &2817231646188770880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6937544d08e2ba34da6ff4ab90cbfd84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useRuntimeTrackingService: 0
   _useAsyncBodySolver: 0
   _ovrCameraRig: {fileID: 0}
   _debugDrawTrackingLocations: 0

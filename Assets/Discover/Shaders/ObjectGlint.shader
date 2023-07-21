@@ -32,15 +32,16 @@ Shader "Discover/Object Glint"
         Pass
         {
             Name "ForwardBase"
-            Tags { "LightMode" = "ForwardBase" "PassFlags" = "OnlyDirectional" }
+            Tags { "LightMode" = "UniversalForward" "PassFlags" = "OnlyDirectional" }
             
-            CGPROGRAM
+            HLSLPROGRAM
 
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_instancing
-            #include "UnityCG.cginc"
 
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             struct appdata
             {
@@ -71,7 +72,7 @@ Shader "Discover/Object Glint"
 
             float4 RotateInYByDegrees(float4 vertex, float degrees)
             {
-                float amount = degrees * UNITY_PI / 180.0;
+                float amount = degrees * PI / 180.0;
                 float sina, cosa;
                 sincos(amount, sina, cosa);
                 float2x2 m = float2x2(cosa, -sina, sina, cosa);
@@ -100,25 +101,25 @@ Shader "Discover/Object Glint"
                 vertexPos.y += o.bouncer * _Highlighted * 0.025 ;
 
 
-                o.worldPos = vertexPos;
+                o.worldPos = vertexPos.xyz;
                 vertexPos = mul(unity_WorldToObject, vertexPos); //back into object space
                 // things with vertex alpha of 0 will not bounce or spin
                 vertexPos = lerp(v.vertex, vertexPos, v.vertexColor.a);
-                o.vertex = UnityObjectToClipPos(vertexPos);
-                o.worldNormal = UnityObjectToWorldNormal(v.vertexNormal);
+                o.vertex = TransformObjectToHClip(vertexPos.xyz);
+                o.worldNormal = TransformObjectToWorldNormal(v.vertexNormal);
                 return o;
             }
 
-            fixed4 frag(v2f i) : SV_Target
+            float4 frag(v2f i) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(i);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                 half3 normals = normalize(i.worldNormal);
-                half3 worldViewDirection = normalize(UnityWorldSpaceViewDir(i.worldPos));
+                half3 worldViewDirection = normalize(GetWorldSpaceViewDir(i.worldPos));
                 half fresnel = dot(worldViewDirection, normals);
                 fresnel = 1.0 - fresnel;
 
-                half3 worldSpaceLightDir = UnityWorldSpaceLightDir(i.worldPos);
+                half3 worldSpaceLightDir = GetMainLight().direction;
                 half wrappedLambert = dot(normals, worldSpaceLightDir) * 0.5 + 0.5;
                 half lightThreshold = smoothstep(0.65, 0.7, wrappedLambert);
                 half lighting = saturate ((fresnel * lightThreshold) + 0.25);
@@ -139,7 +140,7 @@ Shader "Discover/Object Glint"
 
                return finalColor;
             }
-            ENDCG
+            ENDHLSL
         }
     }
 

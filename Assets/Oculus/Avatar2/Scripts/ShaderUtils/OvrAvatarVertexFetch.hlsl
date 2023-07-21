@@ -22,7 +22,7 @@
 // is 16-bit precision. This is not desired as some of the data in the textures is
 // expected to have 32-bit precision. So, for mobile platforms, make an option for explicitly
 // setting 32-bit precision
-#if defined(SHADER_API_MOBILE) && defined(OVR_ATTRIBUTE_PRECISION_FLOAT)
+#if (defined(SHADER_TARGET_GLSL) || defined(SHADER_API_VULKAN)) && defined(OVR_ATTRIBUTE_PRECISION_FLOAT)
 sampler3D_float u_AttributeTexture;
 #else
 sampler3D u_AttributeTexture;

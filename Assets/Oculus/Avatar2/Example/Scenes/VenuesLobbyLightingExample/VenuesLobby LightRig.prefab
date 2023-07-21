@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0.6637632, y: 0.11920266, z: 0.049397115, w: 0.7367286}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5650585432433268674}
   m_RootOrder: 0
@@ -120,6 +121,7 @@ Transform:
   m_LocalRotation: {x: 0.10682808, y: 0.14581934, z: -0.618728, w: 0.7645262}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5650585432433268674}
   m_RootOrder: 1
@@ -215,6 +217,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5650585432433268674}
   m_RootOrder: 3
@@ -238,6 +241,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -276,9 +280,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7322517129512244511}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7868569535731771042
@@ -308,6 +320,7 @@ Transform:
   m_LocalRotation: {x: -0.65992695, y: 0.73905295, z: -0.08904281, w: -0.10182609}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5650585432433268674}
   m_RootOrder: 2
@@ -401,6 +414,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6176357634634757534}
   - {fileID: 2045496478646130412}
@@ -423,13 +437,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentExposure: 1
   ExposureShaderParameterName: u_Exposure
-  DiffuseEnvironmentCubeMap: {fileID: 8900000, guid: 651a7e8194498914981dd7211c2ac107,
-    type: 3}
+  DiffuseEnvironmentCubeMap: {fileID: 8900000, guid: 651a7e8194498914981dd7211c2ac107, type: 3}
   DiffuseEnvironmentShaderParameterNames:
   - u_DiffuseEnvSampler
   - u_LambertianEnvSampler
-  SpecularEnvironmentCubeMap: {fileID: 8900000, guid: 9a991013884426c40a06843632bed336,
-    type: 3}
+  SpecularEnvironmentCubeMap: {fileID: 8900000, guid: 9a991013884426c40a06843632bed336, type: 3}
   SpecularEnvironmentShaderParameterNames:
   - u_SpecularEnvSampler
   - u_GGXEnvSampler

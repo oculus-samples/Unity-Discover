@@ -123,7 +123,10 @@ namespace Discover
             {
                 // always show other avatars that are remote
                 m_avatar.Hidden = false;
-                m_voiceNetObj.SpeakerInUse.enabled = true;
+                if (m_voiceNetObj.SpeakerInUse != null)
+                {
+                    m_voiceNetObj.SpeakerInUse.enabled = true;
+                }
             }
             else
             {

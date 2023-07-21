@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7741978242582812951}
   m_RootOrder: 0
@@ -58,7 +59,7 @@ MonoBehaviour:
   microphoneType: 0
   audioClip: {fileID: 0}
   loopAudioClip: 1
-  autoStart: 1
+  recordingEnabled: 1
   audioSessionParameters:
     Category: 4
     Mode: 0
@@ -71,7 +72,7 @@ MonoBehaviour:
   stopRecordingWhenPaused: 0
   useOnAudioFilterRead: 0
   useMicrophoneTypeFallback: 1
-  recordOnlyWhenJoined: 1
+  recordWhenJoined: 1
 --- !u!1 &7741978242582812946
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +102,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6635893595086709757}
   m_Father: {fileID: 0}

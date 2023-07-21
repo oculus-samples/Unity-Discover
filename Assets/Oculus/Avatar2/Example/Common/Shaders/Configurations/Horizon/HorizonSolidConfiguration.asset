@@ -21,6 +21,7 @@ MonoBehaviour:
   NameTextureParameter_normalTexture: _BumpMap
   NameTextureParameter_occlusionTexture: _PropertiesMap
   NameTextureParameter_emissiveTexture: _EmissiveMap
+  NameTextureParameter_flowTexture: _FlowMap
   NameColorParameter_BaseColorFactor: _Color
   UseColorParameter_BaseColorFactor: 0
   NameFloatParameter_MetallicFactor: 
@@ -47,3 +48,7 @@ MonoBehaviour:
   ValueFloatConstants:
   - 0
   - 0
+  ExtensionConfiguration:
+    _extensionNames: []
+    _entryNamesPerExtension: []
+    _replacementNamesPerExtension: []

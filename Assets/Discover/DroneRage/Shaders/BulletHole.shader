@@ -9,15 +9,15 @@ Shader "DroneRage/BulletHole"
         _Color("Color", Color) = (1,1,1,1)
     }
 
-        SubShader
+    SubShader
     {
-        Tags { "RenderType" = "Transparent" "Queue" = "Geometry-11" "IgnoreProjector" = "True" "PreviewType" = "Plane" "PerformanceChecks" = "False" }
+        Tags { "LightMode"="UniversalForward" "RenderType" = "Transparent" "Queue" = "Transparent-11" "IgnoreProjector" = "True" "PreviewType" = "Plane" "PerformanceChecks" = "False" }
      
         CGINCLUDE
         #pragma target 3.0
         ENDCG
 
-        Blend DstColor Zero
+        Blend One Zero
         AlphaToMask On
         Cull Back
         ColorMask A
@@ -119,6 +119,8 @@ Shader "DroneRage/BulletHole"
 
         Pass
         {
+            Tags { "LightMode"="TransparentAlpha" "Queue" = "Transparent-11" }
+            
             Name "Hole Puncher"
             ColorMask A
 

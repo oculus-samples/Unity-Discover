@@ -147,8 +147,6 @@ Shader "Passthrough/Decals/Standard Unlit"
 
             Pass
             {
-                Tags { "LightMode"="ForwardBase" }
-
                 CGPROGRAM
                 //vertInstancingSetup writes to global, not allowed with DXC
                 #pragma never_use_dxc

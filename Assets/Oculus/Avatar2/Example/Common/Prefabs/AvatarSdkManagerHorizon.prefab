@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5848076533691757919}
   m_RootOrder: 0
@@ -43,197 +44,154 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561fe8366de5e7d4fae882c491e3d7dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultShaderConfigurationInitializer: {fileID: 11400000, guid: f0bddb66189f23442a435aed67437255,
-    type: 2}
-  ArrayShaderConfigurationInitializer: {fileID: 11400000, guid: f0bddb66189f23442a435aed67437255,
-    type: 2}
-  SolidColorShaderConfigurationInitializer: {fileID: 11400000, guid: 260fe00c90ebd8148abcf88bca09cce2,
-    type: 2}
-  TransparentShaderConfigurationInitializer: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89,
-    type: 2}
-  EmmisiveShaderConfigurationInitializer: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89,
-    type: 2}
-  SkinShaderConfigurationInitializer: {fileID: 11400000, guid: 2b815828c466e45498c74d690226c0a4,
-    type: 2}
-  LeftEyeShaderConfigurationInitializer: {fileID: 11400000, guid: d355c44f84f94354385fea0772eb3bc7,
-    type: 2}
-  RightEyeShaderConfigurationInitializer: {fileID: 11400000, guid: 4dc61dd44af9e7d488b6434e88ac167e,
-    type: 2}
-  HairShaderConfigurationInitializer: {fileID: 11400000, guid: c4b830c6fb33d8140833e5b37f7c9e0d,
-    type: 2}
-  FastLoadConfigurationInitializer: {fileID: 11400000, guid: d6a8914844d40284395dca35471c343b,
-    type: 2}
+  DefaultShaderConfigurationInitializer: {fileID: 11400000, guid: f0bddb66189f23442a435aed67437255, type: 2}
+  ArrayShaderConfigurationInitializer: {fileID: 11400000, guid: f0bddb66189f23442a435aed67437255, type: 2}
+  SolidColorShaderConfigurationInitializer: {fileID: 11400000, guid: 260fe00c90ebd8148abcf88bca09cce2, type: 2}
+  TransparentShaderConfigurationInitializer: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89, type: 2}
+  EmmisiveShaderConfigurationInitializer: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89, type: 2}
+  SkinShaderConfigurationInitializer: {fileID: 11400000, guid: 2b815828c466e45498c74d690226c0a4, type: 2}
+  LeftEyeShaderConfigurationInitializer: {fileID: 11400000, guid: d355c44f84f94354385fea0772eb3bc7, type: 2}
+  RightEyeShaderConfigurationInitializer: {fileID: 11400000, guid: 4dc61dd44af9e7d488b6434e88ac167e, type: 2}
+  HairShaderConfigurationInitializer: {fileID: 11400000, guid: c4b830c6fb33d8140833e5b37f7c9e0d, type: 2}
+  FastLoadConfigurationInitializer: {fileID: 11400000, guid: d6a8914844d40284395dca35471c343b, type: 2}
 --- !u!1001 &1350790283880007406
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: HairShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: c4b830c6fb33d8140833e5b37f7c9e0d,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: c4b830c6fb33d8140833e5b37f7c9e0d, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: SkinShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: 2b815828c466e45498c74d690226c0a4,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: 2b815828c466e45498c74d690226c0a4, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: ArrayShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: DefaultShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: LeftEyeShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: d355c44f84f94354385fea0772eb3bc7,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: d355c44f84f94354385fea0772eb3bc7, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: EnnisiveShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: RightEyeShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: 4dc61dd44af9e7d488b6434e88ac167e,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: 4dc61dd44af9e7d488b6434e88ac167e, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: SolidColorShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: 260fe00c90ebd8148abcf88bca09cce2,
-        type: 2}
-    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: 260fe00c90ebd8148abcf88bca09cce2, type: 2}
+    - target: {fileID: 4870205409715630990, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: TransparentShaderConfigurationInitializer
       value: 
-      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89,
-        type: 2}
-    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: c77a93072aee9da4b8fc36eeb125dc89, type: 2}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: ShaderManager
       value: 
       objectReference: {fileID: 3255524753290351637}
-    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: shaderManager
       value: 
       objectReference: {fileID: 3255524753290351637}
-    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: UseFastLoadAvatar
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: assetVersionQuest2
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: assetVersionAndroid
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: assetVersionDefault
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4870205409715631027, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 4870205409715631027, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_Name
       value: AvatarSdkManagerHorizon
       objectReference: {fileID: 0}
-    - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: SourceMorphFormat
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: CombinedMorphFormat
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b,
-        type: 3}
+    - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: SkinnerOutputFormat
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 708683025196591057}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
 --- !u!4 &5848076533691757919 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
   m_PrefabInstance: {fileID: 1350790283880007406}
   m_PrefabAsset: {fileID: 0}

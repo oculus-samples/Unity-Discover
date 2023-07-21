@@ -144,27 +144,34 @@ Shader "Passthrough/Decals/Standard Surface"
             #include "UnityStandardParticleEditor.cginc"
             ENDCG
         }
+        
+        Pass
+        {
+            Name "ForwardLit"
+            Tags {"LightMode" = "UniversalForward"}
+            
+            CGPROGRAM
+            //vertInstancingSetup writes to global, not allowed with DXC
+            #pragma never_use_dxc
+            #pragma vertex vertParticleUnlit
+            #pragma fragment fragParticleUnlit
+            #pragma multi_compile __ SOFTPARTICLES_ON
+            #pragma multi_compile __ SHADOWS_SHADOWMASK
+            #pragma multi_compile_instancing
+            #pragma instancing_options procedural:vertInstancingSetup
+            #pragma target 3.0
 
-        CGPROGRAM
-        //vertInstancingSetup writes to global, not allowed with DXC
-        #pragma never_use_dxc
-        #pragma surface surf Standard nolightmap nometa noforwardadd keepalpha vertex:vert
-        #pragma multi_compile __ SOFTPARTICLES_ON
-        #pragma multi_compile __ SHADOWS_SHADOWMASK
-        #pragma multi_compile_instancing
-        #pragma instancing_options procedural:vertInstancingSetup
-        #pragma target 3.0
+            #pragma shader_feature_local_fragment _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON _ALPHAMODULATE_ON
+            #pragma shader_feature_local_fragment _METALLICGLOSSMAP
+            #pragma shader_feature_local _NORMALMAP
+            #pragma shader_feature_fragment _EMISSION
+            #pragma shader_feature_local _FADING_ON
+            #pragma shader_feature_local _REQUIRE_UV2
+            #pragma shader_feature_local EFFECT_BUMP
 
-        #pragma shader_feature_local_fragment _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON _ALPHAMODULATE_ON
-        #pragma shader_feature_local_fragment _METALLICGLOSSMAP
-        #pragma shader_feature_local _NORMALMAP
-        #pragma shader_feature_fragment _EMISSION
-        #pragma shader_feature_local _FADING_ON
-        #pragma shader_feature_local _REQUIRE_UV2
-        #pragma shader_feature_local EFFECT_BUMP
-
-        #include "UnityStandardParticles.cginc"
-        ENDCG
+            #include "UnityStandardParticles.cginc"
+            ENDCG
+        }
     }
 
     Fallback "VertexLit"

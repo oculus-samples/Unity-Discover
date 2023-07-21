@@ -55,9 +55,9 @@ Shader "MRBike/Lighting"
 
         Pass
         {
-            Tags { "LightMode" = "ForwardBase" }
- 
-            CGPROGRAM
+            Tags { "LightMode" = "UniversalForward" }
+
+            HLSLPROGRAM
  
             #pragma vertex vert
             #pragma fragment frag
@@ -71,9 +71,9 @@ Shader "MRBike/Lighting"
             #pragma multi_compile __ IBL
             #pragma multi_compile __ OCCLUSION_MAP
 
-            #include "MRBike_Lighting.cginc"
+            #include "MRBike_Lighting.hlsl"
  
-            ENDCG
+            ENDHLSL
         }
     }
 }
