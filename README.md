@@ -48,6 +48,8 @@ This project makes use of the following plugins and software:
 - [Photon Fusion](https://doc.photonengine.com/fusion/current/getting-started/sdk-download)
 - [Photon Voice 2](https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518)
 - [Unity Toolbar Extender](https://github.com/marijnz/unity-toolbar-extender.git)
+- [UniTask](https://github.com/Cysharp/UniTask)
+- [NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes)
 
 The following is required to test this project within Unity:
 
