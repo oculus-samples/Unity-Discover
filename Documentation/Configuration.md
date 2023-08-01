@@ -26,7 +26,7 @@ The identifier (__App ID__) can be found in the _API_ section.
 
 ![Application API](./Media/dashboard/dashboard_api.png "Application API")
 
-Then it needs to be placed in the [Assets/Resources/OculusPlatformSettings.asset](Assets/Resources/OculusPlatformSettings.asset)
+Then it needs to be placed in the [Assets/Resources/OculusPlatformSettings.asset](../Assets/Resources/OculusPlatformSettings.asset)
 
 ![Oculus Platform Settings Menu](./Media/editor/oculusplatformsettings_menu.png "Oculus Platform Settings Menu")
 
