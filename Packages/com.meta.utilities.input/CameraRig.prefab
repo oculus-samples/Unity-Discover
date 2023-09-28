@@ -1749,6 +1749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useRecommendedMSAALevel: 1
   _monoscopic: 0
+  _sharpenType: 0
   enableDynamicResolution: 0
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
@@ -1789,10 +1790,12 @@ MonoBehaviour:
   virtualGreenScreenApplyDepthCulling: 0
   virtualGreenScreenDepthTolerance: 0.2
   mrcActivationMode: 0
+  launchMultimodalHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
   requestBodyTrackingPermissionOnStartup: 1
   requestFaceTrackingPermissionOnStartup: 1
   requestEyeTrackingPermissionOnStartup: 1
+  requestScenePermissionOnStartup: 0
   _localDimming: 0
   _trackingOriginType: 1
   usePositionTracking: 1
@@ -1802,6 +1805,8 @@ MonoBehaviour:
   AllowRecenter: 1
   LateControllerUpdate: 1
   LateLatching: 1
+  _readOnlyControllerDrivenHandPosesType: 0
+  controllerDrivenHandPosesType: 0
 --- !u!114 &-934479987813566617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,6 +2917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandType: 1
   _pointerPoseRoot: {fileID: 3988992931918966446}
+  m_showState: 3
 --- !u!114 &1368387394020744168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2976,6 +2982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandType: 0
   _pointerPoseRoot: {fileID: 3988992931918966446}
+  m_showState: 3
 --- !u!114 &1365874896087525568
 MonoBehaviour:
   m_ObjectHideFlags: 0

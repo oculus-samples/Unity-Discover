@@ -44,7 +44,7 @@
       }
     },
     "com.meta.xr.sdk.interaction": {
-      "version": "53.0.0-preview",
+      "version": "56.0.0-preview",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -54,37 +54,37 @@
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.interaction.ovr": {
-      "version": "53.0.0-preview",
+      "version": "56.0.0-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.interaction": "53.0.0-preview",
-        "com.meta.xr.sdk.utilities": "53.0.0-preview"
+        "com.meta.xr.sdk.interaction": "56.0.0-preview",
+        "com.meta.xr.sdk.utilities": "56.0.0-preview"
       },
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.interaction.ovr.samples": {
-      "version": "53.0.0-preview",
+      "version": "56.0.0-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.interaction.ovr": "53.0.0-preview",
-        "com.meta.xr.sdk.sharedassets": "53.0.0-preview"
+        "com.meta.xr.sdk.interaction.ovr": "56.0.0-preview",
+        "com.meta.xr.sdk.sharedassets": "56.0.0-preview"
       },
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.platform": {
-      "version": "53.0.1-preview",
+      "version": "56.0.0-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.utilities": "53.0.0-preview",
+        "com.meta.xr.sdk.utilities": "56.0.0-preview",
         "com.unity.ugui": "1.0.0"
       },
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.sharedassets": {
-      "version": "53.0.0-preview",
+      "version": "56.0.0-preview",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -94,14 +94,14 @@
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.utilities": {
-      "version": "53.0.0-preview",
+      "version": "56.0.0-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.simulator": {
-      "version": "53.0.0-preview",
+      "version": "57.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -158,11 +158,13 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.ide.vscode": {
-      "version": "1.2.5",
+    "com.unity.ide.visualstudio": {
+      "version": "2.0.21",
       "depth": 0,
       "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.unity.test-framework": "1.1.9"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {

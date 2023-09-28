@@ -37,7 +37,7 @@ namespace MRBike
                 m_target.GrabbedObject = m_spawnedNetworkObject;
         }
 
-        private void ObjectSelected()
+        private void ObjectSelected(PointerEvent ptrEvt)
         {
             if (m_target)
                 m_target.gameObject.SetActive(true);
@@ -45,7 +45,7 @@ namespace MRBike
                 m_voPlayer.PlayOnce(m_voClipNum);
         }
 
-        private void ObjectReleased()
+        private void ObjectReleased(PointerEvent ptrEvt)
         {
             if (m_target)
                 m_target.gameObject.SetActive(false);

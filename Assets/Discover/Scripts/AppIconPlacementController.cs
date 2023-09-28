@@ -143,8 +143,8 @@ namespace Discover
                 bool onValidSurfaceType;
                 if (hitObj && HasSceneElement(hitObj.transform, out var sceneElement))
                 {
-                    // if collision has a DESK label, align Y perpendicular with closest edge to player
-                    var validQuadPlacement = sceneElement.ContainsLabel(OVRSceneManager.Classification.Desk) ||
+                    // if collision has a TABLE label, align Y perpendicular with closest edge to player
+                    var validQuadPlacement = sceneElement.ContainsLabel(OVRSceneManager.Classification.Table) ||
                                              sceneElement.ContainsLabel(OVRSceneManager.Classification.Couch) ||
                                              sceneElement.ContainsLabel(OVRSceneManager.Classification.Other);
                     validQuadPlacement &= !wallPlacement; // without this, rotation is NaN on the sides of non-wall objects

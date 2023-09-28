@@ -14,7 +14,7 @@ namespace Discover.Configs
             FLOOR,
             CEILING,
             WALL_FACE,
-            DESK,
+            TABLE,
             COUCH,
             DOOR_FRAME,
             WINDOW_FRAME,

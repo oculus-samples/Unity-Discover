@@ -21,7 +21,7 @@ namespace Discover
                 m_sceneLoadingTask = new();
 
 #if UNITY_EDITOR
-                if (OVRPlugin.hmdPresent && !Utilities.XRSimulatorInfo.IsSimulatorActivated())
+                if (OVRPlugin.hmdPresent && (!Utilities.XRSimulatorInfo.IsSimulatorActivated() || Utilities.XRSimulatorInfo.IsSynthEnvActivated()))
                 {
                     LoadOVRSceneManager();
                 }
