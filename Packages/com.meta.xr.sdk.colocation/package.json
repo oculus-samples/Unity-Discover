@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "com.unity.collections": "1.2.4",
-    "com.meta.xr.sdk.utilities": "53.0.0-preview",
+    "com.meta.xr.sdk.core": "",
     "com.cysharp.unitask": "2.3.3"
   },
   "type": "library"

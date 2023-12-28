@@ -39,73 +39,80 @@
       "source": "embedded",
       "dependencies": {
         "com.meta.utilities": "1.0.0",
-        "com.meta.xr.sdk.utilities": "",
+        "com.meta.xr.sdk.core": "",
         "com.unity.xr.interaction.toolkit": "2.0.4"
       }
     },
+    "com.meta.xr.sdk.audio": {
+      "version": "60.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.meta.xr.sdk.core": {
+      "version": "60.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.meta.xr.sdk.interaction": {
-      "version": "56.0.0-preview",
+      "version": "60.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.ugui": "1.0.0"
       },
-      "url": "https://npm.developer.oculus.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction.ovr": {
-      "version": "56.0.0-preview",
+      "version": "60.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.interaction": "56.0.0-preview",
-        "com.meta.xr.sdk.utilities": "56.0.0-preview"
+        "com.meta.xr.sdk.core": "60.0.0",
+        "com.meta.xr.sdk.interaction": "60.0.0"
       },
-      "url": "https://npm.developer.oculus.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction.ovr.samples": {
-      "version": "56.0.0-preview",
+      "version": "60.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.interaction.ovr": "56.0.0-preview",
-        "com.meta.xr.sdk.sharedassets": "56.0.0-preview"
+        "com.meta.xr.sdk.interaction.ovr": "60.0.0",
+        "com.meta.xr.sdk.sharedassets": "60.0.0"
       },
-      "url": "https://npm.developer.oculus.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.platform": {
-      "version": "56.0.0-preview",
+      "version": "60.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.utilities": "56.0.0-preview",
+        "com.meta.xr.sdk.core": "60.0.0",
         "com.unity.ugui": "1.0.0"
       },
-      "url": "https://npm.developer.oculus.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.sharedassets": {
-      "version": "56.0.0-preview",
+      "version": "60.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.textmeshpro": "3.0.6"
+        "com.unity.textmeshpro": "3.0.6",
+        "com.unity.ugui": "1.0.0"
       },
-      "url": "https://npm.developer.oculus.com"
-    },
-    "com.meta.xr.sdk.utilities": {
-      "version": "56.0.0-preview",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://npm.developer.oculus.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.simulator": {
-      "version": "57.0.0",
+      "version": "60.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://npm.developer.oculus.com"
+      "url": "https://packages.unity.com"
     },
     "com.unity.ai.navigation": {
       "version": "1.1.3",
@@ -150,7 +157,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.21",
+      "version": "3.0.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -159,7 +166,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.21",
+      "version": "2.0.22",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -359,7 +366,7 @@
       "source": "embedded",
       "dependencies": {
         "com.unity.collections": "1.2.4",
-        "com.meta.xr.sdk.utilities": "53.0.0-preview",
+        "com.meta.xr.sdk.core": "",
         "com.cysharp.unitask": "2.3.3"
       }
     },
