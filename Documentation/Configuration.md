@@ -49,3 +49,10 @@ Open your unity project and paste your Fusion App ID and Voice App ID in [Assets
 
 
 The Photon Realtime transport should now work. You can check the dashboard in your Photon account to verify there is network traffic.
+
+## Headset permissions
+When you first launch the application a permission popup will ask to share point cloud, you must say yes if you want to use colocation.
+If you answered no, from this application or another application using shared point cloud data, you can go on device to
+**Settings > Privacy > Device Permissions > Share Point Cloud Data**. It must be enabled.
+
+The application should also have Spatial Data permission enabled, this can be verified on device here: **Settings -> Apps -> Permissions -> Spatial Data**
