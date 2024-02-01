@@ -5,6 +5,7 @@
 Discover is a Mixed Reality (MR) project that demonstrates how to use key MR features and quickly integrate them in your own project.
 
 This codebase is available both as a reference and as a template for MR projects. The [Oculus License](LICENSE) applies to the SDK and supporting material. The MIT License applies to only certain, clearly marked documents. If an individual file does not indicate which license it is subject to, then the Oculus License applies.
+The Photon Fusion license can be found [here](./Assets/Photon/LICENSE).
 
 See the [CONTRIBUTING](./CONTRIBUTING.md) file for how to help out.
 
