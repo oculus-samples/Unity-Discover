@@ -39,6 +39,7 @@ To get the sample working, you will need to configure Photon with your own accou
 - From your Photon dashboard, click "Create A New App"
     - We will create 2 apps, "Fusion" and "Voice"
 - First fill out the form making sure to set type to "Photon Fusion". Then click Create.
+    - Select "Fusion 1" in the Select SDK Version item.
 - Second fill out the form making sure to set type to "Photon Voice". Then click Create.
 
 Your new app will now show on your Photon dashboard. Click the App ID to reveal the full string and copy the value for each app.
