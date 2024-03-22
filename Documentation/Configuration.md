@@ -26,7 +26,7 @@ The identifier (__App ID__) can be found in the _API_ section.
 
 ![Application API](./Media/dashboard/dashboard_api.png "Application API")
 
-Then it needs to be placed in the [Assets/Resources/OculusPlatformSettings.asset](../Assets/Resources/OculusPlatformSettings.asset)
+Then it needs to be placed in the [Assets/Resources/OculusPlatformSettings.asset](../Assets/Resources/OculusPlatformSettings.asset), which can be accessed in the menubar via _Oculus > Platform > Edit Settings_.
 
 ![Oculus Platform Settings Menu](./Media/editor/oculusplatformsettings_menu.png "Oculus Platform Settings Menu")
 
@@ -44,7 +44,7 @@ To get the sample working, you will need to configure Photon with your own accou
 
 Your new app will now show on your Photon dashboard. Click the App ID to reveal the full string and copy the value for each app.
 
-Open your unity project and paste your Fusion App ID and Voice App ID in [Assets/Photon/Resources/PhotonAppSettings](../Assets/Photon/Fusion/Resources/PhotonAppSettings.asset).
+Open your unity project and paste your Fusion App ID and Voice App ID in [Assets/Photon/Fusion/Resources/PhotonAppSettings](../Assets/Photon/Fusion/Resources/PhotonAppSettings.asset), which can be accessed in the menubar via _Fusion > RealtimeSettings_.
 
 ![Photon App Settings](./Media/editor/photonappsettings.png "Photon App Settings")
 
