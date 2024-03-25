@@ -1,43 +1,40 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System;
-using ColocationPackage;
+using com.meta.xr.colocation;
 using Fusion;
 
 namespace Discover.Colocation
 {
+    /// <summary>
+    ///     Represents a replicated spatial anchor via Photon network.
+    /// </summary>
     public struct PhotonNetAnchor : INetworkStruct, IEquatable<PhotonNetAnchor>
     {
+        public NetworkBool IsAutomaticAnchor;
         public NetworkBool IsAlignmentAnchor;
-        public NetworkString<_64> Uuid;
         public ulong OwnerOculusId;
         public uint ColocationGroupId;
-
-        public Anchor Anchor => new(IsAlignmentAnchor, Uuid.ToString(), OwnerOculusId, ColocationGroupId);
+        public NetworkString<_64> AutomaticAnchorUuid;
 
         public PhotonNetAnchor(Anchor anchor)
         {
+            IsAutomaticAnchor = anchor.isAutomaticAnchor;
             IsAlignmentAnchor = anchor.isAlignmentAnchor;
-            Uuid = anchor.uuid.ToString();
             OwnerOculusId = anchor.ownerOculusId;
             ColocationGroupId = anchor.colocationGroupId;
+            AutomaticAnchorUuid = anchor.automaticAnchorUuid.ToString();
         }
 
-        public PhotonNetAnchor(NetworkBool isAlignmentAnchor, NetworkString<_64> uuid, ulong ownerOculusId, uint colocationGroupId)
+        public Anchor GetAnchor()
         {
-            IsAlignmentAnchor = isAlignmentAnchor;
-            Uuid = uuid;
-            OwnerOculusId = ownerOculusId;
-            ColocationGroupId = colocationGroupId;
+            return new Anchor(IsAutomaticAnchor, IsAlignmentAnchor, OwnerOculusId, ColocationGroupId,
+                AutomaticAnchorUuid.ToString());
         }
 
         public bool Equals(PhotonNetAnchor other)
         {
-            return IsAlignmentAnchor == other.IsAlignmentAnchor
-                   && Uuid == other.Uuid
-                   && OwnerOculusId == other.OwnerOculusId
-                   && ColocationGroupId == other.ColocationGroupId;
+            return GetAnchor().Equals(other.GetAnchor());
         }
-
     }
 }

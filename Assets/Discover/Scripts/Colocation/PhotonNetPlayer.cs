@@ -1,34 +1,35 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System;
-using ColocationPackage;
+using com.meta.xr.colocation;
 using Fusion;
 
 namespace Discover.Colocation
 {
+    /// <summary>
+    ///     Represents a connected user, identified by Oculus ID and Colocation group ID.
+    /// </summary>
     public struct PhotonNetPlayer : INetworkStruct, IEquatable<PhotonNetPlayer>
     {
+        public ulong PlayerId;
         public ulong OculusId;
         public uint ColocationGroupId;
 
-
-        public Player Player => new(OculusId, ColocationGroupId);
-
-        public PhotonNetPlayer(Player player)
+        public PhotonNetPlayer(com.meta.xr.colocation.Player player)
         {
+            PlayerId = player.playerId;
             OculusId = player.oculusId;
             ColocationGroupId = player.colocationGroupId;
         }
 
-        public PhotonNetPlayer(ulong oculusId, uint colocationGroupId)
+        public Player GetPlayer()
         {
-            OculusId = oculusId;
-            ColocationGroupId = colocationGroupId;
+            return new Player(PlayerId, OculusId, ColocationGroupId);
         }
 
         public bool Equals(PhotonNetPlayer other)
         {
-            return OculusId == other.OculusId && ColocationGroupId == other.ColocationGroupId;
+            return GetPlayer().Equals(other.GetPlayer());
         }
     }
 }

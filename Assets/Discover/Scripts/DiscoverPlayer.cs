@@ -36,6 +36,9 @@ namespace Discover
 
         [Networked(OnChanged = nameof(OnRemoteChanged))]
         public NetworkBool IsRemote { get; set; }
+        
+        [Networked]
+        public ulong PlayerUID { get; private set; }
 
         [SerializeField] private UnityEvent<string> m_onPlayerNameChanged = new();
         [SerializeField] private UnityEvent<Sprite> m_onPlayerPicChanged = new();
@@ -192,18 +195,13 @@ namespace Discover
 
                 await UniTask.WaitUntil(() =>
                     ColocationDriverNetObj.Instance != null &&
-                    ColocationDriverNetObj.Instance.PlayerIDDictionary != null &&
-                    ColocationDriverNetObj.Instance.PlayerIDDictionary.GetOculusId(Runner.LocalPlayer.PlayerId) != null);
-
-                var userId = ColocationDriverNetObj.Instance.PlayerIDDictionary.GetOculusId(Runner.LocalPlayer.PlayerId);
-                if (userId is { } id)
-                {
-                    await UniTask.WaitUntil(
-                        () => PhotonNetworkData.Instance.GetPlayer(id) != null,
-                        cancellationToken: PhotonNetworkData.Instance.GetCancellationTokenOnDestroy());
-                    ColocationGroupId = PhotonNetworkData.Instance.GetPlayer(id)?.colocationGroupId ?? uint.MaxValue;
-                    AvatarColocationManager.Instance.OnLocalPlayerColocationGroupUpdated?.Invoke();
-                }
+                    PlayerUID != 0);
+                
+                await UniTask.WaitUntil(
+                    () => PhotonNetworkData.Instance.GetPlayerWithPlayerId(PlayerUID) != null,
+                    cancellationToken: PhotonNetworkData.Instance.GetCancellationTokenOnDestroy());
+                ColocationGroupId = PhotonNetworkData.Instance.GetPlayerWithPlayerId(PlayerUID)?.colocationGroupId ?? uint.MaxValue;
+                AvatarColocationManager.Instance.OnLocalPlayerColocationGroupUpdated?.Invoke();
             }
         }
 
@@ -228,6 +226,7 @@ namespace Discover
                     return;
                 PlayerName = user.OculusID;
                 ProfilePicUrl = user.ImageURL;
+                PlayerUID = OculusPlatformUtils.GetUserDeviceGeneratedUid();
                 await UniTask.Yield();
             } while (this != null && string.IsNullOrWhiteSpace(PlayerName));
         }

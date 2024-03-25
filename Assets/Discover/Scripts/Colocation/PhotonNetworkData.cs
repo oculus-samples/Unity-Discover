@@ -1,14 +1,16 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System.Collections.Generic;
-using ColocationPackage;
+using com.meta.xr.colocation;
 using Discover.Utilities;
 using Fusion;
-using Unity.Collections;
 using UnityEngine;
 
 namespace Discover.Colocation
 {
+    /// <summary>
+    ///     Holds the count for all colocation groups, the anchors list, and players list.
+    /// </summary>
     public class PhotonNetworkData : NetworkSingleton<PhotonNetworkData>, INetworkData
     {
         [Networked] private uint ColocationGroupCount { get; set; }
@@ -17,19 +19,6 @@ namespace Discover.Colocation
         private NetworkLinkedList<PhotonNetAnchor> AnchorList { get; }
 
         [Networked, Capacity(10)] private NetworkLinkedList<PhotonNetPlayer> PlayerList { get; }
-
-        public override void Spawned()
-        {
-            NetworkAdapter.NetworkData = this;
-        }
-
-        public override void Despawned(NetworkRunner runner, bool hasState)
-        {
-            if (ReferenceEquals(NetworkAdapter.NetworkData, this))
-            {
-                NetworkAdapter.NetworkData = null;
-            }
-        }
 
         public void AddPlayer(Player player)
         {
@@ -40,14 +29,29 @@ namespace Discover.Colocation
         {
             RemoveNetPlayer(new PhotonNetPlayer(player));
         }
-
-        public Player? GetPlayer(ulong oculusId)
+        
+        public Player? GetPlayerWithPlayerId(ulong playerId)
         {
-            foreach (var photonPlayer in PlayerList)
-                if (photonPlayer.OculusId == oculusId)
+            foreach (var fusionPlayer in PlayerList)
+            {
+                if (fusionPlayer.GetPlayer().playerId == playerId)
                 {
-                    return photonPlayer.Player;
+                    return fusionPlayer.GetPlayer();
                 }
+            }
+
+            return null;
+        }
+
+        public Player? GetPlayerWithOculusId(ulong oculusId)
+        {
+            foreach (var fusionPlayer in PlayerList)
+            {
+                if (fusionPlayer.GetPlayer().oculusId == oculusId)
+                {
+                    return fusionPlayer.GetPlayer();
+                }
+            }
 
             return null;
         }
@@ -55,7 +59,7 @@ namespace Discover.Colocation
         public List<Player> GetAllPlayers()
         {
             var allPlayers = new List<Player>();
-            foreach (var photonPlayer in PlayerList) allPlayers.Add(photonPlayer.Player);
+            foreach (var photonPlayer in PlayerList) allPlayers.Add(photonPlayer.GetPlayer());
 
             return allPlayers;
         }
@@ -66,7 +70,7 @@ namespace Discover.Colocation
             {
                 if (photonPlayer.ColocationGroupId == colocationGroup)
                 {
-                    return photonPlayer.Player;
+                    return photonPlayer.GetPlayer();
                 }
             }
 
@@ -83,12 +87,12 @@ namespace Discover.Colocation
             _ = AnchorList.Remove(new PhotonNetAnchor(anchor));
         }
 
-        public Anchor? GetAnchor(FixedString64Bytes uuid)
+        public Anchor? GetAnchor(ulong ownerOculusId)
         {
             foreach (var photonAnchor in AnchorList)
-                if (photonAnchor.Anchor.uuid.Equals(uuid))
+                if (photonAnchor.GetAnchor().ownerOculusId.Equals(ownerOculusId))
                 {
-                    return photonAnchor.Anchor;
+                    return photonAnchor.GetAnchor();
                 }
 
             return null;
@@ -97,7 +101,10 @@ namespace Discover.Colocation
         public List<Anchor> GetAllAnchors()
         {
             var anchors = new List<Anchor>();
-            foreach (var photonAnchor in AnchorList) anchors.Add(photonAnchor.Anchor);
+            foreach (var photonAnchor in AnchorList)
+            {
+                anchors.Add(photonAnchor.GetAnchor());
+            }
 
             return anchors;
         }

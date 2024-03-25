@@ -299,6 +299,7 @@ MonoBehaviour:
   _PlayerName: 
   _IsRemote:
     _value: 0
+  _PlayerUID: 0
   m_onPlayerNameChanged:
     m_PersistentCalls:
       m_Calls:
@@ -466,6 +467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6625239350958750132}
     m_Modifications:
+    - target: {fileID: 1169498018158738233, guid: 68808fb113c184a4ebbb053631a4663d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1893195574709269307, guid: 68808fb113c184a4ebbb053631a4663d, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -20,6 +20,7 @@ namespace Discover
         private const string LOGGED_IN_USER_ERROR_MSG = "Failed to load logged in user";
 
         private static User s_loggedInUser = null;
+        private static ulong? s_userDeviceGeneratedUid;
 
         public static async Task<bool> InitializeAndValidate(Action<string> onError = null)
         {
@@ -83,6 +84,17 @@ namespace Discover
             }
 
             return s_loggedInUser;
+        }
+        
+        /// <summary>
+        /// Get the generated unique id of the user device. This will change on every session.
+        /// </summary>
+        /// <returns>generated unique id as a ulong</returns>
+        public static ulong GetUserDeviceGeneratedUid()
+        {
+            s_userDeviceGeneratedUid ??= (ulong)Guid.NewGuid().GetHashCode();
+
+            return s_userDeviceGeneratedUid.Value;
         }
 
         private static async Task<bool> LoadLoggedInUser(Action<string> onError = null)

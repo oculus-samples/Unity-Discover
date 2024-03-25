@@ -1,151 +1,145 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System;
-using System.Collections.Generic;
-using ColocationPackage;
+using System.Text;
+using com.meta.xr.colocation;
 using Fusion;
-using UnityEngine;
 
 namespace Discover.Colocation
 {
+    /// <summary>
+    ///     Provides a mean to send network messages among all connected users.
+    ///     It holds the dictionary of all connected users, who can be included into the messaging system.
+    /// </summary>
     public class PhotonNetworkMessenger : NetworkBehaviour, INetworkMessenger
     {
-        private readonly Dictionary<byte, Action<object>> m_callbackDictionary = new();
-        private PhotonPlayerIDDictionary m_idDictionary;
+        [Networked, Capacity(10)]
+        private NetworkLinkedList<int> NetworkIds { get; }
 
-        public override void Spawned()
+        [Networked, Capacity(10)]
+        private NetworkLinkedList<ulong> PlayerIds { get; }
+
+        public event Action<ShareAndLocalizeParams> AnchorShareRequestReceived;
+        public event Action<ShareAndLocalizeParams> AnchorShareRequestCompleted;
+
+        private enum MessageEvent
         {
-            NetworkAdapter.NetworkMessenger = this;
+            ANCHOR_SHARE_REQUEST,
+            ANCHOR_SHARE_COMPLETE,
         }
 
-        public override void Despawned(NetworkRunner runner, bool hasState)
+        public void RegisterLocalPlayer(ulong localPlayerId)
         {
-            if (ReferenceEquals(NetworkAdapter.NetworkMessenger, this))
-            {
-                NetworkAdapter.NetworkMessenger = null;
-            }
-        }
-
-        public void Init(PhotonPlayerIDDictionary idDictionary)
-        {
-            m_idDictionary = idDictionary;
-        }
-
-        public void SendMessageUsingOculusId(byte eventCode, ulong oculusId, object messageData = null)
-        {
-            Debug.Log($"SendMessageUsingOculusId called: eventCode: {eventCode}, oculudId: {oculusId}");
-            if (m_idDictionary == null)
-            {
-                Debug.LogError("NetcodeGameObjectsMessenger doesn't have a dictionary to go from oculus id to network id");
-                return;
-            }
-
-            Debug.Log($"SendMessageUsingOculusId _idDictionary is {m_idDictionary}");
-            var networkId = (int)m_idDictionary.GetNetworkId(oculusId);
-            Debug.Log($"SendMessageUsingOculusId to player {networkId}");
-
-            if (messageData != null)
-            {
-                var data = (ShareAndLocalizeParams)messageData;
-                FindRPCToCallServerRPC(eventCode, networkId, data.oculusIdAnchorOwner, data.oculusIdAnchorRequester, data.headsetIdAnchorRequester, data.uuid.ToString(), data.anchorFlowSucceeded);
-            }
-            else
-            {
-                FindRPCToCallServerRPC(eventCode, networkId);
-            }
-        }
-
-        public void SendMessageUsingHeadsetId(byte eventCode, Guid headsetId, object messageData = null)
-        {
-            Debug.Log($"SendMessageUsingHeadsetId called: eventCode: {eventCode}, headsetId: {headsetId}");
-
-            Debug.Log($"SendMessageUsingHeadsetId _idDictionary is {m_idDictionary}");
-            var networkId = (int)m_idDictionary.GetNetworkId(headsetId);
-            Debug.Log($"SendMessageUsingHeadsetId to player {networkId}");
-
-            if (messageData != null)
-            {
-                var data = (ShareAndLocalizeParams)messageData;
-                FindRPCToCallServerRPC(
-                    eventCode, networkId, data.oculusIdAnchorOwner, data.oculusIdAnchorRequester,
-                    data.headsetIdAnchorRequester, data.uuid.ToString(),
-                    data.anchorFlowSucceeded);
-            }
-            else
-            {
-                FindRPCToCallServerRPC(eventCode, networkId);
-            }
-        }
-
-        public void SendMessageUsingNetworkId(byte eventCode, int networkId, object messageData = null)
-        {
-            Debug.Log($"SendMessageUsingNetworkId called: eventCode: {eventCode}, networkId: {networkId}");
-
-            if (messageData != null)
-            {
-                var data = (ShareAndLocalizeParams)messageData;
-                FindRPCToCallServerRPC(eventCode, networkId, data.oculusIdAnchorOwner, data.oculusIdAnchorRequester,
-                    data.headsetIdAnchorRequester, data.uuid.ToString(), data.anchorFlowSucceeded);
-            }
-            else
-            {
-                FindRPCToCallServerRPC(eventCode, networkId);
-            }
-        }
-
-        public void SendMessageToAll(byte eventCode, object messageData = null) => throw new NotImplementedException();
-
-        public void RegisterEventCallback(byte eventCode, Action<object> callback)
-        {
-            m_callbackDictionary.Add(eventCode, callback);
-        }
-
-        public void UnregisterEventCallback(byte eventCode)
-        {
-            _ = m_callbackDictionary.Remove(eventCode);
+            Logger.Log($"{nameof(PhotonNetworkMessenger)}: RegisterLocalPlayer: localPlayerId {localPlayerId}",
+                LogLevel.Verbose);
+            Logger.Log($"{nameof(PhotonNetworkMessenger)} RegisterLocalPlayer: fusionId {Runner.LocalPlayer.PlayerId}",
+                LogLevel.Verbose);
+            AddPlayerIdHostRPC(localPlayerId, Runner.LocalPlayer.PlayerId);
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-        private void FindRPCToCallServerRPC(byte eventCode, int playerId, ulong oculusIdAnchorOwner,
-            ulong oculusIdAnchorRequester, Guid headsetIdRequester, string uuid,
-            NetworkBool anchorFlowSucceeded, RpcInfo info = default)
+        private void AddPlayerIdHostRPC(ulong localPlayerId, int localNetworkId)
         {
-            Debug.Log("FindRPCToCallServerRPC");
-            PlayerRef playerRef = playerId;
-            FindRPCToCallClientRPC(playerRef, eventCode, oculusIdAnchorOwner, oculusIdAnchorRequester, headsetIdRequester, uuid, anchorFlowSucceeded);
+            Logger.Log("Add Player Id Host RPC: player id", LogLevel.Verbose);
+            PlayerIds.Add(localPlayerId);
+            Logger.Log("Add Player Id Host RPC: network id", LogLevel.Verbose);
+            NetworkIds.Add(localNetworkId);
+
+            PrintIDDictionary();
+        }
+
+        private bool TryGetNetworkId(ulong playerId, out int networkId)
+        {
+            for (var i = 0; i < PlayerIds.Count; i++)
+            {
+                if (playerId == PlayerIds[i])
+                {
+                    networkId = NetworkIds[i];
+                    return true;
+                }
+            }
+
+            networkId = 0;
+            Logger.Log($"PhotonNetworkMessenger: playerId {playerId} got invalid networkId {networkId}", LogLevel.Error);
+            return false;
+        }
+
+        public void SendAnchorShareRequest(ulong targetPlayerId, ShareAndLocalizeParams shareAndLocalizeParams)
+        {
+            Logger.Log(
+                $"{nameof(PhotonNetworkMessenger)}: Sending anchor share request to player {targetPlayerId}. (anchorID {shareAndLocalizeParams.anchorUUID})",
+                LogLevel.Verbose);
+            var fusionData = new PhotonShareAndLocalizeParams(shareAndLocalizeParams);
+            SendMessageToPlayer(MessageEvent.ANCHOR_SHARE_REQUEST, targetPlayerId, fusionData);
+        }
+
+        public void SendAnchorShareCompleted(ulong targetPlayerId, ShareAndLocalizeParams shareAndLocalizeParams)
+        {
+            Logger.Log(
+                $"{nameof(PhotonNetworkMessenger)}: Sending anchor share completed to player {targetPlayerId}. (anchorID {shareAndLocalizeParams.anchorUUID})",
+                LogLevel.Verbose);
+            var fusionData = new PhotonShareAndLocalizeParams(shareAndLocalizeParams);
+            SendMessageToPlayer(MessageEvent.ANCHOR_SHARE_COMPLETE, targetPlayerId, fusionData);
+        }
+
+        private void SendMessageToPlayer(MessageEvent eventCode, ulong playerId,
+            PhotonShareAndLocalizeParams fusionData)
+        {
+            Logger.Log($"Calling SendMessageToPlayer with MessageEvent: {eventCode}, to playerId {playerId}",
+                LogLevel.Verbose);
+            if (TryGetNetworkId(playerId, out var fusionId))
+            {
+                Logger.Log($"Calling FindRPCToCallServerRPC playerId {playerId} maps to fusionId {fusionId}",
+                    LogLevel.Verbose);
+                FindRPCToCallServerRPC(eventCode, fusionId, fusionData);
+            }
+            else
+            {
+                Logger.Log($"Could not find fusionId for playerId {playerId}", LogLevel.Error);
+            }
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-        private void FindRPCToCallServerRPC(byte eventCode, int playerId)
+        private void FindRPCToCallServerRPC(MessageEvent eventCode, int fusionId,
+            PhotonShareAndLocalizeParams fusionData, RpcInfo info = default)
         {
-            Debug.Log("FindRPCToCallServerRPC: Null");
-            PlayerRef playerRef = playerId;
-            FindRPCToCallClientRPC(playerRef, eventCode);
+            Logger.Log("FindRPCToCallServerRPC called", LogLevel.Verbose);
+            PlayerRef fusionPlayerRef = fusionId;
+            Logger.Log("Created PlayerRef right before calling HandleMessageClientRPC", LogLevel.Verbose);
+            HandleMessageClientRPC(fusionPlayerRef, eventCode, fusionData);
         }
 
         [Rpc(RpcSources.All, RpcTargets.All)]
-        private void FindRPCToCallClientRPC(
-            [RpcTarget] PlayerRef player,
-            byte eventCode,
-            ulong oculusIdAnchorOwner, ulong oculusIdAnchorRequester, Guid headsetIdRequester,
-            string uuid, NetworkBool anchorFlowSucceeded)
+        private void HandleMessageClientRPC([RpcTarget] PlayerRef playerRef, MessageEvent eventCode,
+            PhotonShareAndLocalizeParams fusionData)
         {
-            Debug.Log("FindRPCToCallClientRPC");
-            var data = new ShareAndLocalizeParams(oculusIdAnchorOwner, oculusIdAnchorRequester, headsetIdRequester, uuid)
+            Logger.Log($"HandleMessageClientRPC: {eventCode}", LogLevel.Verbose);
+            switch (eventCode)
             {
-                anchorFlowSucceeded = anchorFlowSucceeded
-            };
-            m_callbackDictionary[eventCode](data);
+                case MessageEvent.ANCHOR_SHARE_REQUEST:
+                    AnchorShareRequestReceived?.Invoke(fusionData.GetShareAndLocalizeParams());
+                    break;
+                case MessageEvent.ANCHOR_SHARE_COMPLETE:
+                    AnchorShareRequestCompleted?.Invoke(fusionData.GetShareAndLocalizeParams());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(eventCode), eventCode, null);
+            }
         }
 
-        [Rpc(RpcSources.All, RpcTargets.All)]
-        private void FindRPCToCallClientRPC(
-            [RpcTarget] PlayerRef player,
-            byte eventCode
-        )
+        private void PrintIDDictionary()
         {
-            Debug.Log("FindRPCToCallClientRPC: null");
-            m_callbackDictionary[eventCode](null);
+            var stringBuilder = new StringBuilder();
+            for (var i = 0; i < PlayerIds.Count; i++)
+            {
+                _ = stringBuilder.Append($"[{PlayerIds[i]},{NetworkIds[i]}]");
+                if (i < PlayerIds.Count - 1)
+                {
+                    _ = stringBuilder.Append(",");
+                }
+            }
+
+            Logger.Log($"{nameof(PhotonNetworkMessenger)}: ID dictionary is {stringBuilder}", LogLevel.Verbose);
         }
     }
 }
