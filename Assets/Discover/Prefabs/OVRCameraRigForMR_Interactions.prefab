@@ -205,6 +205,7 @@ MonoBehaviour:
   HandType: 1
   _pointerPoseRoot: {fileID: 0}
   m_showState: 3
+  RayHelper: {fileID: 0}
 --- !u!114 &8488149359126712852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +302,7 @@ MonoBehaviour:
   HandType: 0
   _pointerPoseRoot: {fileID: 0}
   m_showState: 3
+  RayHelper: {fileID: 0}
 --- !u!114 &8694534315539125947
 MonoBehaviour:
   m_ObjectHideFlags: 0

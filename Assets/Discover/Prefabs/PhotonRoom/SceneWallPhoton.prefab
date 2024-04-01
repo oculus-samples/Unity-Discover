@@ -227,7 +227,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5805239917612027232}
-  - component: {fileID: 2475036572273572945}
   - component: {fileID: 1926737885794424894}
   - component: {fileID: 4889460260764316711}
   m_Layer: 13
@@ -252,20 +251,6 @@ Transform:
   m_Father: {fileID: 1920707874128865830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2475036572273572945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5129851568263076484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf2a74d69b1c1e41916d2a7afdff5be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _facing: 0
-  _doubleSided: 1
 --- !u!114 &1926737885794424894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +270,7 @@ MonoBehaviour:
   _allowTeleport: 0
   _equalDistanceToBlockerOverride: 0
   _tieBreakerScore: 0
-  _surface: {fileID: 2475036572273572945}
+  _surface: {fileID: 8722850752521828276}
   _targetPoint: {fileID: 0}
   _faceTargetDirection: 0
   _eyeLevel: 0
@@ -404,7 +389,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surface: {fileID: 8722850752521828276}
-  _selectSurface: {fileID: 2475036572273572945}
+  _selectSurface: {fileID: 0}
   _movementProvider: {fileID: 0}
   _tiebreakerScore: 0
 --- !u!114 &6820661022779611407

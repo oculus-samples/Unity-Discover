@@ -266,6 +266,7 @@ MonoBehaviour:
   _renderer: {fileID: 1829333678139731425}
   _outlineColor: {r: 0, g: 0, b: 0, a: 1}
   _offsetAlongNormal: 0.005
+  _playerHead: {fileID: 0}
   _selectObject: {fileID: 5558809790615712042}
 --- !u!1 &1829333679157806078
 GameObject:

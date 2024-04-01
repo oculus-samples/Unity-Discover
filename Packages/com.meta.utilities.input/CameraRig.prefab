@@ -687,6 +687,7 @@ MonoBehaviour:
   _cameraRigRef: {fileID: 8610948096547351988}
   _processLateUpdates: 0
   _handedness: 1
+  _ovrHand: {fileID: 0}
   _trackingToWorldTransformer: {fileID: 4056769475630106512}
   _handSkeletonProvider: {fileID: 4755994634335946638}
 --- !u!114 &264578700298614523
@@ -1790,12 +1791,13 @@ MonoBehaviour:
   virtualGreenScreenApplyDepthCulling: 0
   virtualGreenScreenDepthTolerance: 0.2
   mrcActivationMode: 0
-  launchMultimodalHandsControllersOnStartup: 0
+  launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
   requestBodyTrackingPermissionOnStartup: 1
   requestFaceTrackingPermissionOnStartup: 1
   requestEyeTrackingPermissionOnStartup: 1
   requestScenePermissionOnStartup: 0
+  requestRecordAudioPermissionOnStartup: 0
   _localDimming: 0
   _trackingOriginType: 1
   usePositionTracking: 1
@@ -1805,8 +1807,10 @@ MonoBehaviour:
   AllowRecenter: 1
   LateControllerUpdate: 1
   LateLatching: 1
-  _readOnlyControllerDrivenHandPosesType: 0
   controllerDrivenHandPosesType: 0
+  SimultaneousHandsAndControllersEnabled: 0
+  _readOnlyWideMotionModeHandPosesEnabled: 0
+  wideMotionModeHandPosesEnabled: 0
 --- !u!114 &-934479987813566617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2918,6 +2922,7 @@ MonoBehaviour:
   HandType: 1
   _pointerPoseRoot: {fileID: 3988992931918966446}
   m_showState: 3
+  RayHelper: {fileID: 0}
 --- !u!114 &1368387394020744168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2983,6 +2988,7 @@ MonoBehaviour:
   HandType: 0
   _pointerPoseRoot: {fileID: 3988992931918966446}
   m_showState: 3
+  RayHelper: {fileID: 0}
 --- !u!114 &1365874896087525568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3150,6 +3156,7 @@ MonoBehaviour:
   _cameraRigRef: {fileID: 8610948096547351988}
   _processLateUpdates: 0
   _handedness: 0
+  _ovrHand: {fileID: 0}
   _trackingToWorldTransformer: {fileID: 4056769475630106512}
   _handSkeletonProvider: {fileID: 4755994634335946638}
 --- !u!114 &7182386269243383783

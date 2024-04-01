@@ -26,38 +26,41 @@ namespace Discover.SpatialAnchors
         public async void SaveAnchor(OVRSpatialAnchor anchor, TData data)
         {
             await UniTask.WaitUntil(() => anchor.Uuid != Guid.Empty);
-            anchor.Save((savedAnchor, b) =>
+            if (await anchor.SaveAsync())
             {
                 Debug.Log($"Anchor with {AnchorUtils.GuidToString(anchor.Uuid)} saved");
-                m_anchorUidToData[savedAnchor.Uuid] = data;
+                m_anchorUidToData[anchor.Uuid] = data;
                 OnSpaceSaveComplete(anchor.Uuid, data);
-            });
+            }
+            else
+            {
+                Debug.Log($"Anchor with {AnchorUtils.GuidToString(anchor.Uuid)} failed to saved");
+                OnSpaceSaveComplete(anchor.Uuid, data);
+            }
         }
 
-        public void EraseAnchor(
+        public async void EraseAnchor(
             OVRSpatialAnchor anchor, bool saveOnErase = true, Action<OVRSpatialAnchor, bool> onAnchorErased = null)
         {
             var uuid = anchor.Uuid;
-            anchor.Erase((erasedAnchor, success) =>
+            var success = await anchor.EraseAsync();
+            if (success)
             {
-                if (success)
+                Debug.Log($"Erased anchor data {uuid}");
+                var dataToRemove = m_anchorSavedData.Find(data => data.AnchorUuid == uuid);
+                _ = m_anchorSavedData.Remove(dataToRemove);
+                _ = m_anchorUidToData.Remove(uuid);
+                if (saveOnErase)
                 {
-                    Debug.Log($"Erased anchor data {erasedAnchor.Uuid}");
-                    var dataToRemove = m_anchorSavedData.Find(data => data.AnchorUuid == uuid);
-                    _ = m_anchorSavedData.Remove(dataToRemove);
-                    _ = m_anchorUidToData.Remove(uuid);
-                    if (saveOnErase)
-                    {
-                        SaveToFile();
-                    }
+                    SaveToFile();
                 }
-                else
-                {
-                    Debug.LogError($"Failed to erased anchor data {erasedAnchor.Uuid}");
-                }
+            }
+            else
+            {
+                Debug.LogError($"Failed to erased anchor data {uuid}");
+            }
 
-                onAnchorErased?.Invoke(erasedAnchor, success);
-            });
+            onAnchorErased?.Invoke(anchor, success);
         }
 
         public void LoadAnchors()
@@ -79,7 +82,7 @@ namespace Discover.SpatialAnchors
             QueryAnchors(anchorsToQuery);
         }
 
-        private void QueryAnchors(HashSet<Guid> anchorUuids)
+        private async void QueryAnchors(HashSet<Guid> anchorUuids)
         {
             var anchorIds = anchorUuids.ToList();
 
@@ -90,7 +93,8 @@ namespace Discover.SpatialAnchors
                 Uuids = anchorIds,
                 Timeout = 0,
             };
-            _ = OVRSpatialAnchor.LoadUnboundAnchors(options, OnCompleteUnboundAnchors);
+            var unboundAnchors = await OVRSpatialAnchor.LoadUnboundAnchorsAsync(options);
+            OnCompleteUnboundAnchors(unboundAnchors);
         }
 
         private void OnCompleteUnboundAnchors(OVRSpatialAnchor.UnboundAnchor[] unboundAnchors)
