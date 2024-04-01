@@ -5,9 +5,8 @@
         "GUID:e0cd26848372d4e5c891c569017e11f1",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:fe685ec1767f73d42b749ea8045bfe43",
-        "GUID:64a5e78bc3a487e4785840abcc411b13",
+        "GUID:a92702ab18a2c37469cf92d0212e2d5a",
         "GUID:f64c9ebcd7899c3448a08dc9f9ddbe30",
-        "GUID:10ccfe6c35e29e14798a0c711aa976a0",
         "GUID:51c2c203806c51b44a2e1b60d78e3429",
         "GUID:2a230cb87a1d3ba4a98bdc0ddae76e6c",
         "GUID:776d03a35f1b52c4a9aed9f56d7b4229",
@@ -30,6 +29,16 @@
             "name": "com.dbrizov.naughtyattributes",
             "expression": "0",
             "define": "HAS_NAUGHTY_ATTRIBUTES"
+        },
+        {
+            "name": "com.unity.xr.management",
+            "expression": "",
+            "define": "USING_XR_MANAGEMENT"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "",
+            "define": "USING_XR_SDK_OCULUS"
         }
     ],
     "noEngineReferences": false

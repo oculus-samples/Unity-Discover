@@ -70,7 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d84bf24de31290419303e23b07cf5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bodyTrackingMode: 1
   _useAsyncBodySolver: 1
+  _enableHipLock: 0
   _hmd: {fileID: 7096373948589442670}
   _leftHand: {fileID: 1434158244}
   _rightHand: {fileID: 1434158243}

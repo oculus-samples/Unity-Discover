@@ -5,6 +5,8 @@
     "com.marijnzwemmer.unity-toolbar-extender": "https://github.com/marijnz/unity-toolbar-extender.git",
     "com.meta.xr.colocation": "https://github.com/oculus-samples/Unity-LocalMultiplayerMR.git?path=colocation-package#075b8f0e1641bc6cacef05a57f25e82b985cb4bb",
     "com.meta.xr.sdk.audio": "63.0.0",
+    "com.meta.xr.sdk.avatars": "24.1.1",
+    "com.meta.xr.sdk.avatars.sample.assets": "24.1.1",
     "com.meta.xr.sdk.core": "63.0.0",
     "com.meta.xr.sdk.interaction.ovr": "63.0.0",
     "com.meta.xr.sdk.interaction.ovr.samples": "63.0.0",

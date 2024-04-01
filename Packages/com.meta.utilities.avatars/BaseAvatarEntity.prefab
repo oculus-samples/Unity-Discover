@@ -29,8 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5765091252785137565}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -53,18 +52,18 @@ MonoBehaviour:
       manifestationFlags: 2
       viewFlags: 3
       subMeshInclusionFlags: 2047
-      highQualityFlags: 0
+      quality: 0
+      reserved: 0000000000000000000000000000000000000000000000000000000000000000
   _activeView: 1
   _activeManifestation: 2
   _activeSubMeshes: 2047
   _activeSubMeshesIncludeUntyped: 1
-  _activeHighQuality: 0
   _bodyTracking: {fileID: 0}
   _facePoseBehavior: {fileID: 0}
   _eyePoseBehavior: {fileID: 0}
   _lipSync: {fileID: 0}
   _criticalJointTypes: 1300000017000000
-  _useExperimentalFeatures: -1
+  _useCriticalJointJobs: 0
   _debugDrawing:
     drawTrackingPose: 0
     drawBoneNames: 0
@@ -73,12 +72,8 @@ MonoBehaviour:
     drawSkinTransformsInGame: 0
     drawCriticalJoints: 0
     skeletonColor: {r: 1, g: 0, b: 0, a: 1}
-  LoadingStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  EntityLoadingStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
+    drawGazePos: 0
+    gazePosColor: {r: 1, g: 0, b: 1, a: 1}
   OnCreatedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -100,13 +95,12 @@ MonoBehaviour:
   OnLoadFailedEvent:
     m_PersistentCalls:
       m_Calls: []
-  SkinningType: 0
   MotionSmoothingSettings: 0
   _hidden: 0
   useRenderLods: 1
   _isLocal: 1
   m_networking: {fileID: 453862449296571400}
-  m_lipSync: {fileID: 5765091252785137564}
+  m_lipSync: {fileID: 0}
   m_isLocalIfNotNetworked: 1
   OnJointLoadedEvents: []
   m_facePoseProvider: {fileID: 0}
@@ -133,61 +127,5 @@ MonoBehaviour:
   updateImportance: 0
   dynamicStreamLod: 0
   lastUpdateAgeSeconds: 0
+  lastUpdateAgeTicks: 0
   previousUpdateAgeWindowSeconds: 0
---- !u!1001 &8195218208172880659
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6697775241635718865}
-    m_Modifications:
-    - target: {fileID: 2430523750807860354, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-      propertyPath: m_Name
-      value: LipSyncInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430523750807860354, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430523750807860364, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-      propertyPath: _preferOculusMic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430523750807860366, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430523750807860366, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430523750807860366, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430523750807860366, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c019572605bc29e42b3ed5a058599618, type: 3}
---- !u!114 &5765091252785137564 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2430523750807860367, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-  m_PrefabInstance: {fileID: 8195218208172880659}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a509dbf839e0e4044a7affab5b5a3e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &5765091252785137565 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2430523750807860366, guid: c019572605bc29e42b3ed5a058599618, type: 3}
-  m_PrefabInstance: {fileID: 8195218208172880659}
-  m_PrefabAsset: {fileID: 0}
