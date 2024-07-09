@@ -11647,7 +11647,12 @@ namespace Fusion.Editor {
         "GetFieldInfoFromProperty",
         BindingFlags.Static | BindingFlags.NonPublic);
 
+#if UNITY_2022_3_OR_NEWER && !(UNITY_2022_3_1 || UNITY_2022_3_2 || UNITY_2022_3_3 || UNITY_2022_3_4 || UNITY_2022_3_5 || UNITY_2022_3_6 || UNITY_2022_3_7 || UNITY_2022_3_8 || UNITY_2022_3_9 || UNITY_2022_3_10 || UNITY_2022_3_11 || UNITY_2022_3_12 || UNITY_2022_3_13 || UNITY_2022_3_14 || UNITY_2022_3_15 || UNITY_2022_3_16 || UNITY_2022_3_17 || UNITY_2022_3_18 || UNITY_2022_3_19 || UNITY_2022_3_20 || UNITY_2022_3_21 || UNITY_2022_3_22)
+      // https://github.com/oculus-samples/Unity-Discover/issues/21, https://tinyurl.com/3d2ykpaf
+      public delegate Type GetDrawerTypeForTypeDelegate(Type type, bool isPropertyTypeAManagedReference = false);
+#else
       public delegate Type GetDrawerTypeForTypeDelegate(Type type);
+#endif
       public static readonly GetDrawerTypeForTypeDelegate GetDrawerTypeForType =
         CreateEditorMethodDelegate<GetDrawerTypeForTypeDelegate>(
         "UnityEditor.ScriptAttributeUtility",
