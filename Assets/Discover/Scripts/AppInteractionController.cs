@@ -19,6 +19,9 @@ namespace Discover
         [SerializeField] private RayInteractor m_leftControllerInteractor;
         [SerializeField] private RayInteractor m_rightHandInteractor;
         [SerializeField] private RayInteractor m_leftHandInteractor;
+        
+        [Header("Poke Interactors")]
+        [SerializeField] private PokeInteractor[] m_pokeInteractors;
 
         [Header("Hands")]
         [SerializeField] private OVRSkeleton m_rightHandSkeleton;
@@ -32,7 +35,7 @@ namespace Discover
         [SerializeField] private HandGrabInteractor m_rightHandGrabInteractor;
         [SerializeField] private HandGrabInteractor m_leftHandGrabInteractor;
 
-        private OVRControllerVisual[] m_controllerMeshes;
+        private ControllerVisual[] m_controllerMeshes;
 
         private RayInteractor m_lastUsedHandInteractor;
         private bool m_interactorDisabledForApp;
@@ -88,7 +91,7 @@ namespace Discover
             }
 
             // crawl the scene for controller visuals, to avoid making a .scene change with a hard link
-            m_controllerMeshes = FindObjectsOfType(typeof(OVRControllerVisual)) as OVRControllerVisual[];
+            m_controllerMeshes = FindObjectsOfType(typeof(ControllerVisual)) as ControllerVisual[];
         }
 
         private void Update()
@@ -130,9 +133,9 @@ namespace Discover
 
         public RayInteractor GetRay(Handedness handedness)
         {
-            return OVRPlugin.GetHandTrackingEnabled()
-                ? handedness == Handedness.Left ? m_leftHandInteractor : m_rightHandInteractor
-                : handedness == Handedness.Left ? m_leftControllerInteractor : m_rightControllerInteractor;
+            return OVRPlugin.GetControllerIsInHand(OVRPlugin.Step.Render, handedness == Handedness.Left ? OVRPlugin.Node.ControllerLeft : OVRPlugin.Node.ControllerRight)
+                ? handedness == Handedness.Left ? m_leftControllerInteractor : m_rightControllerInteractor
+                : handedness == Handedness.Left ? m_leftHandInteractor : m_rightHandInteractor;
         }
 
         public RayInteractor GetLastUsedHandRay()
@@ -163,13 +166,21 @@ namespace Discover
             Debug.Log($"Setting system interactors enabled={doEnable}.");
 
             if (m_rightControllerInteractor)
-                EnableInteractorVisuals(m_rightControllerInteractor, doEnable);
+                EnableRayInteractorVisuals(m_rightControllerInteractor, doEnable);
             if (m_leftControllerInteractor)
-                EnableInteractorVisuals(m_leftControllerInteractor, doEnable);
+                EnableRayInteractorVisuals(m_leftControllerInteractor, doEnable);
             if (m_rightHandInteractor)
-                EnableInteractorVisuals(m_rightHandInteractor, doEnable);
+                EnableRayInteractorVisuals(m_rightHandInteractor, doEnable);
             if (m_leftHandInteractor)
-                EnableInteractorVisuals(m_leftHandInteractor, doEnable);
+                EnableRayInteractorVisuals(m_leftHandInteractor, doEnable);
+
+            foreach (var pokeInteractor in m_pokeInteractors)
+            {
+                if (pokeInteractor != null)
+                {
+                    EnablePokeInteractorVisuals(pokeInteractor, doEnable);
+                }
+            }
 
             foreach (var controller in m_controllerMeshes)
             {
@@ -177,7 +188,7 @@ namespace Discover
             }
         }
 
-        private void EnableInteractorVisuals(RayInteractor ray, bool doEnable)
+        private void EnableRayInteractorVisuals(RayInteractor ray, bool doEnable)
         {
             // we'll allow a string search here because this is a system prefab and unlikely to change
             var visuals = ray.transform.Find("Visuals");
@@ -186,6 +197,16 @@ namespace Discover
             for (var i = 0; i < count; ++i)
             {
                 visuals.GetChild(i).gameObject.SetActive(doEnable);
+            }
+        }
+        
+        private void EnablePokeInteractorVisuals(PokeInteractor poke, bool doEnable)
+        {
+            // we'll allow a string search here because this is a system prefab and unlikely to change
+            var visual = poke.transform.Find("PokeLocation");
+            if (visual != null)
+            {
+                visual.gameObject.SetActive(doEnable);
             }
         }
     }

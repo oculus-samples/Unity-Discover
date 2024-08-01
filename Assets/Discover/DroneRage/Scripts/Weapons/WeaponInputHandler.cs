@@ -45,6 +45,8 @@ namespace Discover.DroneRage.Weapons
 
         private bool m_usingHands;
 
+        private Handedness m_handedness;
+
         private void Start()
         {
             if (TryGetComponent<WeaponVisuals>(out var weaponVisuals))
@@ -71,6 +73,7 @@ namespace Discover.DroneRage.Weapons
             m_controllerActiveState = controllerGrab.Hand as IActiveState;
             m_handGrabInteractor = handGrab;
             m_handActiveState = handGrab.Hand as IActiveState;
+            m_handedness = hand;
 
             if (TryGetComponent<WeaponVisuals>(out var weaponVisuals))
             {
@@ -80,7 +83,7 @@ namespace Discover.DroneRage.Weapons
             // wait a frame for everything to fully instantiate
             await UniTask.DelayFrame(1);
 
-            UpdateInteractor(OVRPlugin.GetHandTrackingEnabled());
+            UpdateInteractor(CheckUseHands());
         }
 
         private void OnMenuShowing(bool show)
@@ -91,7 +94,7 @@ namespace Discover.DroneRage.Weapons
             }
             else
             {
-                UpdateInteractor(OVRPlugin.GetHandTrackingEnabled());
+                UpdateInteractor(CheckUseHands());
             }
         }
 
@@ -102,6 +105,12 @@ namespace Discover.DroneRage.Weapons
                 m_currentGrabInteractor.ForceRelease();
             }
         }
+
+        private bool CheckUseHands()
+        {
+            return !OVRPlugin.GetControllerIsInHand(OVRPlugin.Step.Render, m_handedness == Handedness.Left ? OVRPlugin.Node.ControllerLeft : OVRPlugin.Node.ControllerRight);
+        }
+        
         private void UpdateInteractor(bool useHands)
         {
             CleanupInteractor();
@@ -120,7 +129,7 @@ namespace Discover.DroneRage.Weapons
 
         private void Update()
         {
-            var useHands = OVRPlugin.GetHandTrackingEnabled();
+            var useHands = CheckUseHands();
             var activeStateChanged = m_currentActiveState != null &&
                                      m_isCurrentInteractorActive != m_currentActiveState.Active;
             if (useHands != m_usingHands || activeStateChanged)
