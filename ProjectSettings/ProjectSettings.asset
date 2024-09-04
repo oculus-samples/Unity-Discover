@@ -138,8 +138,6 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: e39466eaa11bc314b991fd0678f046b3, type: 2}
-  - {fileID: 9166461520806161978, guid: c8e364865e9455940bb653a1d5eb56fb, type: 2}
-  - {fileID: 11400000, guid: 7d7a0e475fae1ad47bb84dbb1aa98284, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -735,8 +733,22 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: OVR_PLATFORM_ASYNC_MESSAGES;FUSION_WEAVER;HAS_META_AVATARS;HAS_META_INTERACTION
-    Standalone: OVR_PLATFORM_ASYNC_MESSAGES;FUSION_WEAVER;HAS_META_AVATARS;HAS_META_INTERACTION
+    Android: OVR_PLATFORM_ASYNC_MESSAGES;FUSION_WEAVER;HAS_META_AVATARS;HAS_META_INTERACTION;PHOTON_VOICE_DEFINED
+    EmbeddedLinux: PHOTON_VOICE_DEFINED
+    GameCoreScarlett: PHOTON_VOICE_DEFINED
+    GameCoreXboxOne: PHOTON_VOICE_DEFINED
+    LinuxHeadlessSimulation: PHOTON_VOICE_DEFINED
+    Nintendo Switch: PHOTON_VOICE_DEFINED
+    PS4: PHOTON_VOICE_DEFINED
+    PS5: PHOTON_VOICE_DEFINED
+    QNX: PHOTON_VOICE_DEFINED
+    Stadia: PHOTON_VOICE_DEFINED
+    Standalone: OVR_PLATFORM_ASYNC_MESSAGES;FUSION_WEAVER;HAS_META_AVATARS;HAS_META_INTERACTION;PHOTON_VOICE_DEFINED
+    WebGL: PHOTON_VOICE_DEFINED
+    Windows Store Apps: PHOTON_VOICE_DEFINED
+    XboxOne: PHOTON_VOICE_DEFINED
+    iPhone: PHOTON_VOICE_DEFINED
+    tvOS: PHOTON_VOICE_DEFINED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

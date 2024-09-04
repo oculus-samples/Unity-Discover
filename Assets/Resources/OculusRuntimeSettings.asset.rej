@@ -1,0 +1,9 @@
+diff a/Assets/Resources/OculusRuntimeSettings.asset b/Assets/Resources/OculusRuntimeSettings.asset	(rejected hunks)
+@@ -15,6 +15,6 @@
+   colorSpace: 7
+   requestsVisualFaceTracking: 1
+   requestsAudioFaceTracking: 1
+-  telemetryProjectGuid: e32e5638-b2f5-48b1-9a6b-e1d3a9ce74f5
++  telemetryProjectGuid: 
+   bodyTrackingFidelity: 1
+   bodyTrackingJointSet: 0

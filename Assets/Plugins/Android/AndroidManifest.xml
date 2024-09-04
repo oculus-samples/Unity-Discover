@@ -17,6 +17,7 @@
     <meta-data android:name="com.oculus.ossplash" android:value="true" />
     <meta-data android:name="com.oculus.ossplash.type" android:value="mono" />
     <meta-data android:name="com.oculus.ossplash.colorspace" android:value="P3" />
+    <meta-data android:name="com.oculus.telemetry.project_guid" android:value="e32e5638-b2f5-48b1-9a6b-e1d3a9ce74f5" />
   </application>
   <uses-feature android:name="android.hardware.vr.headtracking" android:version="1" android:required="true" />
   <uses-feature android:name="com.oculus.feature.PASSTHROUGH" android:required="true" />
