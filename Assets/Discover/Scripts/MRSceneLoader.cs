@@ -2,13 +2,13 @@
 
 using System;
 using Cysharp.Threading.Tasks;
+using Meta.XR.MRUtilityKit;
 using UnityEngine;
 
 namespace Discover
 {
     public class MRSceneLoader : MonoBehaviour
     {
-        [SerializeField] private OVRSceneManager m_ovrSceneManager;
         // fake room prefab loaded in editor mode
         [SerializeField] private GameObject m_fakeRoomPrefab;
 
@@ -39,7 +39,12 @@ namespace Discover
             return !timedOut && result;
         }
 
-        public void OnSceneLoadedSuccess()
+        public void OnSceneLoadedSuccess(MRUKRoom room)
+        {
+            OnSceneLoadedSuccess();
+        }
+        
+        private void OnSceneLoadedSuccess()
         {
             m_sceneLoaded = true;
             _ = m_sceneLoadingTask?.TrySetResult(m_sceneLoaded);
@@ -47,11 +52,8 @@ namespace Discover
 
         private void LoadOVRSceneManager()
         {
-            if (m_ovrSceneManager != null)
-            {
-                m_ovrSceneManager.SceneModelLoadedSuccessfully += OnSceneLoadedSuccess;
-                m_ovrSceneManager.gameObject.SetActive(true);
-            }
+            MRUK.Instance.RoomCreatedEvent.AddListener(OnSceneLoadedSuccess);
+            MRUK.Instance.LoadSceneFromDevice();
         }
 
         private void LoadFakeRoom()

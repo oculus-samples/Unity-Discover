@@ -1,6 +1,8 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using System;
 using Discover.Icons;
+using Meta.XR.MRUtilityKit;
 using UnityEngine;
 
 namespace Discover.Configs
@@ -19,7 +21,6 @@ namespace Discover.Configs
             DOOR_FRAME,
             WINDOW_FRAME,
             OTHER,
-            WALL
         }
 
         [Header("Game Metadata")]
@@ -43,5 +44,32 @@ namespace Discover.Configs
 
         [Header("App Data")]
         public NetworkApplicationContainer AppPrefab;
+
+        public MRUKAnchor.SceneLabels SurfaceTypeToSceneLabel()
+        {
+            switch (IconSurfaceType)
+            {
+                case SurfaceType.ANY:
+                    throw new ArgumentOutOfRangeException();
+                case SurfaceType.FLOOR:
+                    return MRUKAnchor.SceneLabels.FLOOR;
+                case SurfaceType.CEILING:
+                    return MRUKAnchor.SceneLabels.CEILING;
+                case SurfaceType.WALL_FACE:
+                    return MRUKAnchor.SceneLabels.WALL_FACE;
+                case SurfaceType.TABLE:
+                    return MRUKAnchor.SceneLabels.TABLE;
+                case SurfaceType.COUCH:
+                    return MRUKAnchor.SceneLabels.COUCH;
+                case SurfaceType.DOOR_FRAME:
+                    return MRUKAnchor.SceneLabels.DOOR_FRAME;
+                case SurfaceType.WINDOW_FRAME:
+                    return MRUKAnchor.SceneLabels.WINDOW_FRAME;
+                case SurfaceType.OTHER:
+                    return MRUKAnchor.SceneLabels.OTHER;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }

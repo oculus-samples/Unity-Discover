@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_labels:
   - WALL_FACE
+  m_label: 4
 --- !u!1 &114312305270402156
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_labels:
   - DESK
+  m_label: 8
 --- !u!1 &3089224557806344694
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_labels:
   - WALL_FACE
+  m_label: 4
 --- !u!1 &5414124144431687439
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_labels:
   - CEILING
+  m_label: 2
 --- !u!1 &5538432853329557801
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_labels:
   - WALL_FACE
+  m_label: 4
 --- !u!1 &5578109336274004269
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_labels:
   - FLOOR
+  m_label: 1
 --- !u!1 &6409757166776850425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_labels:
   - WALL_FACE
+  m_label: 4
 --- !u!1 &7712878057938186167
 GameObject:
   m_ObjectHideFlags: 0

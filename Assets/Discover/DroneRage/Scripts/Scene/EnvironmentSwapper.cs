@@ -3,6 +3,7 @@
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Fusion;
+using Meta.XR.MRUtilityKit;
 using UnityEngine;
 
 namespace Discover.DroneRage.Scene
@@ -52,7 +53,7 @@ namespace Discover.DroneRage.Scene
         private async void SwapWalls(bool toAlt)
         {
             await UniTask.WaitUntil(() => SceneElementsManager.Instance.AreAllElementsSpawned());
-            foreach (var wall in SceneElementsManager.Instance.GetElementsByLabel(OVRSceneManager.Classification.WallFace))
+            foreach (var wall in SceneElementsManager.Instance.GetElementsByLabel(MRUKAnchor.SceneLabels.WALL_FACE))
             {
                 if (toAlt)
                 {
@@ -70,7 +71,7 @@ namespace Discover.DroneRage.Scene
         {
             await UniTask.WaitUntil(() => SceneElementsManager.Instance.AreAllElementsSpawned());
             var ceiling = SceneElementsManager.Instance.
-                GetElementsByLabel(OVRSceneManager.Classification.Ceiling).
+                GetElementsByLabel(MRUKAnchor.SceneLabels.CEILING).
                 FirstOrDefault()?.
                 Renderer;
             if (ceiling == null)

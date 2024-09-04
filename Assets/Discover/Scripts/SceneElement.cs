@@ -4,23 +4,19 @@ using System.Collections.Generic;
 using Discover.FakeRoom;
 using Fusion;
 using Meta.Utilities;
+using Meta.XR.MRUtilityKit;
 using UnityEngine;
 
 namespace Discover
 {
     public class SceneElement : NetworkBehaviour
     {
-        private const int MAX_LABEL_COUNT = 5;
-
         // We simply show a mesh on top. We could include this in the shaders
         [SerializeField] private GameObject m_highlightObject;
 
-        private HashSet<string> m_labels = new();
-
         [field: SerializeField, AutoSetFromChildren] public Renderer Renderer { get; private set; }
-
-        [Capacity(MAX_LABEL_COUNT)]
-        [Networked] private NetworkLinkedList<NetworkString<_16>> Labels { get; }
+        
+        [Networked] private MRUKAnchor.SceneLabels Label { set; get; }
 
         public bool IsSpawned { get; private set; }
 
@@ -42,10 +38,9 @@ namespace Discover
         {
             if (HasStateAuthority)
             {
-                InitializeLabels();
+                InitializeLabel();
             }
 
-            RefreshLabelHash();
             IsSpawned = true;
         }
 
@@ -59,14 +54,13 @@ namespace Discover
             m_highlightObject.SetActive(false);
         }
 
-        public bool ContainsLabel(string label)
+        public bool ContainsLabel(MRUKAnchor.SceneLabels label)
         {
-            return m_labels.Contains(label);
+            return label == Label;
         }
 
-        private void InitializeLabels()
+        private void InitializeLabel()
         {
-            Labels.Clear();
 #if UNITY_EDITOR
             if (!TryInitializeFromOVR())
             {
@@ -79,14 +73,13 @@ namespace Discover
 
         private bool TryInitializeFromOVR()
         {
-            var classification = GetComponentInParent<OVRSemanticClassification>();
-            if (classification == null)
+            var classificationObj = GetComponentInParent<MRUKAnchor>();
+            if (classificationObj == null)
             {
                 return false;
             }
 
-            var labels = classification.Labels;
-            InitializeLabels(labels);
+            Label = classificationObj.Label;
 
             return true;
         }
@@ -99,31 +92,9 @@ namespace Discover
                 return false;
             }
 
-            var labels = classification.Labels;
-            InitializeLabels(labels);
+            Label = classification.Label;
 
             return true;
-        }
-
-        private void InitializeLabels(IReadOnlyList<string> labels)
-        {
-            if (labels.Count > MAX_LABEL_COUNT)
-            {
-                Debug.LogError($"Scene element has more than {MAX_LABEL_COUNT} labels. Some will be cut");
-            }
-            for (var i = 0; i < labels.Count && i < MAX_LABEL_COUNT; ++i)
-            {
-                Labels.Add(labels[i]);
-            }
-        }
-
-        private void RefreshLabelHash()
-        {
-            m_labels.Clear();
-            foreach (var label in Labels)
-            {
-                _ = m_labels.Add(label.Value);
-            }
         }
     }
 }

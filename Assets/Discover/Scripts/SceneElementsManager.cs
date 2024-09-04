@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Meta.Utilities;
+using Meta.XR.MRUtilityKit;
 
 namespace Discover
 {
@@ -60,7 +61,7 @@ namespace Discover
             }
         }
 
-        public IEnumerable<SceneElement> GetElementsByLabel(string label) =>
+        public IEnumerable<SceneElement> GetElementsByLabel(MRUKAnchor.SceneLabels label) =>
             Instance.SceneElements.Where(e => e.ContainsLabel(label));
     }
 }

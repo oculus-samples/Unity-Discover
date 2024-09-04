@@ -6,6 +6,7 @@ using Discover.DroneRage.Game;
 using Discover.DroneRage.Scene;
 using Discover.Networking;
 using Meta.Utilities;
+using Meta.XR.MRUtilityKit;
 using UnityEngine;
 using static Discover.DroneRage.Bootstrapper.DroneRageAppContainerUtils;
 using Random = UnityEngine.Random;
@@ -229,7 +230,7 @@ namespace Discover.DroneRage.Enemies
 
         private void CalculateRoomExtents()
         {
-            var anchors = SceneElementsManager.Instance.GetElementsByLabel(OVRSceneManager.Classification.WallFace).ToList();
+            var anchors = SceneElementsManager.Instance.GetElementsByLabel(MRUKAnchor.SceneLabels.WALL_FACE).ToList();
             if (anchors.Any())
             {
                 m_roomMinExtent = anchors[0].transform.position;

@@ -3,6 +3,7 @@
 using Discover.Configs;
 using Discover.Haptics;
 using Discover.Utils;
+using Meta.XR.MRUtilityKit;
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
 using UnityEngine;
@@ -144,9 +145,9 @@ namespace Discover
                 if (hitObj && HasSceneElement(hitObj.transform, out var sceneElement))
                 {
                     // if collision has a TABLE label, align Y perpendicular with closest edge to player
-                    var validQuadPlacement = sceneElement.ContainsLabel(OVRSceneManager.Classification.Table) ||
-                                             sceneElement.ContainsLabel(OVRSceneManager.Classification.Couch) ||
-                                             sceneElement.ContainsLabel(OVRSceneManager.Classification.Other);
+                    var validQuadPlacement = sceneElement.ContainsLabel(MRUKAnchor.SceneLabels.TABLE) ||
+                                             sceneElement.ContainsLabel(MRUKAnchor.SceneLabels.COUCH) ||
+                                             sceneElement.ContainsLabel(MRUKAnchor.SceneLabels.OTHER);
                     validQuadPlacement &= !wallPlacement; // without this, rotation is NaN on the sides of non-wall objects
                     if (validQuadPlacement)
                     {
@@ -170,7 +171,7 @@ namespace Discover
                     }
 
                     onValidSurfaceType = m_selectedAppManifest.IconSurfaceType == AppManifest.SurfaceType.ANY ||
-                                       sceneElement.ContainsLabel(m_selectedAppManifest.IconSurfaceType.ToString());
+                                       sceneElement.ContainsLabel(m_selectedAppManifest.SurfaceTypeToSceneLabel());
                     if (!onValidSurfaceType)
                     {
                         invalidMessage = $"Place on {m_selectedAppManifest.IconSurfaceType}";
