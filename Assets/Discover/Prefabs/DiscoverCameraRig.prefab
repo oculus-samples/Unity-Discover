@@ -2489,6 +2489,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9106409042401414468, guid: 1dfe1817bca2ef64eae52a5061bb681b, type: 3}
+      propertyPath: shouldBoundaryVisibilityBeSuppressed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106409042401414468, guid: 1dfe1817bca2ef64eae52a5061bb681b, type: 3}
       propertyPath: requestEyeTrackingPermissionOnStartup
       value: 1
       objectReference: {fileID: 0}
