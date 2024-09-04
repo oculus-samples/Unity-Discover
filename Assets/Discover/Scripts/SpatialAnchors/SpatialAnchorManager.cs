@@ -26,7 +26,8 @@ namespace Discover.SpatialAnchors
         public async void SaveAnchor(OVRSpatialAnchor anchor, TData data)
         {
             await UniTask.WaitUntil(() => anchor.Uuid != Guid.Empty);
-            if (await anchor.SaveAsync())
+            var result = await anchor.SaveAnchorAsync();
+            if (result.Success)
             {
                 Debug.Log($"Anchor with {AnchorUtils.GuidToString(anchor.Uuid)} saved");
                 m_anchorUidToData[anchor.Uuid] = data;
@@ -43,8 +44,8 @@ namespace Discover.SpatialAnchors
             OVRSpatialAnchor anchor, bool saveOnErase = true, Action<OVRSpatialAnchor, bool> onAnchorErased = null)
         {
             var uuid = anchor.Uuid;
-            var success = await anchor.EraseAsync();
-            if (success)
+            var result = await anchor.EraseAnchorAsync();
+            if (result.Success)
             {
                 Debug.Log($"Erased anchor data {uuid}");
                 var dataToRemove = m_anchorSavedData.Find(data => data.AnchorUuid == uuid);
@@ -60,7 +61,7 @@ namespace Discover.SpatialAnchors
                 Debug.LogError($"Failed to erased anchor data {uuid}");
             }
 
-            onAnchorErased?.Invoke(anchor, success);
+            onAnchorErased?.Invoke(anchor, result.Success);
         }
 
         public void LoadAnchors()
@@ -87,14 +88,9 @@ namespace Discover.SpatialAnchors
             var anchorIds = anchorUuids.ToList();
 
             Debug.Log($"Querying for anchors {anchorIds.Count}");
-            var options = new OVRSpatialAnchor.LoadOptions
-            {
-                StorageLocation = OVRSpace.StorageLocation.Local,
-                Uuids = anchorIds,
-                Timeout = 0,
-            };
-            var unboundAnchors = await OVRSpatialAnchor.LoadUnboundAnchorsAsync(options);
-            OnCompleteUnboundAnchors(unboundAnchors);
+            var unboundAnchors = await OVRSpatialAnchor.LoadUnboundAnchorsAsync(
+                anchorUuids, new List<OVRSpatialAnchor.UnboundAnchor>(anchorUuids.Count));
+            OnCompleteUnboundAnchors(unboundAnchors.Value.ToArray());
         }
 
         private void OnCompleteUnboundAnchors(OVRSpatialAnchor.UnboundAnchor[] unboundAnchors)
