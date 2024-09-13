@@ -81,7 +81,6 @@ More information can be found in the [Documentation](./Documentation) section of
 
 Custom Packages:
 
-- [Meta Colocation](./Packages/com.meta.xr.sdk.colocation)
 - [Meta Utilities](./Packages/com.meta.utilities/README.md)
 - [Meta Input Utilities](./Packages/com.meta.utilities.input/README.md)
 - [Meta Avatars Utilities](./Packages/com.meta.utilities.avatars/README.md)
