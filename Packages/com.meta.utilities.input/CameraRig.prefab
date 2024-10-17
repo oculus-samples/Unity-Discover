@@ -1470,6 +1470,9 @@ MonoBehaviour:
   overridePerLayerColorScaleAndOffset: 0
   colorScale: {x: 1, y: 1, z: 1, w: 1}
   colorOffset: {x: 0, y: 0, z: 0, w: 0}
+  passthroughLayerResumed:
+    m_PersistentCalls:
+      m_Calls: []
   colorMapEditorType_: 0
   colorMapEditorGradient:
     serializedVersion: 2
@@ -1793,6 +1796,7 @@ MonoBehaviour:
   mrcActivationMode: 0
   launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
+  shouldBoundaryVisibilityBeSuppressed: 0
   requestBodyTrackingPermissionOnStartup: 1
   requestFaceTrackingPermissionOnStartup: 1
   requestEyeTrackingPermissionOnStartup: 1
@@ -1840,7 +1844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f088aecee8e2af3449fc8a2b109f8dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bodyTrackingMode: 1
   _useAsyncBodySolver: 0
+  _enableHipLock: 0
   m_ovrCameraRig: {fileID: 5753679335162152204}
   m_controlActions: {fileID: 11400000, guid: 7676e5d1269d5e14da0938616279527b, type: 2}
   m_debugDrawTrackingLocations: 0
@@ -1889,7 +1895,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d84bf24de31290419303e23b07cf5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bodyTrackingMode: 1
   _useAsyncBodySolver: 0
+  _enableHipLock: 0
   _hmd: {fileID: 717336176372356039}
   _leftHand: {fileID: 646763439}
   _rightHand: {fileID: 156690127}
