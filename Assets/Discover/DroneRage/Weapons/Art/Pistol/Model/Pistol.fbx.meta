@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 6e1e4adbd5b53004588f52611c8a77dd
 ModelImporter:
-  serializedVersion: 22103
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       74: -5737568913704159448
@@ -72,6 +72,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

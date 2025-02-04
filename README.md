@@ -4,7 +4,7 @@
 
 Discover is a Mixed Reality (MR) project that demonstrates how to use key MR features and quickly integrate them in your own project.
 
-This codebase is available both as a reference and as a template for MR projects. 
+This codebase is available both as a reference and as a template for MR projects.
 
 The majority of Discover is licensed under [MIT LICENSE](./LICENSE), however files from [Text Mesh Pro](http://www.unity3d.com/legal/licenses/Unity_Companion_License), and [Photon SDK](./Assets/Photon/LICENSE), are licensed under their respective licensing terms.
 
@@ -12,7 +12,7 @@ See the [CONTRIBUTING](./CONTRIBUTING.md) file for how to help out.
 
 This project was built using the [Unity engine](https://unity.com/) with [Photon Fusion](https://doc.photonengine.com/fusion/current/getting-started/fusion-intro).
 
-You will be able to test the game out on [AppLab - Discover](https://www.oculus.com/experiences/quest/7041851792509764/).
+You will be able to test the game out on [Meta Horizon Store - Discover](https://www.meta.com/experiences/discover/7041851792509764/).
 
 ## Project Description
 
@@ -23,7 +23,7 @@ The project also includes the [Meta Utilities](./Packages/com.meta.utilities/REA
 ## How to run the project in Unity
 
 1. [Configure the project](./Documentation/Configuration.md) with Meta Quest and Photon
-2. Make sure you're using  *Unity 2022.3.1f1* or newer.
+2. Make sure you're using  *Unity 2022.3.5f1* or newer.
 3. Load the [Assets/Discover/Scenes/Discover](./Assets/Discover/Scenes/Discover.unity) scene.
 4. To test in Editor you will need to use Quest Link:
     <details>
@@ -40,12 +40,12 @@ The project also includes the [Meta Utilities](./Packages/com.meta.utilities/REA
 
 This project makes use of the following plugins and software:
 
-- [Unity](https://unity.com/download) 2022.3.1f1 or newer
+- [Unity](https://unity.com/download) 2022.3.5f1 or newer
 - [Dependencies Hunter](https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm)
-- [Meta Avatars SDK](https://developer.oculus.com/downloads/package/meta-avatars-sdk/)
-- [Meta XR Utilities](https://developer.oculus.com/documentation/unity/unity-package-manager/)
-- [Meta XR Platform SDK](https://developer.oculus.com/documentation/unity/ps-platform-intro/)
-- [Meta XR Interaction SDK](https://developer.oculus.com/documentation/unity/unity-isdk-interaction-sdk-overview/)
+- [Meta Avatars SDK](https://developers.meta.com/horizon/downloads/package/meta-avatars-sdk/)
+- [Meta XR Utilities](https://developers.meta.com/horizon/documentation/unity/unity-package-manager/)
+- [Meta XR Platform SDK](https://developers.meta.com/horizon/documentation/unity/ps-platform-intro/)
+- [Meta XR Interaction SDK](https://developers.meta.com/horizon/documentation/unity/unity-isdk-interaction-sdk-overview/)
 - [ParrelSync](https://github.com/brogan89/ParrelSync)
 - [Photon Fusion](https://doc.photonengine.com/fusion/current/getting-started/sdk-download)
 - [Photon Voice 2](https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518)
@@ -55,7 +55,7 @@ This project makes use of the following plugins and software:
 
 The following is required to test this project within Unity:
 
-- [The Oculus App](https://www.oculus.com/setup/)
+- [The Oculus App](https://www.meta.com/quest/setup/)
 
 # Getting the code
 

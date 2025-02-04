@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
+using UnityEditor.PackageManager;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -62,6 +63,18 @@ namespace Meta.Utilities.Editor
             var scene = GetActiveScenes().FirstOrDefault(s => s.path == path);
             var wasValid = scene.IsValid();
             var wasLoaded = scene.isLoaded;
+            
+            var packInfo = UnityEditor.PackageManager.PackageInfo.FindForAssetPath(path);
+            if (packInfo == null)
+            {
+                return;
+            }
+
+            if (packInfo.source is not (PackageSource.Embedded or PackageSource.Local))
+            {
+                // package is in a readonly directory, therefore a save later below could fail
+                return;
+            }
 
             if (!wasLoaded)
             {

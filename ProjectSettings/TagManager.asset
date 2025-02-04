@@ -10,6 +10,26 @@ TagManager:
   - Bike_Seat
   - Bike_Pedal_L
   - Bike_Pedal_R
+  - QDSUIToggleButton
+  - QDSUIIcon
+  - QDSUITextSecondaryColor
+  - QDSUIToggleBorderlessButton
+  - QDSUITooltip
+  - QDSUISecondaryButton
+  - QDSUIBorderlessButton
+  - QDSUISharedThemeColor
+  - QDSUIAccentColor
+  - QDSUIToggleSwitch
+  - PassThroughButton
+  - PassThrough
+  - Locomotion
+  - LocoButton
+  - LocoText
+  - QDSUITextInputField
+  - QDSUIToggleCheckboxRadio
+  - QDSUISection
+  - QDSUIDestructiveButton
+  - QDSUIPrimaryButton
   layers:
   - Default
   - TransparentFX

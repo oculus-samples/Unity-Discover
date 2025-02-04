@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399971478134994419}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.5664558, z: -0, w: 0.82409215}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1579936272003310329}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -69.007, z: 0}
 --- !u!33 &5053722922825866394
 MeshFilter:
@@ -125,13 +125,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940784576149684979}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.39731473, z: -0, w: -0.9176824}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9579339, y: 0.9579339, z: 0.9579339}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1579936272003310329}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 406.82098, z: 0}
 --- !u!33 &601243884453869562
 MeshFilter:
@@ -223,13 +223,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2596513535448403990}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6199995, y: 1.6200005, z: 1.6200005}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1579936272003310329}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &7994129178860118900
 ParticleSystem:
@@ -5038,6 +5038,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5594619224695514195}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15239999, y: 0.15239999, z: 0.15239999}
@@ -5048,7 +5049,6 @@ Transform:
   - {fileID: 4345468898648059983}
   - {fileID: 1164317040500484645}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5242283044465618780
 SphereCollider:
