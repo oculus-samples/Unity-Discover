@@ -67,14 +67,14 @@ namespace Meta.Utilities.Avatars
         private Task m_initializationTask;
         private Task m_setUpAccessTokenTask;
         
-        private OvrAvatarBodyTrackingBehavior m_bodyTracking;
-        public OvrAvatarBodyTrackingBehavior BodyTracking
+        private OvrAvatarInputManagerBehavior  m_bodyTracking;
+        public OvrAvatarInputManagerBehavior  BodyTracking
         {
             get => m_bodyTracking;
             protected set
             {
                 m_bodyTracking = value;
-                SetBodyTracking(value);
+                SetInputManager(value);
             }
         }
 
@@ -147,7 +147,7 @@ namespace Meta.Utilities.Avatars
                 _creationInfo.features |= ovrAvatar2EntityFeatures.Animation;
 
                 // TODO: remove FindObject
-                var body = FindObjectsByType<OvrAvatarBodyTrackingBehavior>(FindObjectsSortMode.None).
+                var body = FindObjectsByType<OvrAvatarInputManagerBehavior >(FindObjectsSortMode.None).
                     FirstOrDefault(b => b.isActiveAndEnabled);
                 Debug.Log($"[AvatarEntity] Setting local body tracking to {body?.GetType()}", this);
                 BodyTracking = body;
@@ -163,8 +163,9 @@ namespace Meta.Utilities.Avatars
             else
             {
                 _creationInfo.features &= ~ovrAvatar2EntityFeatures.Animation;
-
-                SetBodyTracking(null);
+                _creationInfo.features |= ovrAvatar2EntityFeatures.Preset_Remote;
+                
+                SetInputManager(null);
                 SetFacePoseProvider(null);
                 SetEyePoseProvider(null);
                 SetLipSync(null);
@@ -173,6 +174,7 @@ namespace Meta.Utilities.Avatars
             var activeView = isOwner ? ovrAvatar2EntityViewFlags.FirstPerson : ovrAvatar2EntityViewFlags.ThirdPerson;
 
             Debug.Log($"[AvatarEntity] Creating entity", this);
+            
             CreateEntity();
             
             SetActiveView(activeView);
@@ -226,7 +228,11 @@ namespace Meta.Utilities.Avatars
             if (IsLocal)
                 info.features |= ovrAvatar2EntityFeatures.Animation;
             else
+            {
                 info.features &= ~ovrAvatar2EntityFeatures.Animation;
+                info.features |= ovrAvatar2EntityFeatures.Preset_Remote;
+            }
+                
 
             return info;
         }

@@ -70,9 +70,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d84bf24de31290419303e23b07cf5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bodyTrackingMode: 1
+  _bodyTrackingMode: 0
   _useAsyncBodySolver: 1
   _enableHipLock: 0
+  _ovrCameraRig: {fileID: 1698887779236366229}
   _hmd: {fileID: 7096373948589442670}
   _leftHand: {fileID: 1434158244}
   _rightHand: {fileID: 1434158243}
@@ -2758,6 +2759,17 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1698887779236366229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9106409042401414478, guid: 1dfe1817bca2ef64eae52a5061bb681b, type: 3}
+  m_PrefabInstance: {fileID: 7634691712767429339}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2189477525214399658 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8615748500308887153, guid: 1dfe1817bca2ef64eae52a5061bb681b, type: 3}

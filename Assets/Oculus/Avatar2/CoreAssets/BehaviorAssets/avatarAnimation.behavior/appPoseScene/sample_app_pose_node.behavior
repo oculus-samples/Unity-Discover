@@ -1,0 +1,69 @@
+{
+    "version": 2,
+    "graphs": [
+        {
+            "name": "main",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "trackingPose",
+                    "type": "pose",
+                    "defaultLink": "ovrAvatar2/default_root:pose"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "pose",
+                    "type": "pose"
+                },
+                {
+                    "name": "pose3P",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "appPoseFullOverride",
+                    "type": "appPose",
+                    "members": {
+                        "funcName": "ovrAvatar2_fullOverride"
+                    }
+                },
+                {
+                    "name": "clonePose",
+                    "type": "clonePose"
+                },
+                {
+                    "name": "arrayGet",
+                    "type": "arrayGet",
+                    "members": {
+                        "index": 0,
+                        "elementType": "pose"
+                    }
+                }
+            ],
+            "links": [
+                [
+                    ":trackingPose",
+                    "appPoseFullOverride:inputPose"
+                ],
+                [
+                    "appPoseFullOverride:outputPose",
+                    "clonePose:input"
+                ],
+                [
+                    "clonePose:forwardedOutput",
+                    ":pose"
+                ],
+                [
+                    "clonePose:clonedOutputs",
+                    "arrayGet:input"
+                ],
+                [
+                    "arrayGet:output",
+                    ":pose3P"
+                ]
+            ]
+        }
+    ]
+}

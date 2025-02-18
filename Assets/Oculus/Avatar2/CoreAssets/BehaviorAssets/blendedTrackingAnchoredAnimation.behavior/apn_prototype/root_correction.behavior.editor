@@ -1,0 +1,89 @@
+{
+    "@generated": true,
+    "graphs": {
+        "{main}": {
+            "comments": [],
+            "inputNodeId": "{main}||inputs",
+            "outputNodeId": "{main}||outputs"
+        }
+    },
+    "nodes": {
+        "{main.AdjustPositionByInverseScaleFactor}": {
+            "position": {
+                "x": 750.0,
+                "y": 25.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootAngleCorrectionInput}": {
+            "position": {
+                "x": -25.0,
+                "y": 375.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootAngleCorrectionVector_1}": {
+            "position": {
+                "x": 575.0,
+                "y": 300.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootAngleToRad_1}": {
+            "position": {
+                "x": 300.0,
+                "y": 325.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootCorrectionQuaternion_1}": {
+            "position": {
+                "x": 875.0,
+                "y": 300.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootScaleCorrectionInput}": {
+            "position": {
+                "x": 150.0,
+                "y": 125.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootTransform_1}": {
+            "position": {
+                "x": 1200.0,
+                "y": 200.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootTranslationCorrectionInput_1}": {
+            "position": {
+                "x": 150.0,
+                "y": 25.0
+            },
+            "displayMode": "full"
+        },
+        "{main.getComponentOfVec}": {
+            "position": {
+                "x": 450.0,
+                "y": 125.0
+            },
+            "displayMode": "full"
+        },
+        "{main}||inputs": {
+            "position": {
+                "x": 100.0,
+                "y": 250.0
+            },
+            "displayMode": "full"
+        },
+        "{main}||outputs": {
+            "position": {
+                "x": 1500.0,
+                "y": 75.0
+            },
+            "displayMode": "full"
+        }
+    }
+}

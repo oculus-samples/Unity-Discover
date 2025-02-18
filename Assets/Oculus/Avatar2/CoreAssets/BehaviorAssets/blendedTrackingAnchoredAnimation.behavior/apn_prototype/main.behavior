@@ -1,0 +1,744 @@
+{
+    "version": 2,
+    "graphs": [
+        {
+            "name": "main",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "trackingPose",
+                    "type": "pose",
+                    "defaultLink": "ovrAvatar2/default_root:pose"
+                },
+                {
+                    "name": "RootCorrectionTransform",
+                    "type": "transform",
+                    "defaultLink": "apn_prototype/root_correction:RootCorrectionTransformOut"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "pose",
+                    "type": "pose"
+                },
+                {
+                    "name": "pose3P",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "appPoseFullOverride",
+                    "type": "appPose",
+                    "members": {
+                        "funcName": "ovrAvatar2_fullOverride"
+                    }
+                },
+                {
+                    "name": "BlendTrackingIntoAnimatedPose",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "BlendTrackingIntoAnimatedPose"
+                    }
+                },
+                {
+                    "name": "OneToOneTrackingAdjustment",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "OneToOneTrackingAdjustment"
+                    }
+                },
+                {
+                    "name": "ApplyHeadsetAnchoringTransform",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "ApplyHeadsetAnchoringTransform"
+                    }
+                },
+                {
+                    "name": "getInverseScaleFactor",
+                    "type": "getComponentOfVec3"
+                },
+                {
+                    "name": "GetRootScaleCorrection",
+                    "type": "getDynamicStoreValueCachedVec3",
+                    "members": {
+                        "key": "avatarSDK_rootScaleCorrection",
+                        "defaultValue": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ]
+                    }
+                }
+            ],
+            "links": [
+                [
+                    ":trackingPose",
+                    "appPoseFullOverride:inputPose"
+                ],
+                [
+                    ":trackingPose",
+                    ":pose"
+                ],
+                [
+                    "appPoseFullOverride:outputPose",
+                    "BlendTrackingIntoAnimatedPose:animatedPose"
+                ],
+                [
+                    ":trackingPose",
+                    "BlendTrackingIntoAnimatedPose:trackingPose"
+                ],
+                [
+                    ":trackingPose",
+                    "OneToOneTrackingAdjustment:trackingPose"
+                ],
+                [
+                    "ApplyHeadsetAnchoringTransform:anchoredPose",
+                    "OneToOneTrackingAdjustment:anchoredPose"
+                ],
+                [
+                    "BlendTrackingIntoAnimatedPose:blendedPose",
+                    "ApplyHeadsetAnchoringTransform:blendedPose"
+                ],
+                [
+                    ":trackingPose",
+                    "ApplyHeadsetAnchoringTransform:trackingPose"
+                ],
+                [
+                    ":RootCorrectionTransform",
+                    "ApplyHeadsetAnchoringTransform:rootCorrectionTransform"
+                ],
+                [
+                    "OneToOneTrackingAdjustment:outputPose",
+                    ":pose3P"
+                ],
+                [
+                    "GetRootScaleCorrection:outputValue",
+                    "getInverseScaleFactor:inputVec3"
+                ],
+                [
+                    "getInverseScaleFactor:outputY",
+                    "OneToOneTrackingAdjustment:inverseScaleFactor"
+                ],
+                [
+                    "getInverseScaleFactor:outputY",
+                    "ApplyHeadsetAnchoringTransform:inverseScaleFactor"
+                ]
+            ]
+        },
+        {
+            "name": "BlendTrackingIntoAnimatedPose",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "trackingPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "animatedPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "blendedPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "makeObject_featherBlend_blendPoses_head",
+                    "type": "makeObject",
+                    "members": {
+                        "elementType": "blendPoses",
+                        "blendJoint": "RTRig_Head",
+                        "blendSpace": "local",
+                        "depth": 1,
+                        "featherWeightsDefault": []
+                    }
+                },
+                {
+                    "name": "facialBlendFactor",
+                    "type": "constFloat",
+                    "members": {
+                        "value": 1.0
+                    }
+                },
+                {
+                    "name": "makeArray_leftArm",
+                    "type": "makeArray",
+                    "members": {
+                        "length": 3,
+                        "elementType": "blendPoses"
+                    }
+                },
+                {
+                    "name": "makeObject_featherBlend_blendPoses_leftArm",
+                    "type": "makeObject",
+                    "members": {
+                        "elementType": "blendPoses",
+                        "blendJoint": "RTRig_L_Clavicle",
+                        "blendSpace": "local",
+                        "depth": 1,
+                        "featherWeightsDefault": []
+                    }
+                },
+                {
+                    "name": "makeObject_featherBlend_blendPoses_rightArm",
+                    "type": "makeObject",
+                    "members": {
+                        "elementType": "blendPoses",
+                        "blendJoint": "RTRig_R_Clavicle",
+                        "blendSpace": "local",
+                        "depth": 1,
+                        "featherWeightsDefault": []
+                    }
+                },
+                {
+                    "name": "rightArmBlendFactor",
+                    "type": "getDynamicStoreValueCachedFloat",
+                    "members": {
+                        "key": "avatarSDK_rightArmBlendFactor",
+                        "defaultValue": 1.0
+                    }
+                },
+                {
+                    "name": "leftArmBlendFactor",
+                    "type": "getDynamicStoreValueCachedFloat",
+                    "members": {
+                        "key": "avatarSDK_leftArmBlendFactor",
+                        "defaultValue": 1.0
+                    }
+                },
+                {
+                    "name": "featherBlend_trackingHeadArms",
+                    "type": "featherBlend"
+                }
+            ],
+            "links": [
+                [
+                    "facialBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_head:jointBaseWeight"
+                ],
+                [
+                    "facialBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_head:floatWeight"
+                ],
+                [
+                    "facialBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_head:eventWeight"
+                ],
+                [
+                    "makeObject_featherBlend_blendPoses_head:output",
+                    "makeArray_leftArm:0"
+                ],
+                [
+                    "leftArmBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_leftArm:jointBaseWeight"
+                ],
+                [
+                    "leftArmBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_leftArm:floatWeight"
+                ],
+                [
+                    "leftArmBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_leftArm:eventWeight"
+                ],
+                [
+                    "rightArmBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_rightArm:jointBaseWeight"
+                ],
+                [
+                    "rightArmBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_rightArm:floatWeight"
+                ],
+                [
+                    "rightArmBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_rightArm:eventWeight"
+                ],
+                [
+                    "makeArray_leftArm:output",
+                    "featherBlend_trackingHeadArms:blendPoses"
+                ],
+                [
+                    "makeObject_featherBlend_blendPoses_leftArm:output",
+                    "makeArray_leftArm:1"
+                ],
+                [
+                    "makeObject_featherBlend_blendPoses_rightArm:output",
+                    "makeArray_leftArm:2"
+                ],
+                [
+                    ":trackingPose",
+                    "makeObject_featherBlend_blendPoses_head:inputPose"
+                ],
+                [
+                    ":trackingPose",
+                    "makeObject_featherBlend_blendPoses_leftArm:inputPose"
+                ],
+                [
+                    ":trackingPose",
+                    "makeObject_featherBlend_blendPoses_rightArm:inputPose"
+                ],
+                [
+                    ":animatedPose",
+                    "featherBlend_trackingHeadArms:inputPose"
+                ],
+                [
+                    "featherBlend_trackingHeadArms:outputPose",
+                    ":blendedPose"
+                ]
+            ]
+        },
+        {
+            "name": "OneToOneTrackingAdjustment",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "trackingPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "anchoredPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "inverseScaleFactor",
+                    "type": "float",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outputPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "getLeftWristJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "breakLeftWristTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "ScaleLeftWristVector",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "wristPosition * inverseScaleFactor"
+                    }
+                },
+                {
+                    "name": "makeLeftWristTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "setLeftWristJointTransform",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getRightWristJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "breakRightWristTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "ScaleRightWristVector",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "wristPosition * inverseScaleFactor"
+                    }
+                },
+                {
+                    "name": "makeRightWristTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "setRightWristJointTransform",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                }
+            ],
+            "links": [
+                [
+                    "getLeftWristJoint:outputTransform",
+                    "breakLeftWristTransform:transform"
+                ],
+                [
+                    "breakLeftWristTransform:position",
+                    "ScaleLeftWristVector:wristPosition"
+                ],
+                [
+                    "ScaleLeftWristVector:value",
+                    "makeLeftWristTransform:position"
+                ],
+                [
+                    "breakLeftWristTransform:rotation",
+                    "makeLeftWristTransform:rotation"
+                ],
+                [
+                    "breakLeftWristTransform:scale",
+                    "makeLeftWristTransform:scale"
+                ],
+                [
+                    "makeLeftWristTransform:transform",
+                    "setLeftWristJointTransform:inputTransform"
+                ],
+                [
+                    ":trackingPose",
+                    "getLeftWristJoint:inputPose"
+                ],
+                [
+                    "getRightWristJoint:outputTransform",
+                    "breakRightWristTransform:transform"
+                ],
+                [
+                    "breakRightWristTransform:position",
+                    "ScaleRightWristVector:wristPosition"
+                ],
+                [
+                    "ScaleRightWristVector:value",
+                    "makeRightWristTransform:position"
+                ],
+                [
+                    "breakRightWristTransform:rotation",
+                    "makeRightWristTransform:rotation"
+                ],
+                [
+                    "makeRightWristTransform:transform",
+                    "setRightWristJointTransform:inputTransform"
+                ],
+                [
+                    "setLeftWristJointTransform:outputPose",
+                    "setRightWristJointTransform:inputPose"
+                ],
+                [
+                    "setRightWristJointTransform:outputPose",
+                    ":outputPose"
+                ],
+                [
+                    ":trackingPose",
+                    "getRightWristJoint:inputPose"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "ScaleLeftWristVector:inverseScaleFactor"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "ScaleRightWristVector:inverseScaleFactor"
+                ],
+                [
+                    "breakRightWristTransform:scale",
+                    "makeRightWristTransform:scale"
+                ],
+                [
+                    ":anchoredPose",
+                    "setLeftWristJointTransform:inputPose"
+                ]
+            ]
+        },
+        {
+            "name": "ApplyHeadsetAnchoringTransform",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "trackingPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "blendedPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "rootCorrectionTransform",
+                    "type": "transform",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "inverseScaleFactor",
+                    "type": "float",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "anchoredPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "getRootJointTransform",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Root"
+                    }
+                },
+                {
+                    "name": "getPelvisJointTransform",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Pelvis"
+                    }
+                },
+                {
+                    "name": "getPelvisJointAnimatedTransform",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Pelvis"
+                    }
+                },
+                {
+                    "name": "getRootTrackingPosition",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "getPelvisTrackingPosition",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "getPelvisTrackingHeight",
+                    "type": "getComponentOfVec3"
+                },
+                {
+                    "name": "makeVec",
+                    "type": "makeVec3"
+                },
+                {
+                    "name": "getPelvisAnimatedPosition",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "getPelvisAnimatedHeight",
+                    "type": "getComponentOfVec3"
+                },
+                {
+                    "name": "makeVec_1",
+                    "type": "makeVec3"
+                },
+                {
+                    "name": "makeNewRootTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "getRootRotation",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "mathExpression",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "trackingRootPosition + trackingPelvisHeightVector"
+                    }
+                },
+                {
+                    "name": "mathExpression_1",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "trackingRootPelvisDiff - animatedPelvisHeightVector"
+                    }
+                },
+                {
+                    "name": "setRootJointTransform",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Root"
+                    }
+                },
+                {
+                    "name": "getHeadJointTransform",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Head",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getHeadPosition",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "calcInverseScaledHeadPosition",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "headPosition * inverseScaleFactor"
+                    }
+                },
+                {
+                    "name": "calcScaledHeadOffset",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "invHeadPosition - headPosition"
+                    }
+                },
+                {
+                    "name": "applyScaledHeadOffsetToRoot",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "rootPosition + headOffset"
+                    }
+                },
+                {
+                    "name": "AdjustPositionByInverseScaleFactor",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "rootPosition * inverseScaleFactor"
+                    }
+                }
+            ],
+            "links": [
+                [
+                    "getRootJointTransform:outputTransform",
+                    "getRootTrackingPosition:transform"
+                ],
+                [
+                    "getPelvisJointTransform:outputTransform",
+                    "getPelvisTrackingPosition:transform"
+                ],
+                [
+                    "getPelvisTrackingPosition:position",
+                    "getPelvisTrackingHeight:inputVec3"
+                ],
+                [
+                    "getPelvisTrackingHeight:outputY",
+                    "makeVec:inputY"
+                ],
+                [
+                    "getPelvisJointAnimatedTransform:outputTransform",
+                    "getPelvisAnimatedPosition:transform"
+                ],
+                [
+                    "getPelvisAnimatedPosition:position",
+                    "getPelvisAnimatedHeight:inputVec3"
+                ],
+                [
+                    "getPelvisAnimatedHeight:outputY",
+                    "makeVec_1:inputY"
+                ],
+                [
+                    "getRootRotation:rotation",
+                    "makeNewRootTransform:rotation"
+                ],
+                [
+                    "getRootTrackingPosition:position",
+                    "mathExpression:trackingRootPosition"
+                ],
+                [
+                    "getRootRotation:uniformScale",
+                    "makeNewRootTransform:uniformScale"
+                ],
+                [
+                    "makeVec_1:outputVec3",
+                    "mathExpression_1:animatedPelvisHeightVector"
+                ],
+                [
+                    "mathExpression:value",
+                    "mathExpression_1:trackingRootPelvisDiff"
+                ],
+                [
+                    "makeVec:outputVec3",
+                    "mathExpression:trackingPelvisHeightVector"
+                ],
+                [
+                    "makeNewRootTransform:transform",
+                    "setRootJointTransform:inputTransform"
+                ],
+                [
+                    ":blendedPose",
+                    "setRootJointTransform:inputPose"
+                ],
+                [
+                    ":trackingPose",
+                    "getRootJointTransform:inputPose"
+                ],
+                [
+                    ":trackingPose",
+                    "getPelvisJointTransform:inputPose"
+                ],
+                [
+                    ":blendedPose",
+                    "getPelvisJointAnimatedTransform:inputPose"
+                ],
+                [
+                    ":rootCorrectionTransform",
+                    "getRootRotation:transform"
+                ],
+                [
+                    "setRootJointTransform:outputPose",
+                    ":anchoredPose"
+                ],
+                [
+                    "getHeadJointTransform:outputTransform",
+                    "getHeadPosition:transform"
+                ],
+                [
+                    "calcInverseScaledHeadPosition:value",
+                    "calcScaledHeadOffset:invHeadPosition"
+                ],
+                [
+                    "applyScaledHeadOffsetToRoot:value",
+                    "makeNewRootTransform:position"
+                ],
+                [
+                    "calcScaledHeadOffset:value",
+                    "applyScaledHeadOffsetToRoot:headOffset"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "calcInverseScaledHeadPosition:inverseScaleFactor"
+                ],
+                [
+                    ":blendedPose",
+                    "getHeadJointTransform:inputPose"
+                ],
+                [
+                    "getHeadPosition:position",
+                    "calcInverseScaledHeadPosition:headPosition"
+                ],
+                [
+                    "getHeadPosition:position",
+                    "calcScaledHeadOffset:headPosition"
+                ],
+                [
+                    "mathExpression_1:value",
+                    "AdjustPositionByInverseScaleFactor:rootPosition"
+                ],
+                [
+                    "AdjustPositionByInverseScaleFactor:value",
+                    "applyScaledHeadOffsetToRoot:rootPosition"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "AdjustPositionByInverseScaleFactor:inverseScaleFactor"
+                ]
+            ]
+        }
+    ]
+}

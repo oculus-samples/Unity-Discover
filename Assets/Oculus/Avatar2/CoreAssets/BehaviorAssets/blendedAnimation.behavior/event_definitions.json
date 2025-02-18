@@ -1,0 +1,24 @@
+{
+  "events": [
+    {
+      "name": "avatarSDK_rootAngleCorrection",
+      "type": "float"
+    },
+    {
+      "name": "avatarSDK_rootTranslationCorrection",
+      "type": "vec3"
+    },
+    {
+      "name": "avatarSDK_rootScaleCorrection",
+      "type": "vec3"
+    },
+    {
+      "name": "avatarSDK_leftArmBlendFactor",
+      "type": "float"
+    },
+    {
+      "name": "avatarSDK_rightArmBlendFactor",
+      "type": "float"
+    }
+  ]
+}

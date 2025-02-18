@@ -1,0 +1,111 @@
+{
+    "@generated": true,
+    "graphs": {
+        "{main}": {
+            "comments": [],
+            "inputNodeId": "{main}||inputs",
+            "outputNodeId": "{main}||outputs"
+        }
+    },
+    "nodes": {
+        "{main.AddPivotOffsetToRoot}": {
+            "position": {
+                "x": 1600.0,
+                "y": -150.0
+            },
+            "displayMode": "full"
+        },
+        "{main.AdjustPositionByInverseScaleFactor}": {
+            "position": {
+                "x": 825.0,
+                "y": -175.0
+            },
+            "displayMode": "full"
+        },
+        "{main.PivotOffset}": {
+            "position": {
+                "x": 950.0,
+                "y": -275.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootAngleCorrectionInput}": {
+            "position": {
+                "x": 0.0,
+                "y": 100.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootAngleCorrectionVector}": {
+            "position": {
+                "x": 650.0,
+                "y": 75.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootAngleToRad}": {
+            "position": {
+                "x": 400.0,
+                "y": 100.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootCorrectionQuaternion}": {
+            "position": {
+                "x": 975.0,
+                "y": 75.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootScaleCorrectionInput}": {
+            "position": {
+                "x": 225.0,
+                "y": -75.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootTransform}": {
+            "position": {
+                "x": 1900.0,
+                "y": -25.0
+            },
+            "displayMode": "full"
+        },
+        "{main.RootTranslationCorrectionInput}": {
+            "position": {
+                "x": 225.0,
+                "y": -175.0
+            },
+            "macroName": null,
+            "displayMode": "full"
+        },
+        "{main.getComponentOfVec}": {
+            "position": {
+                "x": 525.0,
+                "y": -75.0
+            },
+            "displayMode": "full"
+        },
+        "{main.rotateVector}": {
+            "position": {
+                "x": 1275.0,
+                "y": -275.0
+            },
+            "displayMode": "full"
+        },
+        "{main}||inputs": {
+            "position": {
+                "x": 100.0,
+                "y": 200.0
+            },
+            "displayMode": "full"
+        },
+        "{main}||outputs": {
+            "position": {
+                "x": 2200.0,
+                "y": 75.0
+            },
+            "displayMode": "full"
+        }
+    }
+}

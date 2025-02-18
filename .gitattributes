@@ -14,7 +14,6 @@
 *.controller merge=unityyamlmerge eol=lf
 *.asset merge=unityyamlmerge eol=lf text=auto
 
-
 ## git-lfs ##
 
 #Image
@@ -59,3 +58,7 @@
 #Tools
 ovr-platform-util.exe filter=lfs diff=lfs merge=lfs -text
 ovr-platform-util-linux filter=lfs diff=lfs merge=lfs -text
+
+#Avatars
+*.avpkg filter=lfs diff=lfs merge=lfs -text
+*.glb filter=lfs diff=lfs merge=lfs -text

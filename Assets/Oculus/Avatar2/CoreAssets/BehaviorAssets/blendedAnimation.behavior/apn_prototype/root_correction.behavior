@@ -1,0 +1,153 @@
+{
+    "version": 2,
+    "graphs": [
+        {
+            "name": "main",
+            "type": "dataflow",
+            "outputs": [
+                {
+                    "name": "RootCorrectionTransformOut",
+                    "type": "transform"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "RootTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "RootAngleCorrectionInput",
+                    "type": "getDynamicStoreValueFloat",
+                    "members": {
+                        "key": "avatarSDK_rootAngleCorrection"
+                    }
+                },
+                {
+                    "name": "RootAngleToRad",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "ContRootAngle * (3.14159/180)"
+                    }
+                },
+                {
+                    "name": "RootAngleCorrectionVector",
+                    "type": "makeVec3"
+                },
+                {
+                    "name": "RootCorrectionQuaternion",
+                    "type": "eulerToQuat"
+                },
+                {
+                    "name": "RootTranslationCorrectionInput",
+                    "type": "getDynamicStoreValueVec3",
+                    "members": {
+                        "key": "avatarSDK_rootTranslationCorrection"
+                    }
+                },
+                {
+                    "name": "AdjustPositionByInverseScaleFactor",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "rootPosition * inverseScaleFactor"
+                    }
+                },
+                {
+                    "name": "RootScaleCorrectionInput",
+                    "type": "getDynamicStoreValueCachedVec3",
+                    "members": {
+                        "key": "avatarSDK_rootScaleCorrection",
+                        "defaultValue": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ]
+                    }
+                },
+                {
+                    "name": "getComponentOfVec",
+                    "type": "getComponentOfVec3"
+                },
+                {
+                    "name": "AddPivotOffsetToRoot",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "rootPosition + offset"
+                    }
+                },
+                {
+                    "name": "PivotOffset",
+                    "type": "constVec3",
+                    "members": {
+                        "value": [
+                            0.0,
+                            0.0,
+                            -0.15000000596046449
+                        ]
+                    }
+                },
+                {
+                    "name": "rotateVector",
+                    "type": "rotateVector"
+                }
+            ],
+            "links": [
+                [
+                    "RootAngleCorrectionInput:outputValue",
+                    "RootAngleToRad:ContRootAngle"
+                ],
+                [
+                    "RootAngleToRad:value",
+                    "RootAngleCorrectionVector:inputY"
+                ],
+                [
+                    "RootAngleCorrectionVector:outputVec3",
+                    "RootCorrectionQuaternion:inputEuler"
+                ],
+                [
+                    "RootCorrectionQuaternion:outputQuat",
+                    "RootTransform:rotation"
+                ],
+                [
+                    "RootTransform:transform",
+                    ":RootCorrectionTransformOut"
+                ],
+                [
+                    "RootScaleCorrectionInput:outputValue",
+                    "getComponentOfVec:inputVec3"
+                ],
+                [
+                    "getComponentOfVec:outputX",
+                    "RootTransform:uniformScale"
+                ],
+                [
+                    "RootTranslationCorrectionInput:outputValue",
+                    "AdjustPositionByInverseScaleFactor:rootPosition"
+                ],
+                [
+                    "getComponentOfVec:outputY",
+                    "AdjustPositionByInverseScaleFactor:inverseScaleFactor"
+                ],
+                [
+                    "PivotOffset:outputValue",
+                    "rotateVector:inputVector"
+                ],
+                [
+                    "rotateVector:outputVec3",
+                    "AddPivotOffsetToRoot:offset"
+                ],
+                [
+                    "RootCorrectionQuaternion:outputQuat",
+                    "rotateVector:inputQuat"
+                ],
+                [
+                    "AdjustPositionByInverseScaleFactor:value",
+                    "AddPivotOffsetToRoot:rootPosition"
+                ],
+                [
+                    "AddPivotOffsetToRoot:value",
+                    "RootTransform:position"
+                ]
+            ]
+        }
+    ]
+}

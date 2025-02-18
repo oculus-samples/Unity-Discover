@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6283905550121888166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3349879863967586439}
+  - component: {fileID: 287765524833153396}
+  m_Layer: 0
+  m_Name: Style-2-Avatar-Meta
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3349879863967586439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283905550121888166}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3887819867191740199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &287765524833153396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283905550121888166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637f19aef5eccc146a6ab77a1d4ab0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultShaderConfigurationInitializer: {fileID: 11400000, guid: b450b25fcb13b4d6f864b0d7c7a08d46, type: 2}
+  FastLoadConfigurationInitializer: {fileID: 11400000, guid: fbf59dac2c199e44fb42aa5ecd07dd33, type: 2}
+--- !u!1001 &8530448360054895766
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4870205409715631027, guid: 80adad466292ef842b6c9f73a5948885, type: 3}
+      propertyPath: m_Name
+      value: AvatarSdkManagerStyle2Meta
+      objectReference: {fileID: 0}
+    - target: {fileID: 114428096727327266, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: maxVerticesToSkin
+      value: 60000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114428096727327266, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: enableNativeManager
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114428096727327266, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: enableDynamicPerformance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: ShaderManager
+      value: 
+      objectReference: {fileID: 287765524833153396}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631027, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_Name
+      value: AvatarSdkManagerStyle2Meta
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631027, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4870205409715631025, guid: 80adad466292ef842b6c9f73a5948885, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3349879863967586439}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80adad466292ef842b6c9f73a5948885, type: 3}
+--- !u!4 &3887819867191740199 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4870205409715631025, guid: 80adad466292ef842b6c9f73a5948885, type: 3}
+  m_PrefabInstance: {fileID: 8530448360054895766}
+  m_PrefabAsset: {fileID: 0}
