@@ -1,9 +1,9 @@
 {
   "name": "com.meta.utilities.avatars",
   "displayName": "Meta Avatar Utilities",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "dependencies": {
-	  "com.meta.xr.sdk.avatars": "24.1.1"
+	  "com.meta.xr.sdk.avatars": "33.0.0"
   },
   "description": ""
 }

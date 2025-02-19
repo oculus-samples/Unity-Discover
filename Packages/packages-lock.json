@@ -32,7 +32,7 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.meta.xr.sdk.avatars": "24.1.1"
+        "com.meta.xr.sdk.avatars": "33.0.0"
       }
     },
     "com.meta.utilities.input": {
