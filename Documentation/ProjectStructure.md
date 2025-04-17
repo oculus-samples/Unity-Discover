@@ -36,7 +36,7 @@ Here we will give some more information on some of the sub groups of scripts inc
 
 ## Colocation
 
-[Colocation](../Assets/Discover/Scripts/Colocation) is where we find the implementation of the interfaces required for the [colocation package](../Packages/com.meta.xr.sdk.colocation) as well as the impementation on using that package to colocate users.
+[Colocation](../Assets/Discover/Scripts/Colocation) is where we find the implementation of the interfaces required for the [colocation package](https://github.com/oculus-samples/Unity-LocalMultiplayerMR/tree/main/colocation-package) as well as the impementation on using that package to colocate users.
 
 [ColocationDriverNetObj](../Assets/Discover/Scripts/Colocation/ColocationDriverNetObj.cs) is the key component that sets up the application to use colocation. It is a network behaviour that when spawned starts the colocation logic.
 
