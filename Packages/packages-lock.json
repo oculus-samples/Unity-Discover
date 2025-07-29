@@ -53,11 +53,11 @@
       "hash": "075b8f0e1641bc6cacef05a57f25e82b985cb4bb"
     },
     "com.meta.xr.mrutilitykit": {
-      "version": "72.0.0",
+      "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.core": "72.0.0",
+        "com.meta.xr.sdk.core": "74.0.0",
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.ai.navigation": "1.1.4",
         "com.unity.nuget.newtonsoft-json": "3.0.2"
@@ -65,7 +65,7 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.audio": {
-      "version": "72.0.0",
+      "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -93,14 +93,14 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.core": {
-      "version": "72.0.0",
+      "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction": {
-      "version": "72.0.0",
+      "version": "74.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -110,17 +110,17 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction.ovr": {
-      "version": "72.0.0",
+      "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.core": "72.0.0",
-        "com.meta.xr.sdk.interaction": "72.0.0"
+        "com.meta.xr.sdk.core": "74.0.0",
+        "com.meta.xr.sdk.interaction": "74.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.platform": {
-      "version": "72.0.0",
+      "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -129,7 +129,7 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.simulator": {
-      "version": "72.0.0",
+      "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
