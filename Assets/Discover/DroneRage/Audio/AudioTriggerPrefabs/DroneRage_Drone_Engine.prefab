@@ -167,6 +167,7 @@ MonoBehaviour:
   directivityIntensity: 1
   directivityPattern: 1
   directSoundEnabled: 1
+  mediumAbsorption: 1
 --- !u!114 &6656769677520185543
 MonoBehaviour:
   m_ObjectHideFlags: 0

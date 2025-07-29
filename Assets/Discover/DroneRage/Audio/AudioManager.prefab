@@ -166,6 +166,7 @@ MonoBehaviour:
   directivityIntensity: 1
   directivityPattern: 0
   directSoundEnabled: 1
+  mediumAbsorption: 1
 --- !u!1 &4978965136793151194
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +599,7 @@ MonoBehaviour:
   directivityIntensity: 1
   directivityPattern: 0
   directSoundEnabled: 1
+  mediumAbsorption: 1
 --- !u!1 &4978965137366481551
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +894,7 @@ MonoBehaviour:
   directivityIntensity: 1
   directivityPattern: 0
   directSoundEnabled: 1
+  mediumAbsorption: 1
 --- !u!1 &4978965137921398000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,6 +1061,7 @@ MonoBehaviour:
   directivityIntensity: 1
   directivityPattern: 0
   directSoundEnabled: 1
+  mediumAbsorption: 1
 --- !u!1 &6783172042797256499
 GameObject:
   m_ObjectHideFlags: 0

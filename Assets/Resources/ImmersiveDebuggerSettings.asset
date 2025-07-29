@@ -15,7 +15,6 @@ MonoBehaviour:
   debugTypes: []
   immersiveDebuggerEnabled: 0
   immersiveDebuggerDisplayAtStartup: 0
-  immersiveDebuggerToggleDisplayButton: 2
   showInspectors: 0
   showConsole: 0
   followOverride: 1
@@ -35,3 +34,8 @@ MonoBehaviour:
   inspectedDataAssets: []
   useCustomIntegrationConfig: 0
   customIntegrationConfigClassName: 
+  hierarchyViewShowsPrivateMembers: 0
+  clickButton: 8193
+  toggleFollowTranslationButton: 0
+  toggleFollowRotationButton: 0
+  immersiveDebuggerToggleDisplayButton: 2

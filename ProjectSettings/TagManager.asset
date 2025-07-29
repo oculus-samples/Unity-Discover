@@ -30,6 +30,7 @@ TagManager:
   - QDSUISection
   - QDSUIDestructiveButton
   - QDSUIPrimaryButton
+  - SamplesInfoPanel
   layers:
   - Default
   - TransparentFX

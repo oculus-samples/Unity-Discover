@@ -175,6 +175,7 @@ MonoBehaviour:
     <TrackableRemoved>k__BackingField:
       m_PersistentCalls:
         m_Calls: []
+  _immersiveSceneDebuggerPrefab: {fileID: 0}
 --- !u!114 &6584097344702663746
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,12 +53,14 @@ MonoBehaviour:
       viewFlags: 3
       subMeshInclusionFlags: 2047
       quality: 0
+      loadRigZipFromGlb: 1
       reserved: 0000000000000000000000000000000000000000000000000000000000000000
+  _validateCache: 1
   _activeView: 1
   _activeManifestation: 2
   _activeSubMeshes: 2047
   _activeSubMeshesIncludeUntyped: 1
-  _bodyTracking: {fileID: 0}
+  _inputManager: {fileID: 0}
   _facePoseBehavior: {fileID: 0}
   _eyePoseBehavior: {fileID: 0}
   _lipSync: {fileID: 0}
@@ -126,6 +128,10 @@ MonoBehaviour:
   lodImportance: 0
   updateImportance: 0
   dynamicStreamLod: 0
+  stickyLOD: 0
+  stickyLODTimeDelay: 1.6
+  skipDelayedLodSwitchingCountdown: 1
+  isOutOfSight: 0
   lastUpdateAgeSeconds: 0
   lastUpdateAgeTicks: 0
   previousUpdateAgeWindowSeconds: 0

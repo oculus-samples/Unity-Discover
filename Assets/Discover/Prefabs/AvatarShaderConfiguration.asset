@@ -30,6 +30,10 @@ MonoBehaviour:
   UseFloatParameter_RoughnessFactor: 0
   NameColorParameter_DiffuseFactor: _Diffuse
   UseColorParameter_DiffuseFactor: 0
+  NameTextureParameter_SSSCurvatureTexture: _SSSCurvatureLUT
+  Texture_SSSCurvatureTexture: {fileID: 0}
+  NameTextureParameter_SSSZHTexture: _SSSZHLUT
+  Texture_SSSZHTexture: {fileID: 0}
   KeywordsEnumerations:
   - _SHADER_TYPE_SOLID_COLOR
   - _SHADER_TYPE_TEXTURED
