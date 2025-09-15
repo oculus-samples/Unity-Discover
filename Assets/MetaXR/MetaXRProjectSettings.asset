@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d881e962d099f4a8eb492ef7e9a8c0, type: 3}
-  m_Name: OculusPlatformSettings
+  m_Script: {fileID: 11500000, guid: 0bfde92e0a2190c4ca32f6fb0a0c73ce, type: 3}
+  m_Name: MetaXRProjectSettings
   m_EditorClassIdentifier: 
-  ovrAppID: 
-  ovrMobileAppID: 24924044330534713
-  ovrUseMobileAppIDInEditor: 0
-  ovrUseStandalonePlatform: 0
+  boolProperties:
+    keys:
+    - Meta.XR.SDK.UsageSettings.UsesProjectSetupTool
+    values: 01
+  intProperties:
+    keys: []
+    values: 
