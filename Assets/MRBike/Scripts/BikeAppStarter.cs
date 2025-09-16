@@ -15,7 +15,6 @@ namespace MRBike
         private void Start()
         {
             // When we start the app, play the VO and mark the 2 first tasks as completed
-            m_voPlayer.PlayVO(0);
             m_taskHandler.TaskComplete(0);
             Invoke("PlayDelay", m_delay);
         }
