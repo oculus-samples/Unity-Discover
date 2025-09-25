@@ -100,3 +100,4 @@ Material:
     - _EmissionColor: {r: 4, g: 2.3574986, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

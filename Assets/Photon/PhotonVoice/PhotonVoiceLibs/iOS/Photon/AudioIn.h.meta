@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: 21aa3eca152a5477eb43456b9b70c952
 PluginImporter:
   externalObjects: {}
-  serializedVersion: 2
+  serializedVersion: 3
   iconMap: {}
   executionOrder: {}
   defineConstraints: []
@@ -11,9 +11,11 @@ PluginImporter:
   isExplicitlyReferenced: 0
   validateReferences: 1
   platformData:
-  - first:
-      : Any
-    second:
+    Android:
+      enabled: 0
+      settings:
+        CPU: ARMv7
+    Any:
       enabled: 0
       settings:
         Exclude Android: 1
@@ -28,76 +30,29 @@ PluginImporter:
         Exclude Win64: 1
         Exclude WindowsStoreApps: 1
         Exclude iOS: 0
-  - first:
-      Android: Android
-    second:
-      enabled: 0
-      settings:
-        CPU: ARMv7
-  - first:
-      Any: 
-    second:
-      enabled: 0
-      settings: {}
-  - first:
-      Editor: Editor
-    second:
+    Editor:
       enabled: 0
       settings:
         CPU: AnyCPU
         DefaultValueInitialized: true
         OS: AnyOS
-  - first:
-      Facebook: Win
-    second:
+    Linux64:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Facebook: Win64
-    second:
+    OSXUniversal:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: Linux
-    second:
-      enabled: 0
-      settings:
-        CPU: x86
-  - first:
-      Standalone: Linux64
-    second:
+    Win:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: LinuxUniversal
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
-      Standalone: OSXUniversal
-    second:
+    Win64:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: Win
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Standalone: Win64
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Windows Store Apps: WindowsStoreApps
-    second:
+    WindowsStoreApps:
       enabled: 0
       settings:
         CPU: AnyCPU
@@ -105,9 +60,7 @@ PluginImporter:
         PlaceholderPath: 
         SDK: AnySDK
         ScriptingBackend: AnyScriptingBackend
-  - first:
-      iPhone: iOS
-    second:
+    iOS:
       enabled: 1
       settings:
         AddToEmbeddedBinaries: false

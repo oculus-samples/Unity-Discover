@@ -125,11 +125,11 @@ PrefabInstance:
       value: 3073
       objectReference: {fileID: 0}
     - target: {fileID: -5431101280753246544, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5431101280753246544, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1047073705419528107, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
@@ -137,11 +137,11 @@ PrefabInstance:
       value: 3073
       objectReference: {fileID: 0}
     - target: {fileID: 1047073705419528107, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1047073705419528107, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4352263563390351019, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
@@ -149,11 +149,11 @@ PrefabInstance:
       value: 3073
       objectReference: {fileID: 0}
     - target: {fileID: 4352263563390351019, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4352263563390351019, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8038143188368129976, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
@@ -161,11 +161,11 @@ PrefabInstance:
       value: 3073
       objectReference: {fileID: 0}
     - target: {fileID: 8038143188368129976, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8038143188368129976, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8042661904850100008, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
@@ -221,11 +221,11 @@ PrefabInstance:
       value: 3073
       objectReference: {fileID: 0}
     - target: {fileID: 8468185549750288764, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[0]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8468185549750288764, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
-      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      propertyPath: 'NetworkGuid.RawGuidValue.Array.data[1]'
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

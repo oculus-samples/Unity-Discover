@@ -123,3 +123,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularTint: {r: 0.990566, g: 0.8930119, b: 0.4251958, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: 6a558ae793155af4b9b9ab945fc64a0f
 PluginImporter:
   externalObjects: {}
-  serializedVersion: 2
+  serializedVersion: 3
   iconMap: {}
   executionOrder: {}
   defineConstraints: []
@@ -11,10 +11,12 @@ PluginImporter:
   isExplicitlyReferenced: 0
   validateReferences: 1
   platformData:
-  - first:
-      : Any
-    second:
-      enabled: 0
+    Android:
+      enabled: 1
+      settings:
+        CPU: ARMv7
+    Any:
+      enabled: 1
       settings:
         Exclude Android: 0
         Exclude Editor: 0
@@ -35,111 +37,47 @@ PluginImporter:
         Exclude XboxOne: 0
         Exclude iOS: 0
         Exclude tvOS: 0
-  - first:
-      Android: Android
-    second:
-      enabled: 1
-      settings:
-        CPU: ARMv7
-  - first:
-      Any: 
-    second:
-      enabled: 1
-      settings: {}
-  - first:
-      Editor: Editor
-    second:
+    Editor:
       enabled: 1
       settings:
         CPU: AnyCPU
         DefaultValueInitialized: true
         OS: AnyOS
-  - first:
-      Facebook: Win
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Facebook: Win64
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      GameCoreScarlett: GameCoreScarlett
-    second:
+    GameCoreScarlett:
       enabled: 1
       settings: {}
-  - first:
-      GameCoreXboxOne: GameCoreXboxOne
-    second:
+    GameCoreXboxOne:
       enabled: 1
       settings: {}
-  - first:
-      Lumin: Lumin
-    second:
-      enabled: 1
-      settings: {}
-  - first:
-      Nintendo Switch: Switch
-    second:
-      enabled: 1
-      settings: {}
-  - first:
-      PS4: PS4
-    second:
-      enabled: 1
-      settings: {}
-  - first:
-      PS5: PS5
-    second:
-      enabled: 1
-      settings: {}
-  - first:
-      Standalone: Linux
-    second:
-      enabled: 1
-      settings:
-        CPU: x86
-  - first:
-      Standalone: Linux64
-    second:
+    Linux64:
       enabled: 1
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: LinuxUniversal
-    second:
+    OSXUniversal:
       enabled: 1
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: OSXUniversal
-    second:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-  - first:
-      Standalone: Win
-    second:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-  - first:
-      Standalone: Win64
-    second:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-  - first:
-      WebGL: WebGL
-    second:
+    PS4:
       enabled: 1
       settings: {}
-  - first:
-      Windows Store Apps: WindowsStoreApps
-    second:
+    PS5:
+      enabled: 1
+      settings: {}
+    Switch:
+      enabled: 1
+      settings: {}
+    WebGL:
+      enabled: 1
+      settings: {}
+    Win:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+    Win64:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+    WindowsStoreApps:
       enabled: 1
       settings:
         CPU: AnyCPU
@@ -147,23 +85,17 @@ PluginImporter:
         PlaceholderPath: 
         SDK: AnySDK
         ScriptingBackend: Il2Cpp
-  - first:
-      XboxOne: XboxOne
-    second:
+    XboxOne:
       enabled: 1
       settings: {}
-  - first:
-      iPhone: iOS
-    second:
+    iOS:
       enabled: 1
       settings:
         AddToEmbeddedBinaries: false
         CPU: AnyCPU
         CompileFlags: 
         FrameworkDependencies: 
-  - first:
-      tvOS: tvOS
-    second:
+    tvOS:
       enabled: 1
       settings:
         CPU: AnyCPU

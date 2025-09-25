@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: 9a350697ad5cb2e4d9c7826a1ead49f3
 PluginImporter:
   externalObjects: {}
-  serializedVersion: 2
+  serializedVersion: 3
   iconMap: {}
   executionOrder: {}
   defineConstraints: []
@@ -11,9 +11,11 @@ PluginImporter:
   isExplicitlyReferenced: 0
   validateReferences: 1
   platformData:
-  - first:
-      : Any
-    second:
+    Android:
+      enabled: 0
+      settings:
+        CPU: ARMv7
+    Any:
       enabled: 0
       settings:
         Exclude Android: 1
@@ -26,52 +28,29 @@ PluginImporter:
         Exclude WindowsStoreApps: 1
         Exclude iOS: 1
         Exclude tvOS: 0
-  - first:
-      Android: Android
-    second:
-      enabled: 0
-      settings:
-        CPU: ARMv7
-  - first:
-      Any: 
-    second:
-      enabled: 0
-      settings: {}
-  - first:
-      Editor: Editor
-    second:
+    Editor:
       enabled: 0
       settings:
         CPU: AnyCPU
         DefaultValueInitialized: true
         OS: AnyOS
-  - first:
-      Standalone: Linux64
-    second:
+    Linux64:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Standalone: OSXUniversal
-    second:
+    OSXUniversal:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Standalone: Win
-    second:
+    Win:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Standalone: Win64
-    second:
+    Win64:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Windows Store Apps: WindowsStoreApps
-    second:
+    WindowsStoreApps:
       enabled: 0
       settings:
         CPU: AnyCPU
@@ -79,18 +58,14 @@ PluginImporter:
         PlaceholderPath: 
         SDK: AnySDK
         ScriptingBackend: AnyScriptingBackend
-  - first:
-      iPhone: iOS
-    second:
+    iOS:
       enabled: 0
       settings:
         AddToEmbeddedBinaries: false
         CPU: AnyCPU
         CompileFlags: 
         FrameworkDependencies: 
-  - first:
-      tvOS: tvOS
-    second:
+    tvOS:
       enabled: 1
       settings:
         CPU: ARM64

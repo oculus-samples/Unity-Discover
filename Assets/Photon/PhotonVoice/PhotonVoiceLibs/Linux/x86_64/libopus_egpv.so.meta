@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: a131c2259f6a24e47b342bba6783efbb
 PluginImporter:
   externalObjects: {}
-  serializedVersion: 2
+  serializedVersion: 3
   iconMap: {}
   executionOrder: {}
   defineConstraints: []
@@ -11,9 +11,11 @@ PluginImporter:
   isExplicitlyReferenced: 0
   validateReferences: 1
   platformData:
-  - first:
-      : Any
-    second:
+    Android:
+      enabled: 0
+      settings:
+        CPU: ARMv7
+    Any:
       enabled: 0
       settings:
         Exclude Android: 1
@@ -27,108 +29,29 @@ PluginImporter:
         Exclude Win64: 0
         Exclude WindowsStoreApps: 1
         Exclude iOS: 1
-  - first:
-      : Linux
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
-      : LinuxUniversal
-    second:
-      enabled: 1
-      settings:
-        CPU: x86_64
-  - first:
-      : OSXIntel
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
-      : OSXIntel64
-    second:
-      enabled: 1
-      settings:
-        CPU: None
-  - first:
-      : WP8
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-        DontProcess: False
-        PlaceholderPath: 
-  - first:
-      Android: Android
-    second:
-      enabled: 0
-      settings:
-        CPU: ARMv7
-  - first:
-      Any: 
-    second:
-      enabled: 0
-      settings: {}
-  - first:
-      Editor: Editor
-    second:
+    Editor:
       enabled: 1
       settings:
         CPU: x86_64
         DefaultValueInitialized: true
         OS: Linux
-  - first:
-      Facebook: Win
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Facebook: Win64
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Standalone: Linux
-    second:
-      enabled: 0
-      settings:
-        CPU: x86
-  - first:
-      Standalone: Linux64
-    second:
+    Linux64:
       enabled: 1
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: LinuxUniversal
-    second:
-      enabled: 1
-      settings:
-        CPU: x86_64
-  - first:
-      Standalone: OSXUniversal
-    second:
+    OSXUniversal:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Standalone: Win
-    second:
+    Win:
       enabled: 1
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: Win64
-    second:
+    Win64:
       enabled: 1
       settings:
         CPU: AnyCPU
-  - first:
-      Windows Store Apps: WindowsStoreApps
-    second:
+    WindowsStoreApps:
       enabled: 0
       settings:
         CPU: AnyCPU
@@ -136,9 +59,7 @@ PluginImporter:
         PlaceholderPath: 
         SDK: AnySDK
         ScriptingBackend: AnyScriptingBackend
-  - first:
-      iPhone: iOS
-    second:
+    iOS:
       enabled: 0
       settings:
         AddToEmbeddedBinaries: false

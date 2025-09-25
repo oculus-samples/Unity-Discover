@@ -32,3 +32,4 @@ Material:
     - _CullMode: 0
     m_Colors: []
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

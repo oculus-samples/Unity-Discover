@@ -25,23 +25,23 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2146424686919066182, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: nuxPages_.Array.data[0]
+      propertyPath: 'nuxPages_.Array.data[0]'
       value: 
       objectReference: {fileID: 2089893249344048616}
     - target: {fileID: 2146424686919066182, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: nuxPages_.Array.data[1]
+      propertyPath: 'nuxPages_.Array.data[1]'
       value: 
       objectReference: {fileID: 1975567899276198572}
     - target: {fileID: 2146424686919066182, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: nuxPages_.Array.data[2]
+      propertyPath: 'nuxPages_.Array.data[2]'
       value: 
       objectReference: {fileID: 5491317141941464124}
     - target: {fileID: 2146424686919066182, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: nuxPages_.Array.data[3]
+      propertyPath: 'nuxPages_.Array.data[3]'
       value: 
       objectReference: {fileID: 834911297733002858}
     - target: {fileID: 2146424686919066182, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: nuxPages_.Array.data[4]
+      propertyPath: 'nuxPages_.Array.data[4]'
       value: 
       objectReference: {fileID: 4588614279391859605}
     - target: {fileID: 3481151324970190048, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
@@ -53,23 +53,23 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3481151324970190048, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: m_nuxPages.Array.data[0]
+      propertyPath: 'm_nuxPages.Array.data[0]'
       value: 
       objectReference: {fileID: 2089893249344048616}
     - target: {fileID: 3481151324970190048, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: m_nuxPages.Array.data[1]
+      propertyPath: 'm_nuxPages.Array.data[1]'
       value: 
       objectReference: {fileID: 1975567899276198572}
     - target: {fileID: 3481151324970190048, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: m_nuxPages.Array.data[2]
+      propertyPath: 'm_nuxPages.Array.data[2]'
       value: 
       objectReference: {fileID: 5491317141941464124}
     - target: {fileID: 3481151324970190048, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: m_nuxPages.Array.data[3]
+      propertyPath: 'm_nuxPages.Array.data[3]'
       value: 
       objectReference: {fileID: 834911297733002858}
     - target: {fileID: 3481151324970190048, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}
-      propertyPath: m_nuxPages.Array.data[4]
+      propertyPath: 'm_nuxPages.Array.data[4]'
       value: 
       objectReference: {fileID: 4588614279391859605}
     - target: {fileID: 4403419650191072810, guid: c0a976d879fe957479e748fdbd563ddd, type: 3}

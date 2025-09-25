@@ -986,35 +986,35 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: objectsToSwap.Array.data[0]
+      propertyPath: 'objectsToSwap.Array.data[0]'
       value: 
       objectReference: {fileID: 5422586022111265765}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: objectsToSwap.Array.data[1]
+      propertyPath: 'objectsToSwap.Array.data[1]'
       value: 
       objectReference: {fileID: 5422586021369672973}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: objectsToSwap.Array.data[2]
+      propertyPath: 'objectsToSwap.Array.data[2]'
       value: 
       objectReference: {fileID: 36590510524080084}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: objectsToSwap.Array.data[3]
+      propertyPath: 'objectsToSwap.Array.data[3]'
       value: 
       objectReference: {fileID: 7220399488241687123}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: m_objectsToSwap.Array.data[0]
+      propertyPath: 'm_objectsToSwap.Array.data[0]'
       value: 
       objectReference: {fileID: 5422586022111265765}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: m_objectsToSwap.Array.data[1]
+      propertyPath: 'm_objectsToSwap.Array.data[1]'
       value: 
       objectReference: {fileID: 5422586021369672973}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: m_objectsToSwap.Array.data[2]
+      propertyPath: 'm_objectsToSwap.Array.data[2]'
       value: 
       objectReference: {fileID: 36590510524080084}
     - target: {fileID: 5589951406084607970, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}
-      propertyPath: m_objectsToSwap.Array.data[3]
+      propertyPath: 'm_objectsToSwap.Array.data[3]'
       value: 
       objectReference: {fileID: 7220399488241687123}
     - target: {fileID: 6224515392176744312, guid: bac13bf837b774b24ade5d5c0f73f9d5, type: 3}

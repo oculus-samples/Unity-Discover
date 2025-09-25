@@ -251,7 +251,7 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 453862449296571400, guid: 4f88a74da3df3c44cb84eb22528fa978, type: 3}
-      propertyPath: _criticalJointTypes.Array.data[2]
+      propertyPath: '_criticalJointTypes.Array.data[2]'
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 453862449296571400, guid: 4f88a74da3df3c44cb84eb22528fa978, type: 3}

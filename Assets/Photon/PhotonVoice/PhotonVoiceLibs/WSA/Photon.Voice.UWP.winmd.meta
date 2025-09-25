@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: 135bf1c6fddf90d44847f1fd5b62465c
 PluginImporter:
   externalObjects: {}
-  serializedVersion: 2
+  serializedVersion: 3
   iconMap: {}
   executionOrder: {}
   defineConstraints: []
@@ -11,9 +11,11 @@ PluginImporter:
   isExplicitlyReferenced: 0
   validateReferences: 1
   platformData:
-  - first:
-      : Any
-    second:
+    Android:
+      enabled: 0
+      settings:
+        CPU: ARMv7
+    Any:
       enabled: 0
       settings:
         Exclude Android: 1
@@ -26,70 +28,29 @@ PluginImporter:
         Exclude Win64: 1
         Exclude WindowsStoreApps: 0
         Exclude iOS: 1
-  - first:
-      Android: Android
-    second:
-      enabled: 0
-      settings:
-        CPU: ARMv7
-  - first:
-      Any: 
-    second:
-      enabled: 0
-      settings: {}
-  - first:
-      Editor: Editor
-    second:
+    Editor:
       enabled: 0
       settings:
         CPU: AnyCPU
         DefaultValueInitialized: true
         OS: AnyOS
-  - first:
-      Facebook: Win
-    second:
+    Linux64:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Facebook: Win64
-    second:
+    OSXUniversal:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: Linux
-    second:
-      enabled: 0
-      settings:
-        CPU: x86
-  - first:
-      Standalone: Linux64
-    second:
+    Win:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: OSXUniversal
-    second:
+    Win64:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      Standalone: Win
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Standalone: Win64
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Windows Store Apps: WindowsStoreApps
-    second:
+    WindowsStoreApps:
       enabled: 1
       settings:
         CPU: AnyCPU
@@ -97,14 +58,10 @@ PluginImporter:
         PlaceholderPath: 
         SDK: UWP
         ScriptingBackend: AnyScriptingBackend
-  - first:
-      XboxOne: XboxOne
-    second:
+    XboxOne:
       enabled: 1
       settings: {}
-  - first:
-      iPhone: iOS
-    second:
+    iOS:
       enabled: 0
       settings:
         AddToEmbeddedBinaries: false

@@ -110,6 +110,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -171,3 +172,4 @@ Material:
     - _SpecColor: {r: 0.52205884, g: 0.35699612, b: 0.35699612, a: 1}
     - _TintColor: {r: 1, g: 0.25735295, b: 0.25735295, a: 0.5019608}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
