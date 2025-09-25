@@ -1,9 +1,9 @@
 # Documentation
 
-Here you will find additional documentation to help you navigate through this projects code.
+This section provides additional documentation to help you navigate the project's code.
 
-|Document|Description|
-|-|-|
-|[Configuration](./Configuration.md)|How to configure the project to be functional, including Photon and Application settings|
-|[Discover Overview](./DiscoverOverview.md)|An overview of the functionality of the project.|
-|[Project Structure](./ProjectStructure.md)|Highlights the key elements of the project and additional information on their functionalities. This is a good starting point to dive in the code.|
+| Document | Description |
+| - | - |
+| [Configuration](./Configuration.md) | Instructions for configuring the project, including Photon and Application settings. |
+| [Discover Overview](./DiscoverOverview.md) | Overview of the project's functionality. |
+| [Project Structure](./ProjectStructure.md) | Key elements of the project and their functionalities. A good starting point for exploring the code. |
