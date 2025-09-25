@@ -11,15 +11,18 @@ namespace Discover.SpatialAnchors
     public class SpatialAnchorManager<TData> where TData : SpatialAnchorSaveData
     {
         private Dictionary<Guid, TData> m_anchorUidToData;
+        private Dictionary<Guid, GameObject> m_anchorUidToGameObject;
         private List<TData> m_anchorSavedData;
         private ISpatialAnchorFileManager<TData> m_fileManager;
 
         public Func<TData, GameObject> OnAnchorDataLoadedCreateGameObject;
+        public Action<GameObject> OnAnchorDeletedDestroyGameObject;
 
         public SpatialAnchorManager(ISpatialAnchorFileManager<TData> fileManager)
         {
             m_fileManager = fileManager;
             m_anchorUidToData = new Dictionary<Guid, TData>();
+            m_anchorUidToGameObject = new Dictionary<Guid, GameObject>();
             m_anchorSavedData = new List<TData>();
         }
 
@@ -31,6 +34,7 @@ namespace Discover.SpatialAnchors
             {
                 Debug.Log($"Anchor with {AnchorUtils.GuidToString(anchor.Uuid)} saved");
                 m_anchorUidToData[anchor.Uuid] = data;
+                m_anchorUidToGameObject[anchor.Uuid] = anchor.gameObject;
                 OnSpaceSaveComplete(anchor.Uuid, data);
             }
             else
@@ -51,6 +55,10 @@ namespace Discover.SpatialAnchors
                 var dataToRemove = m_anchorSavedData.Find(data => data.AnchorUuid == uuid);
                 _ = m_anchorSavedData.Remove(dataToRemove);
                 _ = m_anchorUidToData.Remove(uuid);
+                
+                OnAnchorDeletedDestroyGameObject(m_anchorUidToGameObject[anchor.Uuid]);
+                _ = m_anchorUidToGameObject.Remove(uuid);
+                
                 if (saveOnErase)
                 {
                     SaveToFile();
@@ -103,6 +111,7 @@ namespace Discover.SpatialAnchors
                 Debug.Log($"Initializing app with guid {AnchorUtils.GuidToString(queryResult.Uuid)}");
                 var appData = m_anchorUidToData[queryResult.Uuid];
                 var gameObject = OnAnchorDataLoadedCreateGameObject(appData);
+                m_anchorUidToGameObject[queryResult.Uuid] = gameObject;
                 var anchor = gameObject.AddComponent<OVRSpatialAnchor>();
                 queryResult.BindTo(anchor);
             }
@@ -123,8 +132,14 @@ namespace Discover.SpatialAnchors
 
         public void ClearData()
         {
+            foreach (var o in m_anchorUidToGameObject)
+            {
+                OnAnchorDeletedDestroyGameObject(o.Value); 
+            }
+            
             m_anchorSavedData.Clear();
             m_anchorUidToData.Clear();
+            m_anchorUidToGameObject.Clear();
             SaveToFile();
         }
     }

@@ -53,16 +53,21 @@ namespace Discover.DroneRage.Scene
         private async void SwapWalls(bool toAlt)
         {
             await UniTask.WaitUntil(() => SceneElementsManager.Instance.AreAllElementsSpawned());
-            foreach (var wall in SceneElementsManager.Instance.GetElementsByLabel(MRUKAnchor.SceneLabels.WALL_FACE))
+
+            var labels = new []{MRUKAnchor.SceneLabels.WALL_FACE, MRUKAnchor.SceneLabels.INVISIBLE_WALL_FACE};
+            foreach (var label in labels)
             {
-                if (toAlt)
+                foreach (var wall in SceneElementsManager.Instance.GetElementsByLabel(label))
                 {
-                    m_originalWallMaterials ??= wall.Renderer.sharedMaterials;
-                    wall.Renderer.sharedMaterials = m_altWallMaterials;
-                }
-                else
-                {
-                    wall.Renderer.sharedMaterials = m_originalWallMaterials;
+                    if (toAlt)
+                    {
+                        m_originalWallMaterials ??= wall.Renderer.sharedMaterials;
+                        wall.Renderer.sharedMaterials = m_altWallMaterials;
+                    }
+                    else
+                    {
+                        wall.Renderer.sharedMaterials = m_originalWallMaterials;
+                    }
                 }
             }
         }

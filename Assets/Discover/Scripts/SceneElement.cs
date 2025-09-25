@@ -56,7 +56,7 @@ namespace Discover
 
         public bool ContainsLabel(MRUKAnchor.SceneLabels label)
         {
-            return label == Label;
+            return (label & Label) != 0;
         }
 
         private void InitializeLabel()

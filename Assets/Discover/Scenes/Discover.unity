@@ -762,45 +762,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2218758103859478929, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5001408950937073834, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: OnShowPlayerIdUpdated.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5001408950937073834, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: OnShowPlayerIdUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5001408950937073834, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
       propertyPath: OnShowPlayerIdUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1285456025}
-    - target: {fileID: 5001408950937073834, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: OnShowPlayerIdUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5001408950937073834, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: OnShowPlayerIdUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_ShowPlayerId
-      objectReference: {fileID: 0}
-    - target: {fileID: 5001408950937073834, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: OnShowPlayerIdUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Discover.DiscoverAppController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5001408950937073834, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: OnShowPlayerIdUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8125028358564198275, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
       propertyPath: m_Name
       value: NetworkModalWindow
-      objectReference: {fileID: 0}
-    - target: {fileID: 8125028358564198284, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8125028358564198284, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
       propertyPath: m_LocalPosition.x
@@ -847,6 +815,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
+--- !u!114 &1623543057 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1348474975, guid: bc5f37b6037318a4ab054cbafdff4353, type: 3}
+  m_PrefabInstance: {fileID: 1498108407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dadcdd3187bb4b09a9a181389b2e4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2077205591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -988,6 +967,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6584097344702663746, guid: 0f67b9e3ea6bc1847806dd5b2f8f4ed7, type: 3}
+      propertyPath: PrefabsToSpawn.Array.data[4].Labels
+      value: 32772
+      objectReference: {fileID: 0}
     - target: {fileID: 7146620344746271147, guid: 0f67b9e3ea6bc1847806dd5b2f8f4ed7, type: 3}
       propertyPath: VerboseLogging
       value: 1
@@ -1178,6 +1161,38 @@ PrefabInstance:
     - target: {fileID: 6489413691072019532, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
       propertyPath: m_Name
       value: AppStartup
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1623543057}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetWarningText
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Discover.UI.Modal.NetworkSelectionMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489413691072019533, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
+      propertyPath: OnErrorOccured.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6489413691072019534, guid: 0aadc5ecc682d664a952c881282f4d4c, type: 3}
       propertyPath: m_RootOrder

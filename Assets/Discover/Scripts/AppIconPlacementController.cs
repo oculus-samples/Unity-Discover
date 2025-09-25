@@ -144,7 +144,7 @@ namespace Discover
                 bool onValidSurfaceType;
                 if (hitObj && HasSceneElement(hitObj.transform, out var sceneElement))
                 {
-                    // if collision has a TABLE label, align Y perpendicular with closest edge to player
+                    // if collision has a TABLE label, align Z perpendicular with closest edge to player
                     var validQuadPlacement = sceneElement.ContainsLabel(MRUKAnchor.SceneLabels.TABLE) ||
                                              sceneElement.ContainsLabel(MRUKAnchor.SceneLabels.COUCH) ||
                                              sceneElement.ContainsLabel(MRUKAnchor.SceneLabels.OTHER);
@@ -153,21 +153,21 @@ namespace Discover
                     {
                         var anchorTransform = sceneElement.transform;
                         var toPlane = m_mainCameraTransform.transform.position - anchorTransform.position;
-                        var planeYup = Vector3.Dot(anchorTransform.up, toPlane) > 0.0f ?
-                            anchorTransform.up : -anchorTransform.up;
+                        var planeY = anchorTransform.up;
                         var planeXup = Vector3.Dot(anchorTransform.right, toPlane) > 0.0f ?
                             anchorTransform.right : -anchorTransform.right;
-                        var planeFwd = anchorTransform.forward;
+                        var planeZup = Vector3.Dot(anchorTransform.forward, toPlane) > 0.0f ?
+                            anchorTransform.forward : -anchorTransform.forward;
 
                         var anchorScale = anchorTransform.localScale;
                         var anchorPosition = anchorTransform.position;
                         var nearestCorner = anchorPosition +
                                             planeXup * anchorScale.x * 0.5f +
-                                            planeYup * anchorScale.y * 0.5f;
-                        Vector3.OrthoNormalize(ref planeFwd, ref toPlane);
+                                            planeZup * anchorScale.z * 0.5f;
+                        Vector3.OrthoNormalize(ref planeY, ref toPlane);
                         nearestCorner -= anchorPosition;
-                        appZ = Vector3.Angle(toPlane, planeYup) > Vector3.Angle(nearestCorner, planeYup) ?
-                            planeXup : planeYup;
+                        appZ = Vector3.Angle(toPlane, planeZup) > Vector3.Angle(nearestCorner, planeZup) ?
+                            planeXup : planeZup;
                     }
 
                     onValidSurfaceType = m_selectedAppManifest.IconSurfaceType == AppManifest.SurfaceType.ANY ||

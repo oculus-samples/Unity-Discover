@@ -32,6 +32,7 @@ namespace Discover
             var anchorDataFileManager = new AnchorJsonFileManager<SpatialAnchorSaveData>("app_anchors.json");
             m_anchorManager = new SpatialAnchorManager<SpatialAnchorSaveData>(anchorDataFileManager);
             m_anchorManager.OnAnchorDataLoadedCreateGameObject += CreateAppIconOnAnchorLoaded;
+            m_anchorManager.OnAnchorDeletedDestroyGameObject += DespawnAppIconOnAnchorDeleted;
         }
 
         protected override void OnEnable()
@@ -198,6 +199,16 @@ namespace Discover
                 });
 
             return icon.gameObject;
+        }
+
+        private void DespawnAppIconOnAnchorDeleted(GameObject obj)
+        {
+            var networkObject = obj.GetComponent<NetworkObject>();
+
+            if (networkObject != null)
+            {
+                NetworkRunner.Instances?.FirstOrDefault()?.Despawn(networkObject);
+            }
         }
     }
 }

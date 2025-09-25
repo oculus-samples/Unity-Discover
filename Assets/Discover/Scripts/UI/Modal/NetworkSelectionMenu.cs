@@ -9,6 +9,7 @@ namespace Discover.UI.Modal
     public class NetworkSelectionMenu : MonoBehaviour
     {
         [SerializeField] private TMP_InputField m_inputField;
+        [SerializeField] private TMP_Text m_warningText;
 
         private Action<string> m_hostAction; // roomName
         private Action<string, bool> m_joinAction; // roomName, isRemote
@@ -51,6 +52,11 @@ namespace Discover.UI.Modal
         public void OnSettingsClicked()
         {
             m_settingAction?.Invoke();
+        }
+
+        public void SetWarningText(string warningText)
+        {
+            m_warningText.text = $"Warning: {warningText}.\nYou can host and join a room but some features might not work. (Colocation, Avatars, ...)";
         }
     }
 }
