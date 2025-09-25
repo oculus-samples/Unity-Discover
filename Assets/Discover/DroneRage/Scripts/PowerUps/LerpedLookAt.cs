@@ -13,7 +13,7 @@ namespace Discover.DroneRage.PowerUps
         {
             if (!m_mainCam)
             {
-                m_mainCam = Camera.main ? Camera.main : FindObjectOfType<Camera>();
+                m_mainCam = Camera.main ? Camera.main : FindFirstObjectByType<Camera>();
             }
         }
 

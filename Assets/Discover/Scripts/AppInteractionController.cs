@@ -91,7 +91,7 @@ namespace Discover
             }
 
             // crawl the scene for controller visuals, to avoid making a .scene change with a hard link
-            m_controllerMeshes = FindObjectsOfType(typeof(ControllerVisual)) as ControllerVisual[];
+            m_controllerMeshes = FindObjectsByType(typeof(ControllerVisual), FindObjectsSortMode.None) as ControllerVisual[];
         }
 
         private void Update()

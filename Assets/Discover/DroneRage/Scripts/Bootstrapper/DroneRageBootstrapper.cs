@@ -86,7 +86,7 @@ namespace Discover.DroneRage.Bootstrapper
             // Adjust scene lighting
             m_prevSkybox = RenderSettings.skybox;
             RenderSettings.skybox = m_skyboxMaterial;
-            var lights = FindObjectsOfType<Light>();
+            var lights = FindObjectsByType<Light>(FindObjectsSortMode.None);
             foreach (var light in lights)
             {
                 if (light.enabled && light.transform.root == light.transform)

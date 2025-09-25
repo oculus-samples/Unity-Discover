@@ -87,7 +87,7 @@ namespace Fusion.Assistants {
       GameObject go = null;
 
       foreach(var c in components) {
-        var found = UnityEngine.Object.FindObjectOfType(c);
+        var found = UnityEngine.Object.FindFirstObjectByType(c);
         if (found)
           continue;
 
@@ -106,7 +106,7 @@ namespace Fusion.Assistants {
         preferredGameObjectName = typeof(T).Name;
 
       T comp;
-      comp = UnityEngine.Object.FindObjectOfType<T>();
+      comp = UnityEngine.Object.FindFirstObjectByType<T>();
       if (comp == null) {
         // T was not found in scene, create a new gameobject and add T, as well as other required components
         if (onThisObject == null)

@@ -6362,7 +6362,8 @@ namespace Fusion.Editor {
       var defines = PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Server);
 #else
       var group = BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
-      var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(group);
+      var namedTarget = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(group);
+      var defines = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
 #endif
 
       if (defines.IndexOf(DEFINE, StringComparison.Ordinal) >= 0) {
@@ -6381,7 +6382,7 @@ namespace Fusion.Editor {
 #if UNITY_SERVER
         PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Server, defines + ";" + DEFINE);
 #else
-        PlayerSettings.SetScriptingDefineSymbolsForGroup(group, defines + ";" + DEFINE);
+        PlayerSettings.SetScriptingDefineSymbols(namedTarget, defines + ";" + DEFINE);
 #endif
       } else {
         FusionEditorLog.LogInstaller($"Installing '{PACKAGE_TO_INSTALL}' package");
@@ -10380,7 +10381,7 @@ namespace Fusion.Editor {
     static List<NetworkRunner> reusableRunnerList = new List<NetworkRunner>();
 
     public static NetworkRunner[] FindActiveRunners() {
-      var runners = Object.FindObjectsOfType<NetworkRunner>();
+      var runners = Object.FindObjectsByType<NetworkRunner>(FindObjectsSortMode.None);
       reusableRunnerList.Clear();
       for (int i = 0; i < runners.Length; ++i) {
         if (runners[i].IsRunning)
@@ -10393,7 +10394,7 @@ namespace Fusion.Editor {
     }
 
     public static void FindActiveRunners(List<NetworkRunner> nonalloc) {
-      var runners = Object.FindObjectsOfType<NetworkRunner>();
+      var runners = Object.FindObjectsByType<NetworkRunner>(FindObjectsSortMode.None);
       nonalloc.Clear();
       for (int i = 0; i < runners.Length; ++i) {
         if (runners[i].IsRunning)
@@ -11647,7 +11648,9 @@ namespace Fusion.Editor {
         "GetFieldInfoFromProperty",
         BindingFlags.Static | BindingFlags.NonPublic);
 
-#if UNITY_2022_3_OR_NEWER && !(UNITY_2022_3_1 || UNITY_2022_3_2 || UNITY_2022_3_3 || UNITY_2022_3_4 || UNITY_2022_3_5 || UNITY_2022_3_6 || UNITY_2022_3_7 || UNITY_2022_3_8 || UNITY_2022_3_9 || UNITY_2022_3_10 || UNITY_2022_3_11 || UNITY_2022_3_12 || UNITY_2022_3_13 || UNITY_2022_3_14 || UNITY_2022_3_15 || UNITY_2022_3_16 || UNITY_2022_3_17 || UNITY_2022_3_18 || UNITY_2022_3_19 || UNITY_2022_3_20 || UNITY_2022_3_21 || UNITY_2022_3_22)
+#if UNITY_6000_0_OR_NEWER
+      public delegate Type GetDrawerTypeForTypeDelegate(Type type, Type[] types = null, bool isPropertyTypeAManagedReference = false);
+#elif UNITY_2022_3_OR_NEWER && !(UNITY_2022_3_1 || UNITY_2022_3_2 || UNITY_2022_3_3 || UNITY_2022_3_4 || UNITY_2022_3_5 || UNITY_2022_3_6 || UNITY_2022_3_7 || UNITY_2022_3_8 || UNITY_2022_3_9 || UNITY_2022_3_10 || UNITY_2022_3_11 || UNITY_2022_3_12 || UNITY_2022_3_13 || UNITY_2022_3_14 || UNITY_2022_3_15 || UNITY_2022_3_16 || UNITY_2022_3_17 || UNITY_2022_3_18 || UNITY_2022_3_19 || UNITY_2022_3_20 || UNITY_2022_3_21 || UNITY_2022_3_22)
       // https://github.com/oculus-samples/Unity-Discover/issues/21, https://tinyurl.com/3d2ykpaf
       public delegate Type GetDrawerTypeForTypeDelegate(Type type, bool isPropertyTypeAManagedReference = false);
 #else

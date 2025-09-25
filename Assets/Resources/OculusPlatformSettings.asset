@@ -15,4 +15,4 @@ MonoBehaviour:
   ovrAppID: 
   ovrMobileAppID: 
   ovrUseMobileAppIDInEditor: 0
-  ovrUseStandalonePlatform: 0
+  ovrUseStandalonePlatform: 1

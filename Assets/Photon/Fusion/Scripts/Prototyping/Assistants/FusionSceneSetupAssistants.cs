@@ -18,7 +18,7 @@ namespace Fusion.Assistants {
       var floor = FusionAssistants.CreatePrimitive(PrimitiveType.Cube, "Prototype Floor", new Vector3(0, -1, 0), null, new Vector3(20, 2, 20), null, FusionPrototypeMaterials.Floor).transform;
 
       // Delete any existing spawn points
-      var found = UnityEngine.Object.FindObjectsOfType<PlayerSpawnPointPrototype>();
+      var found = UnityEngine.Object.FindObjectsByType<PlayerSpawnPointPrototype>(FindObjectsSortMode.None);
       foreach (var spawn in found) {
         GameObject.DestroyImmediate(spawn.gameObject);
       }
@@ -56,7 +56,7 @@ namespace Fusion.Assistants {
       var floor = GameObject.Instantiate(FusionPrototypingPrefabs.Ground2D, null).transform;
 
       // Delete any existing spawn points
-      var found = UnityEngine.Object.FindObjectsOfType<PlayerSpawnPointPrototype>();
+      var found = UnityEngine.Object.FindObjectsByType<PlayerSpawnPointPrototype>(FindObjectsSortMode.None);
       foreach(var spawn in found) {
         GameObject.DestroyImmediate(spawn.gameObject);
       }
@@ -167,7 +167,7 @@ namespace Fusion.Assistants {
     [MenuItem("GameObject/Fusion/Setup/Add AudioListener Handling", false, FusionAssistants.PRIORITY)]
     public static void HandleAudioListeners() {
       int count = 0;
-      foreach (var listener in Object.FindObjectsOfType<AudioListener>()) {
+      foreach (var listener in Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None)) {
         count++;
         listener.EnsureComponentHasVisibilityNode();
       }

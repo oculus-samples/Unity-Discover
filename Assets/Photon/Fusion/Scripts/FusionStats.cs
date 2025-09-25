@@ -932,7 +932,7 @@ public class FusionStats : Fusion.Behaviour {
         // New Input System
       }
       else {
-        if (FindObjectOfType<EventSystem>() == null) {
+        if (FindFirstObjectByType<EventSystem>() == null) {
           var eventSystemGO = new GameObject("Event System");
           eventSystemGO.AddComponent<EventSystem>();
           eventSystemGO.AddComponent<StandaloneInputModule>();

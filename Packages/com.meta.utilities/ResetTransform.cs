@@ -29,7 +29,7 @@ namespace Meta.Utilities
 
             if (m_rigidbody)
             {
-                m_rigidbody.velocity = Vector3.zero;
+                m_rigidbody.linearVelocity = Vector3.zero;
                 m_rigidbody.angularVelocity = Vector3.zero;
                 m_rigidbody.isKinematic = false;
             }

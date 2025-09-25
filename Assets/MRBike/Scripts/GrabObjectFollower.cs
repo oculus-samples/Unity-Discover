@@ -45,7 +45,7 @@ namespace MRBike
         {
             m_isGrabbed = false;
             m_rigidbody.angularVelocity = Vector3.zero;
-            m_rigidbody.velocity = Vector3.zero;
+            m_rigidbody.linearVelocity = Vector3.zero;
         }
 
         private void FixedUpdate()
@@ -84,7 +84,7 @@ namespace MRBike
                     var followPosition = m_followTarget.transform.position;
                     var dist = Vector3.Distance(followPosition, thisPosition);
 
-                    m_rigidbody.velocity = (followPosition - thisPosition).normalized * (m_followSpeed * dist);
+                    m_rigidbody.linearVelocity = (followPosition - thisPosition).normalized * (m_followSpeed * dist);
 
                     var newVolume = Mathf.Abs(dist - m_oldDistance) * m_volumeRamp;
                     m_volume = newVolume;

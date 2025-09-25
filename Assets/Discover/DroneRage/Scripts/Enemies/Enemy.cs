@@ -338,7 +338,7 @@ namespace Discover.DroneRage.Enemies
                 targetVel.normalized * MaxVelocity,
                 EasingDists.y * (Mathf.Sqrt(targetVel.magnitude) - EasingDists.x));
             var reachedTarget = targetVel.sqrMagnitude <= 0.1f;
-            targetVel -= Rigidbody.velocity;
+            targetVel -= Rigidbody.linearVelocity;
 
             // We want to try to accelerate to this velocity within the next fixed time step
             var accel = targetVel / Time.fixedDeltaTime;
@@ -392,7 +392,7 @@ namespace Discover.DroneRage.Enemies
 
             targetVel += hoverNoise;
 
-            targetVel -= Rigidbody.velocity;
+            targetVel -= Rigidbody.linearVelocity;
 
             // We want to try to accelerate to this velocity within the next fixed time step
             var accel = targetVel / Time.fixedDeltaTime;
@@ -422,7 +422,7 @@ namespace Discover.DroneRage.Enemies
 
             targetVel += hoverNoise;
 
-            targetVel -= Rigidbody.velocity;
+            targetVel -= Rigidbody.linearVelocity;
 
             // We want to try to accelerate to this velocity within the next fixed time step
             var accel = targetVel / Time.fixedDeltaTime;

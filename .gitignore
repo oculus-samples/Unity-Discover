@@ -94,3 +94,6 @@ Assets/StreamingAssets/SampleAssets
 Assets/StreamingAssets/SampleAssets.meta
 Assets/Samples/Meta XR Interaction SDK OVR Samples/
 Assets/Samples/Meta XR Interaction SDK OVR Samples.meta
+
+# TextMesh Pro
+.utmp/

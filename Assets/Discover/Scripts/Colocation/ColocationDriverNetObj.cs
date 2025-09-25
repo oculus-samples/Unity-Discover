@@ -51,7 +51,7 @@ namespace Discover.Colocation
 
         private async void Init()
         {
-            m_ovrCameraRigTransform = FindObjectOfType<OVRCameraRig>().transform;
+            m_ovrCameraRigTransform = FindFirstObjectByType<OVRCameraRig>().transform;
             m_oculusUser = await OculusPlatformUtils.GetLoggedInUser();
             m_playerDeviceUid = OculusPlatformUtils.GetUserDeviceGeneratedUid();
             SetupForColocation();
@@ -109,7 +109,7 @@ namespace Discover.Colocation
             
             // The AlignCameraToAnchor scripts updates on every frame which messes up Physics and create frame spikes.
             // We need to disable it and add our own align manager that is applied only on recenter
-            var alignCamBehaviour = FindObjectOfType<AlignCameraToAnchor>();
+            var alignCamBehaviour = FindFirstObjectByType<AlignCameraToAnchor>();
             if (alignCamBehaviour != null)
             {
                 alignCamBehaviour.enabled = false;

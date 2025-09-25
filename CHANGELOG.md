@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 18/09/2025
+### Update
+Update to Unity 6000.0.50f1
+
 ## 09/12/2024
 ### Update
 Update to Meta XR Sdks v68

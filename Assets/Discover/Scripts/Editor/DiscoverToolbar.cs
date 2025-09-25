@@ -92,7 +92,7 @@ namespace Discover.Editor
                     manager.CurrentApplication.AppName.Contains("rage") &&
                     GUILayout.Button("Drop Health Orb", GUILayout.ExpandWidth(false)))
                 {
-                    var enemy = Object.FindObjectOfType<Enemy>();
+                    var enemy = Object.FindFirstObjectByType<Enemy>();
                     if (enemy != null)
                     {
                         enemy.DropLargeItem(true);

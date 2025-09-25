@@ -14,8 +14,8 @@ It was built using the [Unity engine](https://unity.com/) with [Photon Fusion](h
 
 ## How to Run the Project in Unity
 
-1. [Configure the project](./Documentation/Configuration.md) with Meta Quest and Photon.
-2. Ensure you're using *Unity 2022.3.5f1* or newer.
+1. [Configure the project](./Documentation/Configuration.md) with Meta Quest and Photon
+2. Make sure you're using  *Unity 6000.0.50f1* or newer.
 3. Load the [Assets/Discover/Scenes/Discover](./Assets/Discover/Scenes/Discover.unity) scene.
 4. To test in the Editor, you'll need to use Quest Link:
     <details>

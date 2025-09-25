@@ -74,11 +74,11 @@ namespace Discover.DroneRage.PowerUps
             var accel = new Vector3();
             var depth = targetHeight - m_rigidbody.position.y;
             if (Mathf.Abs(depth) < m_easingDists.x &&
-                m_rigidbody.velocity.sqrMagnitude <= 0.2f)
+                m_rigidbody.linearVelocity.sqrMagnitude <= 0.2f)
             {
                 // try to stay locked to the surface if we're very close
                 accel = new Vector3(0f, depth / (Time.fixedDeltaTime * Time.fixedDeltaTime), 0f);
-                accel -= m_rigidbody.velocity / Time.fixedDeltaTime;
+                accel -= m_rigidbody.linearVelocity / Time.fixedDeltaTime;
                 reachedTarget = true;
             }
             else if (m_rigidbody.position.y < targetHeight)
@@ -88,7 +88,7 @@ namespace Discover.DroneRage.PowerUps
                                      m_easingDists.y * depth);
 
                 // when we're "underwater" apply some drag to slow us down
-                accel -= 0.1f * m_rigidbody.velocity / Time.fixedDeltaTime;
+                accel -= 0.1f * m_rigidbody.linearVelocity / Time.fixedDeltaTime;
                 // Account for gravity
                 accel -= Physics.gravity;
             }

@@ -189,7 +189,7 @@ public class NetworkDebugStart : Fusion.Behaviour {
     var config = NetworkProjectConfig.Global;
     var isMultiPeer = config.PeerMode == NetworkProjectConfig.PeerModes.Multiple;
 
-    var existingrunner = FindObjectOfType<NetworkRunner>();
+    var existingrunner = FindFirstObjectByType<NetworkRunner>();
 
     if (existingrunner && existingrunner != RunnerPrefab) {
       if (existingrunner.State != NetworkRunner.States.Shutdown) {
