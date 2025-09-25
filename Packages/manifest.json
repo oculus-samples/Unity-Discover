@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.alexeyperov.unity-dependencies-hunter": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.dbrizov.naughtyattributes": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
     "com.marijnzwemmer.unity-toolbar-extender": "https://github.com/marijnz/unity-toolbar-extender.git",
@@ -28,7 +29,6 @@
     "com.unity.xr.management": "4.4.0",
     "com.unity.xr.oculus": "4.4.0",
     "com.veriorpies.parrelsync": "https://github.com/brogan89/ParrelSync.git?path=/ParrelSync#develop",
-    "unity-dependencies-hunter": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

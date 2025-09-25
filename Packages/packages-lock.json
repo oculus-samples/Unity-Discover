@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.alexeyperov.unity-dependencies-hunter": {
+      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8bbb7df34a052c99bca94b64bc7eea73dbbc575a"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
@@ -41,7 +48,7 @@
       "source": "embedded",
       "dependencies": {
         "com.meta.utilities": "1.0.0",
-        "com.meta.xr.sdk.core": "",
+        "com.meta.xr.sdk.core": "74.0.0",
         "com.unity.xr.interaction.toolkit": "2.0.4"
       }
     },
@@ -392,13 +399,6 @@
       "source": "git",
       "dependencies": {},
       "hash": "2607606c9978c48a1b20e7bf8e7ec6b7f8a7a851"
-    },
-    "unity-dependencies-hunter": {
-      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "29f5cf372bcb67a1d474664dce7eb9a133bf46ea"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
