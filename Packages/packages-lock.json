@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.alexeyperov.unity-dependencies-hunter": {
+      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6b7a080a1d533c3fe072b666814f74159bb218da"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
@@ -41,7 +48,7 @@
       "source": "embedded",
       "dependencies": {
         "com.meta.utilities": "1.0.0",
-        "com.meta.xr.sdk.core": "",
+        "com.meta.xr.sdk.core": "74.0.0",
         "com.unity.xr.interaction.toolkit": "2.0.4"
       }
     },
@@ -57,67 +64,67 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.core": "74.0.0",
-        "com.unity.textmeshpro": "3.0.6",
         "com.unity.ai.navigation": "1.1.4",
-        "com.unity.nuget.newtonsoft-json": "3.0.2"
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.meta.xr.sdk.core": "74.0.0",
+        "com.unity.textmeshpro": "3.0.6"
       },
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.audio": {
       "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.avatars": {
       "version": "33.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.ugui": "1.0.0",
         "com.meta.xr.sdk.core": "69.0.1",
         "com.meta.xr.sdk.platform": "69.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.xr.legacyinputhelpers": "2.1.9",
+        "com.unity.ugui": "1.0.0",
         "com.meta.xr.sdk.avatars.sample.assets": "33.0.0"
       },
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.avatars.sample.assets": {
       "version": "33.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.core": {
       "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.interaction": {
       "version": "74.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.textmeshpro": "3.0.6"
+        "com.unity.textmeshpro": "3.0.6",
+        "com.unity.ugui": "1.0.0"
       },
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.interaction.ovr": {
       "version": "74.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.core": "74.0.0",
-        "com.meta.xr.sdk.interaction": "74.0.0"
+        "com.meta.xr.sdk.interaction": "74.0.0",
+        "com.meta.xr.sdk.core": "74.0.0"
       },
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.platform": {
       "version": "74.0.0",
@@ -126,7 +133,7 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.simulator": {
       "version": "74.0.0",
@@ -135,7 +142,7 @@
       "dependencies": {
         "com.unity.editorcoroutines": "1.0.0"
       },
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.unity.ai.navigation": {
       "version": "1.1.5",
@@ -392,13 +399,6 @@
       "source": "git",
       "dependencies": {},
       "hash": "2607606c9978c48a1b20e7bf8e7ec6b7f8a7a851"
-    },
-    "unity-dependencies-hunter": {
-      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "29f5cf372bcb67a1d474664dce7eb9a133bf46ea"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
