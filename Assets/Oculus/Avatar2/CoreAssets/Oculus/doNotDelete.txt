@@ -1,0 +1,5 @@
+------------------------------
+-- DO NOT DELETE THIS FILE  --
+------------------------------
+
+This file is checked into source control to ensure the folder "Oculus" exists.  That way Unity will not delete oculus.meta from the parent directory.

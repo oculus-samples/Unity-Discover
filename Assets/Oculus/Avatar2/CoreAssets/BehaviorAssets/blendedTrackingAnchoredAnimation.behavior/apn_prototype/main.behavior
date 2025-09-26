@@ -70,16 +70,55 @@
                             1.0
                         ]
                     }
+                },
+                {
+                    "name": "CalcMaxArmLength",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "CalcMaxArmLength"
+                    }
+                },
+                {
+                    "name": "getDefaultPose",
+                    "type": "getDefaultPose"
+                },
+                {
+                    "name": "LimitStretchLeftArm",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "LimitStretchLeftArm"
+                    }
+                },
+                {
+                    "name": "LimitStretchRightArm",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "LimitStretchRightArm"
+                    }
+                },
+                {
+                    "name": "AnkleOverride",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "AnkleOverride"
+                    }
+                },
+                {
+                    "name": "avatarSDK_enableLocalAnimationPlayback",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableLocalAnimationPlayback"
+                    }
+                },
+                {
+                    "name": "SelectByBool",
+                    "type": "SelectByBool"
                 }
             ],
             "links": [
                 [
                     ":trackingPose",
                     "appPoseFullOverride:inputPose"
-                ],
-                [
-                    ":trackingPose",
-                    ":pose"
                 ],
                 [
                     "appPoseFullOverride:outputPose",
@@ -110,10 +149,6 @@
                     "ApplyHeadsetAnchoringTransform:rootCorrectionTransform"
                 ],
                 [
-                    "OneToOneTrackingAdjustment:outputPose",
-                    ":pose3P"
-                ],
-                [
                     "GetRootScaleCorrection:outputValue",
                     "getInverseScaleFactor:inputVec3"
                 ],
@@ -124,6 +159,54 @@
                 [
                     "getInverseScaleFactor:outputY",
                     "ApplyHeadsetAnchoringTransform:inverseScaleFactor"
+                ],
+                [
+                    "getDefaultPose:outputPose",
+                    "CalcMaxArmLength:defaultPose"
+                ],
+                [
+                    "CalcMaxArmLength:maxArmLength",
+                    "LimitStretchLeftArm:maxArmLength"
+                ],
+                [
+                    "LimitStretchLeftArm:outputPose",
+                    "LimitStretchRightArm:inputPose"
+                ],
+                [
+                    "CalcMaxArmLength:maxArmLength",
+                    "LimitStretchRightArm:maxArmLength"
+                ],
+                [
+                    "OneToOneTrackingAdjustment:outputPose",
+                    "LimitStretchLeftArm:inputPose"
+                ],
+                [
+                    "LimitStretchRightArm:outputPose",
+                    "AnkleOverride:inputPose"
+                ],
+                [
+                    "getInverseScaleFactor:outputY",
+                    "AnkleOverride:inverseScaleFactor"
+                ],
+                [
+                    "AnkleOverride:outputPose",
+                    ":pose3P"
+                ],
+                [
+                    "avatarSDK_enableLocalAnimationPlayback:outputValue",
+                    "SelectByBool:inputValue"
+                ],
+                [
+                    "AnkleOverride:outputPose",
+                    "SelectByBool:inputTrue"
+                ],
+                [
+                    ":trackingPose",
+                    "SelectByBool:inputFalse"
+                ],
+                [
+                    "SelectByBool:output",
+                    ":pose"
                 ]
             ]
         },
@@ -156,7 +239,7 @@
                         "elementType": "blendPoses",
                         "blendJoint": "RTRig_Head",
                         "blendSpace": "local",
-                        "depth": 1,
+                        "depth": 0,
                         "featherWeightsDefault": []
                     }
                 },
@@ -182,7 +265,7 @@
                         "elementType": "blendPoses",
                         "blendJoint": "RTRig_L_Clavicle",
                         "blendSpace": "local",
-                        "depth": 1,
+                        "depth": 0,
                         "featherWeightsDefault": []
                     }
                 },
@@ -193,7 +276,7 @@
                         "elementType": "blendPoses",
                         "blendJoint": "RTRig_R_Clavicle",
                         "blendSpace": "local",
-                        "depth": 1,
+                        "depth": 0,
                         "featherWeightsDefault": []
                     }
                 },
@@ -737,6 +820,859 @@
                 [
                     ":inverseScaleFactor",
                     "AdjustPositionByInverseScaleFactor:inverseScaleFactor"
+                ]
+            ]
+        },
+        {
+            "name": "CalcMaxArmLength",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "defaultPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "maxArmLength",
+                    "type": "float"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "GetLeftWristJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "GetLeftShoulderJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Shoulder",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "BreakLeftWristTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "BreakLeftShoulderTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "CalcArmVector",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "wristPosition - shoulderPosition"
+                    }
+                },
+                {
+                    "name": "CalcArmLength",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "length(armVector) * 1.25 * armStretchLimitScalar"
+                    }
+                },
+                {
+                    "name": "getDynamicStoreValueFloat",
+                    "type": "getDynamicStoreValueFloat",
+                    "members": {
+                        "key": "avatarSDK_armStretchLimitScalar",
+                        "defaultValue": 1.0
+                    }
+                }
+            ],
+            "links": [
+                [
+                    "GetLeftWristJoint:outputTransform",
+                    "BreakLeftWristTransform:transform"
+                ],
+                [
+                    "GetLeftShoulderJoint:outputTransform",
+                    "BreakLeftShoulderTransform:transform"
+                ],
+                [
+                    "BreakLeftWristTransform:position",
+                    "CalcArmVector:wristPosition"
+                ],
+                [
+                    "BreakLeftShoulderTransform:position",
+                    "CalcArmVector:shoulderPosition"
+                ],
+                [
+                    "CalcArmVector:value",
+                    "CalcArmLength:armVector"
+                ],
+                [
+                    "CalcArmLength:value",
+                    ":maxArmLength"
+                ],
+                [
+                    ":defaultPose",
+                    "GetLeftShoulderJoint:inputPose"
+                ],
+                [
+                    ":defaultPose",
+                    "GetLeftWristJoint:inputPose"
+                ],
+                [
+                    "getDynamicStoreValueFloat:outputValue",
+                    "CalcArmLength:armStretchLimitScalar"
+                ]
+            ]
+        },
+        {
+            "name": "LimitStretchLeftArm",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "inputPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "maxArmLength",
+                    "type": "float",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outputPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "GetLeftWristJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "GetLeftShoulderJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Shoulder",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "BreakLeftWristTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "BreakLeftShoulderTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "CalcArmVector",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "wristPosition - shoulderPosition"
+                    }
+                },
+                {
+                    "name": "NormalizeVector",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "normalize(vector)"
+                    }
+                },
+                {
+                    "name": "UpdateWristPosition",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "shoulderPosition + (normalizedArmVector * clampedArmLength)"
+                    }
+                },
+                {
+                    "name": "CreateNewWristTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "SetLeftWristJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "CalcArmLength",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "dot(normalizedArmVector, armVector)"
+                    }
+                },
+                {
+                    "name": "ClampArmLength",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "clamp(armLength, 0.0, maxLength)"
+                    }
+                }
+            ],
+            "links": [
+                [
+                    "GetLeftWristJoint:outputTransform",
+                    "BreakLeftWristTransform:transform"
+                ],
+                [
+                    "GetLeftShoulderJoint:outputTransform",
+                    "BreakLeftShoulderTransform:transform"
+                ],
+                [
+                    "UpdateWristPosition:value",
+                    "CreateNewWristTransform:position"
+                ],
+                [
+                    "BreakLeftWristTransform:rotation",
+                    "CreateNewWristTransform:rotation"
+                ],
+                [
+                    "BreakLeftWristTransform:scale",
+                    "CreateNewWristTransform:scale"
+                ],
+                [
+                    "CreateNewWristTransform:transform",
+                    "SetLeftWristJoint:inputTransform"
+                ],
+                [
+                    "CalcArmLength:value",
+                    "ClampArmLength:armLength"
+                ],
+                [
+                    "BreakLeftWristTransform:position",
+                    "CalcArmVector:wristPosition"
+                ],
+                [
+                    "BreakLeftShoulderTransform:position",
+                    "CalcArmVector:shoulderPosition"
+                ],
+                [
+                    "CalcArmVector:value",
+                    "NormalizeVector:vector"
+                ],
+                [
+                    "BreakLeftShoulderTransform:position",
+                    "UpdateWristPosition:shoulderPosition"
+                ],
+                [
+                    "NormalizeVector:value",
+                    "UpdateWristPosition:normalizedArmVector"
+                ],
+                [
+                    "ClampArmLength:value",
+                    "UpdateWristPosition:clampedArmLength"
+                ],
+                [
+                    "NormalizeVector:value",
+                    "CalcArmLength:normalizedArmVector"
+                ],
+                [
+                    "CalcArmVector:value",
+                    "CalcArmLength:armVector"
+                ],
+                [
+                    ":inputPose",
+                    "GetLeftWristJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetLeftShoulderJoint:inputPose"
+                ],
+                [
+                    ":maxArmLength",
+                    "ClampArmLength:maxLength"
+                ],
+                [
+                    "SetLeftWristJoint:outputPose",
+                    ":outputPose"
+                ],
+                [
+                    ":inputPose",
+                    "SetLeftWristJoint:inputPose"
+                ]
+            ]
+        },
+        {
+            "name": "LimitStretchRightArm",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "inputPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "maxArmLength",
+                    "type": "float",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outputPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "GetRightWristJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "GetRightShoulderJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Shoulder",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "BreakRightWristTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "BreakRightShoulderTransform",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "CalcArmVector",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "wristPosition - shoulderPosition"
+                    }
+                },
+                {
+                    "name": "NormalizeVector",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "normalize(vector)"
+                    }
+                },
+                {
+                    "name": "UpdateWristPosition",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "shoulderPosition + (normalizedArmVector * clampedArmLength)"
+                    }
+                },
+                {
+                    "name": "CreateNewWristTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "SetRightWristJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Wrist",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "CalcArmLength",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "dot(normalizedArmVector, armVector)"
+                    }
+                },
+                {
+                    "name": "ClampArmLength",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "clamp(armLength, 0.0, maxLength)"
+                    }
+                }
+            ],
+            "links": [
+                [
+                    "GetRightWristJoint:outputTransform",
+                    "BreakRightWristTransform:transform"
+                ],
+                [
+                    "GetRightShoulderJoint:outputTransform",
+                    "BreakRightShoulderTransform:transform"
+                ],
+                [
+                    "UpdateWristPosition:value",
+                    "CreateNewWristTransform:position"
+                ],
+                [
+                    "BreakRightWristTransform:rotation",
+                    "CreateNewWristTransform:rotation"
+                ],
+                [
+                    "CreateNewWristTransform:transform",
+                    "SetRightWristJoint:inputTransform"
+                ],
+                [
+                    "CalcArmLength:value",
+                    "ClampArmLength:armLength"
+                ],
+                [
+                    "BreakRightWristTransform:position",
+                    "CalcArmVector:wristPosition"
+                ],
+                [
+                    "BreakRightShoulderTransform:position",
+                    "CalcArmVector:shoulderPosition"
+                ],
+                [
+                    "CalcArmVector:value",
+                    "NormalizeVector:vector"
+                ],
+                [
+                    "BreakRightShoulderTransform:position",
+                    "UpdateWristPosition:shoulderPosition"
+                ],
+                [
+                    "NormalizeVector:value",
+                    "UpdateWristPosition:normalizedArmVector"
+                ],
+                [
+                    "ClampArmLength:value",
+                    "UpdateWristPosition:clampedArmLength"
+                ],
+                [
+                    "NormalizeVector:value",
+                    "CalcArmLength:normalizedArmVector"
+                ],
+                [
+                    "CalcArmVector:value",
+                    "CalcArmLength:armVector"
+                ],
+                [
+                    "BreakRightWristTransform:scale",
+                    "CreateNewWristTransform:scale"
+                ],
+                [
+                    "SetRightWristJoint:outputPose",
+                    ":outputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetRightWristJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetRightShoulderJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "SetRightWristJoint:inputPose"
+                ],
+                [
+                    ":maxArmLength",
+                    "ClampArmLength:maxLength"
+                ]
+            ]
+        },
+        {
+            "name": "AnkleOverride",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "inputPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "inverseScaleFactor",
+                    "type": "float",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outputPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "SelectLeftAnkleJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "GetLeftAnkleJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "SetLeftAnkleJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getEnableLeftAnkleOverride",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableLeftAnkleOverride"
+                    }
+                },
+                {
+                    "name": "GetLeftGroundBallPivotJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "SelectLeftGroundBallPivotJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "SetLeftGroundBallPivotJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "identityTransform",
+                    "type": "identityTransform"
+                },
+                {
+                    "name": "SelectRightAnkleJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "GetRightAnkleJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "SetRightAnkleJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getEnableRightAnkleOverride",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableRightAnkleOverride"
+                    }
+                },
+                {
+                    "name": "GetRightGroundBallPivotJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "SelectRightGroundBallPivotJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "SetRightGroundBallPivotJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "identityTransform_1",
+                    "type": "identityTransform"
+                },
+                {
+                    "name": "getLeftAnkleOverrideBlendFactor",
+                    "type": "getDynamicStoreValueFloat",
+                    "members": {
+                        "key": "avatarSDK_leftAnkleOverrideBlendFactor"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform_1",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "getRightAnkleOverrideBlendFactor",
+                    "type": "getDynamicStoreValueFloat",
+                    "members": {
+                        "key": "avatarSDK_rightAnkleOverrideBlendFactor"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform_2",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform_3",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "avatarSDK_leftAnklePositionOverride",
+                    "type": "getDynamicStoreValueVec3",
+                    "members": {
+                        "key": "avatarSDK_leftAnklePositionOverride"
+                    }
+                },
+                {
+                    "name": "avatarSDK_leftAnkleRotationOverride",
+                    "type": "getDynamicStoreValueQuat",
+                    "members": {
+                        "key": "avatarSDK_leftAnkleRotationOverride"
+                    }
+                },
+                {
+                    "name": "makeTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "avatarSDK_rightAnklePositionOverride",
+                    "type": "getDynamicStoreValueVec3",
+                    "members": {
+                        "key": "avatarSDK_rightAnklePositionOverride"
+                    }
+                },
+                {
+                    "name": "avatarSDK_rightAnkleRotationOverride",
+                    "type": "getDynamicStoreValueQuat",
+                    "members": {
+                        "key": "avatarSDK_rightAnkleRotationOverride"
+                    }
+                },
+                {
+                    "name": "makeTransform_1",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "ScaleLeftAnklePosition",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "anklePosition * inverseScaleFactor"
+                    }
+                },
+                {
+                    "name": "ScaleRightAnklePosition",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "anklePosition * inverseScaleFactor"
+                    }
+                }
+            ],
+            "links": [
+                [
+                    "GetLeftAnkleJoint:outputTransform",
+                    "SelectLeftAnkleJointByBool:inputFalse"
+                ],
+                [
+                    "SelectLeftAnkleJointByBool:output",
+                    "SetLeftAnkleJoint:inputTransform"
+                ],
+                [
+                    "getEnableLeftAnkleOverride:outputValue",
+                    "SelectLeftAnkleJointByBool:inputValue"
+                ],
+                [
+                    "GetLeftGroundBallPivotJoint:outputTransform",
+                    "SelectLeftGroundBallPivotJointByBool:inputFalse"
+                ],
+                [
+                    "SelectLeftGroundBallPivotJointByBool:output",
+                    "SetLeftGroundBallPivotJoint:inputTransform"
+                ],
+                [
+                    "SetLeftAnkleJoint:outputPose",
+                    "SetLeftGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    "GetRightAnkleJoint:outputTransform",
+                    "SelectRightAnkleJointByBool:inputFalse"
+                ],
+                [
+                    "SelectRightAnkleJointByBool:output",
+                    "SetRightAnkleJoint:inputTransform"
+                ],
+                [
+                    "getEnableRightAnkleOverride:outputValue",
+                    "SelectRightAnkleJointByBool:inputValue"
+                ],
+                [
+                    "getEnableRightAnkleOverride:outputValue",
+                    "SelectRightGroundBallPivotJointByBool:inputValue"
+                ],
+                [
+                    "GetRightGroundBallPivotJoint:outputTransform",
+                    "SelectRightGroundBallPivotJointByBool:inputFalse"
+                ],
+                [
+                    "SelectRightGroundBallPivotJointByBool:output",
+                    "SetRightGroundBallPivotJoint:inputTransform"
+                ],
+                [
+                    "SetRightAnkleJoint:outputPose",
+                    "SetRightGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    "SetLeftGroundBallPivotJoint:outputPose",
+                    "SetRightAnkleJoint:inputPose"
+                ],
+                [
+                    "getLeftAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform:blendFactor"
+                ],
+                [
+                    "GetLeftAnkleJoint:outputTransform",
+                    "blendLeftAnkleTransform:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform:value",
+                    "SelectLeftAnkleJointByBool:inputTrue"
+                ],
+                [
+                    "getLeftAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform_1:blendFactor"
+                ],
+                [
+                    "identityTransform:transform",
+                    "blendLeftAnkleTransform_1:overrideTransform"
+                ],
+                [
+                    "GetLeftGroundBallPivotJoint:outputTransform",
+                    "blendLeftAnkleTransform_1:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform_1:value",
+                    "SelectLeftGroundBallPivotJointByBool:inputTrue"
+                ],
+                [
+                    "getRightAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform_2:blendFactor"
+                ],
+                [
+                    "GetRightAnkleJoint:outputTransform",
+                    "blendLeftAnkleTransform_2:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform_2:value",
+                    "SelectRightAnkleJointByBool:inputTrue"
+                ],
+                [
+                    "getRightAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform_3:blendFactor"
+                ],
+                [
+                    "identityTransform_1:transform",
+                    "blendLeftAnkleTransform_3:overrideTransform"
+                ],
+                [
+                    "GetRightGroundBallPivotJoint:outputTransform",
+                    "blendLeftAnkleTransform_3:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform_3:value",
+                    "SelectRightGroundBallPivotJointByBool:inputTrue"
+                ],
+                [
+                    "getEnableLeftAnkleOverride:outputValue",
+                    "SelectLeftGroundBallPivotJointByBool:inputValue"
+                ],
+                [
+                    "avatarSDK_leftAnkleRotationOverride:outputValue",
+                    "makeTransform:rotation"
+                ],
+                [
+                    "makeTransform:transform",
+                    "blendLeftAnkleTransform:overrideTransform"
+                ],
+                [
+                    "avatarSDK_rightAnkleRotationOverride:outputValue",
+                    "makeTransform_1:rotation"
+                ],
+                [
+                    "makeTransform_1:transform",
+                    "blendLeftAnkleTransform_2:overrideTransform"
+                ],
+                [
+                    "avatarSDK_leftAnklePositionOverride:outputValue",
+                    "ScaleLeftAnklePosition:anklePosition"
+                ],
+                [
+                    "ScaleLeftAnklePosition:value",
+                    "makeTransform:position"
+                ],
+                [
+                    "avatarSDK_rightAnklePositionOverride:outputValue",
+                    "ScaleRightAnklePosition:anklePosition"
+                ],
+                [
+                    "ScaleRightAnklePosition:value",
+                    "makeTransform_1:position"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "ScaleLeftAnklePosition:inverseScaleFactor"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "ScaleRightAnklePosition:inverseScaleFactor"
+                ],
+                [
+                    ":inputPose",
+                    "GetLeftAnkleJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetLeftGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "SetLeftAnkleJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetRightAnkleJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetRightGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    "SetRightGroundBallPivotJoint:outputPose",
+                    ":outputPose"
                 ]
             ]
         }

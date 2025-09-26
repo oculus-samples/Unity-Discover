@@ -45,7 +45,7 @@
         },
         "{main.RootAngleToRad}": {
             "position": {
-                "x": 400.0,
+                "x": 375.0,
                 "y": 100.0
             },
             "displayMode": "full"
@@ -91,6 +91,14 @@
                 "x": 1275.0,
                 "y": -275.0
             },
+            "displayMode": "full"
+        },
+        "{main.uniformScale}": {
+            "position": {
+                "x": 1600.0,
+                "y": 25.0
+            },
+            "macroName": null,
             "displayMode": "full"
         },
         "{main}||inputs": {

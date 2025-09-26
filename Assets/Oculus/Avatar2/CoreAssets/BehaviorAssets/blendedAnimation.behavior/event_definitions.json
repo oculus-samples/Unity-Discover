@@ -19,6 +19,58 @@
     {
       "name": "avatarSDK_rightArmBlendFactor",
       "type": "float"
+    },
+    {
+      "name": "avatarSDK_enableLeftAnkleOverride",
+      "type": "bool"
+    },
+    {
+      "name": "avatarSDK_leftAnkleOverrideBlendFactor",
+      "type": "float"
+    },
+    {
+      "name": "avatarSDK_leftAnklePositionOverride",
+      "type": "vec3"
+    },
+    {
+      "name": "avatarSDK_leftAnkleRotationOverride",
+      "type": "quat"
+    },
+    {
+      "name": "avatarSDK_enableRightAnkleOverride",
+      "type": "bool"
+    },
+    {
+      "name": "avatarSDK_rightAnkleOverrideBlendFactor",
+      "type": "float"
+    },
+    {
+      "name": "avatarSDK_rightAnklePositionOverride",
+      "type": "vec3"
+    },
+    {
+      "name": "avatarSDK_rightAnkleRotationOverride",
+      "type": "quat"
+    },
+    {
+      "name": "avatarSDK_enableLocalAnimationPlayback",
+      "type": "bool"
+    },
+    {
+      "name": "avatarSDK_enableRotationalTrackingOffset",
+      "type": "bool"
+    },
+    {
+      "name": "avatarSDK_armStretchLimitScalar",
+      "type": "float"
+    },
+    {
+      "name": "avatarSDK_enableUpperBodyBlend",
+      "type": "bool"
+    },
+    {
+      "name": "avatarSDK_upperBodyBlendFactor",
+      "type": "float"
     }
   ]
 }

@@ -88,6 +88,13 @@
                 {
                     "name": "rotateVector",
                     "type": "rotateVector"
+                },
+                {
+                    "name": "uniformScale",
+                    "type": "constFloat",
+                    "members": {
+                        "value": 1.0
+                    }
                 }
             ],
             "links": [
@@ -116,10 +123,6 @@
                     "getComponentOfVec:inputVec3"
                 ],
                 [
-                    "getComponentOfVec:outputX",
-                    "RootTransform:uniformScale"
-                ],
-                [
                     "RootTranslationCorrectionInput:outputValue",
                     "AdjustPositionByInverseScaleFactor:rootPosition"
                 ],
@@ -146,6 +149,10 @@
                 [
                     "AddPivotOffsetToRoot:value",
                     "RootTransform:position"
+                ],
+                [
+                    "uniformScale:outputValue",
+                    "RootTransform:uniformScale"
                 ]
             ]
         }

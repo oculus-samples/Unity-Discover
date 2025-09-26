@@ -88,13 +88,41 @@
                 {
                     "name": "getComponentOfVec",
                     "type": "getComponentOfVec3"
+                },
+                {
+                    "name": "AnkleOverride",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "AnkleOverride"
+                    }
+                },
+                {
+                    "name": "avatarSDK_enableLocalAnimationPlayback",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableLocalAnimationPlayback"
+                    }
+                },
+                {
+                    "name": "SelectByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "RotationalTrackingOffset",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "RotationalTrackingOffset"
+                    }
+                },
+                {
+                    "name": "BlendUpperBodyTrackingIntoAnimatedPose",
+                    "type": "subGraph",
+                    "members": {
+                        "graph": "UpperBodyAnimationBlending"
+                    }
                 }
             ],
             "links": [
-                [
-                    ":trackingPose",
-                    ":pose"
-                ],
                 [
                     "LimitStretchLeftArm:outputPose",
                     "LimitStretchRightArm:inputPose"
@@ -124,14 +152,6 @@
                     "GenerateAnimatedPose:rootCorrectionTransform"
                 ],
                 [
-                    "GenerateAnimatedPose:animatedPose",
-                    "BlendTrackingIntoAnimatedPose:animatedPose"
-                ],
-                [
-                    "BlendTrackingIntoAnimatedPose:blendedPose",
-                    "OneToOneTrackingAdjustment:blendedPose"
-                ],
-                [
                     "CalcMaxArmLength:maxArmLength",
                     "LimitStretchLeftArm:maxArmLength"
                 ],
@@ -140,24 +160,66 @@
                     "GenerateAnimatedPose:defaultPose"
                 ],
                 [
-                    "LimitStretchRightArm:outputPose",
-                    ":pose3P"
-                ],
-                [
                     "GetRootScaleCorrection:outputValue",
                     "getComponentOfVec:inputVec3"
                 ],
                 [
                     "getComponentOfVec:outputY",
                     "OneToOneTrackingAdjustment:inverseScaleFactor"
+                ],
+                [
+                    "AnkleOverride:outputPose",
+                    ":pose3P"
+                ],
+                [
+                    "getComponentOfVec:outputY",
+                    "AnkleOverride:inverseScaleFactor"
+                ],
+                [
+                    "avatarSDK_enableLocalAnimationPlayback:outputValue",
+                    "SelectByBool:inputValue"
+                ],
+                [
+                    ":trackingPose",
+                    "SelectByBool:inputFalse"
+                ],
+                [
+                    "SelectByBool:output",
+                    ":pose"
+                ],
+                [
+                    "GenerateAnimatedPose:animatedPose",
+                    "RotationalTrackingOffset:animatedPose"
+                ],
+                [
+                    ":trackingPose",
+                    "RotationalTrackingOffset:trackingPose"
+                ],
+                [
+                    "RotationalTrackingOffset:outputPose",
+                    "BlendTrackingIntoAnimatedPose:animatedPose"
+                ],
+                [
+                    "LimitStretchRightArm:outputPose",
+                    "AnkleOverride:inputPose"
+                ],
+                [
+                    "BlendUpperBodyTrackingIntoAnimatedPose:outputPose",
+                    "OneToOneTrackingAdjustment:blendedPose"
+                ],
+                [
+                    "BlendTrackingIntoAnimatedPose:blendedPose",
+                    "BlendUpperBodyTrackingIntoAnimatedPose:animatedPose"
+                ],
+                [
+                    ":trackingPose",
+                    "BlendUpperBodyTrackingIntoAnimatedPose:inputPose"
+                ],
+                [
+                    "AnkleOverride:outputPose",
+                    "SelectByBool:inputTrue"
                 ]
             ]
-        },
-        {
-            "name": "dataflow",
-            "type": "dataflow",
-            "nodes": [],
-            "links": []
         },
         {
             "name": "LimitStretchLeftArm",
@@ -565,7 +627,15 @@
                     "name": "CalcArmLength",
                     "type": "mathExpression",
                     "members": {
-                        "expression": "length(armVector)"
+                        "expression": "length(armVector) * 1.25 * armStretchLimitScalar"
+                    }
+                },
+                {
+                    "name": "getDynamicStoreValueFloat",
+                    "type": "getDynamicStoreValueFloat",
+                    "members": {
+                        "key": "avatarSDK_armStretchLimitScalar",
+                        "defaultValue": 1.0
                     }
                 }
             ],
@@ -601,6 +671,10 @@
                 [
                     "CalcArmVector:value",
                     "CalcArmLength:armVector"
+                ],
+                [
+                    "getDynamicStoreValueFloat:outputValue",
+                    "CalcArmLength:armStretchLimitScalar"
                 ]
             ]
         },
@@ -633,7 +707,7 @@
                         "elementType": "blendPoses",
                         "blendJoint": "RTRig_L_Clavicle",
                         "blendSpace": "local",
-                        "depth": 1,
+                        "depth": 0,
                         "featherWeightsDefault": []
                     }
                 },
@@ -643,8 +717,8 @@
                     "members": {
                         "elementType": "blendPoses",
                         "blendJoint": "RTRig_R_Clavicle",
-                        "blendSpace": "character",
-                        "depth": 1,
+                        "blendSpace": "local",
+                        "depth": 0,
                         "featherWeightsDefault": []
                     }
                 },
@@ -671,7 +745,7 @@
                         "elementType": "blendPoses",
                         "blendJoint": "RTRig_Head",
                         "blendSpace": "local",
-                        "depth": 1,
+                        "depth": 0,
                         "featherWeightsDefault": []
                     }
                 },
@@ -721,18 +795,6 @@
                     "makeObject_featherBlend_blendPoses_leftArm:eventWeight"
                 ],
                 [
-                    "facialBlendFactor:outputValue",
-                    "makeObject_featherBlend_blendPoses_head:jointBaseWeight"
-                ],
-                [
-                    "facialBlendFactor:outputValue",
-                    "makeObject_featherBlend_blendPoses_head:floatWeight"
-                ],
-                [
-                    "facialBlendFactor:outputValue",
-                    "makeObject_featherBlend_blendPoses_head:eventWeight"
-                ],
-                [
                     "makeObject_featherBlend_blendPoses_head:output",
                     "makeArray_headArmBlend:0"
                 ],
@@ -759,10 +821,6 @@
                 [
                     ":trackingPose",
                     "makeObject_featherBlend_blendPoses_leftArm:inputPose"
-                ],
-                [
-                    ":trackingPose",
-                    "makeObject_featherBlend_blendPoses_head:inputPose"
                 ],
                 [
                     "featherBlend_headArms:outputPose",
@@ -948,18 +1006,6 @@
                     "makeArray_trackedWristPoses:1"
                 ],
                 [
-                    "featherBlend_trackedWristPoses:outputPose",
-                    ":outputPose"
-                ],
-                [
-                    ":blendedPose",
-                    "featherBlend_trackedWristPoses:inputPose"
-                ],
-                [
-                    ":trackingPose",
-                    "getLeftWristJoint:inputPose"
-                ],
-                [
                     "getLeftWristJoint:outputTransform",
                     "getComponentOfTransform:transform"
                 ],
@@ -978,10 +1024,6 @@
                 [
                     "getComponentOfTransform:scale",
                     "makeTransform:scale"
-                ],
-                [
-                    ":blendedPose",
-                    "setJointTransform:inputPose"
                 ],
                 [
                     "makeTransform:transform",
@@ -1016,24 +1058,40 @@
                     "setJointTransform_1:inputTransform"
                 ],
                 [
+                    "setJointTransform_1:outputPose",
+                    "makeObject_featherBlendRightTrackedWrist:inputPose"
+                ],
+                [
+                    "featherBlend_trackedWristPoses:outputPose",
+                    ":outputPose"
+                ],
+                [
                     ":trackingPose",
                     "getRightWristJoint:inputPose"
                 ],
                 [
-                    ":blendedPose",
-                    "setJointTransform_1:inputPose"
+                    ":trackingPose",
+                    "getLeftWristJoint:inputPose"
                 ],
                 [
-                    "setJointTransform_1:outputPose",
-                    "makeObject_featherBlendRightTrackedWrist:inputPose"
+                    ":inverseScaleFactor",
+                    "ScaleLeftWristVector:inverseScaleFactor"
                 ],
                 [
                     ":inverseScaleFactor",
                     "ScaleRightWristVector:inverseScaleFactor"
                 ],
                 [
-                    ":inverseScaleFactor",
-                    "ScaleLeftWristVector:inverseScaleFactor"
+                    ":blendedPose",
+                    "setJointTransform:inputPose"
+                ],
+                [
+                    ":blendedPose",
+                    "setJointTransform_1:inputPose"
+                ],
+                [
+                    ":blendedPose",
+                    "featherBlend_trackedWristPoses:inputPose"
                 ]
             ]
         },
@@ -1091,6 +1149,667 @@
                 [
                     "rootCorrectionSetJoint:outputPose",
                     ":animatedPose"
+                ]
+            ]
+        },
+        {
+            "name": "AnkleOverride",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "inputPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "inverseScaleFactor",
+                    "type": "float",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outputPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "SelectLeftAnkleJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "GetLeftAnkleJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "SetLeftAnkleJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getEnableLeftAnkleOverride",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableLeftAnkleOverride"
+                    }
+                },
+                {
+                    "name": "GetLeftGroundBallPivotJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "SelectLeftGroundBallPivotJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "SetLeftGroundBallPivotJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_L_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "identityTransform",
+                    "type": "identityTransform"
+                },
+                {
+                    "name": "SelectRightAnkleJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "GetRightAnkleJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "SetRightAnkleJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_Ankle",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getEnableRightAnkleOverride",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableRightAnkleOverride"
+                    }
+                },
+                {
+                    "name": "GetRightGroundBallPivotJoint",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "SelectRightGroundBallPivotJointByBool",
+                    "type": "SelectByBool"
+                },
+                {
+                    "name": "SetRightGroundBallPivotJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_R_GroundBallPivot"
+                    }
+                },
+                {
+                    "name": "identityTransform_1",
+                    "type": "identityTransform"
+                },
+                {
+                    "name": "getLeftAnkleOverrideBlendFactor",
+                    "type": "getDynamicStoreValueFloat",
+                    "members": {
+                        "key": "avatarSDK_leftAnkleOverrideBlendFactor"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform_1",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "getRightAnkleOverrideBlendFactor",
+                    "type": "getDynamicStoreValueFloat",
+                    "members": {
+                        "key": "avatarSDK_rightAnkleOverrideBlendFactor"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform_2",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "blendLeftAnkleTransform_3",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "lerp(defaultTransform, overrideTransform, blendFactor)"
+                    }
+                },
+                {
+                    "name": "avatarSDK_leftAnklePositionOverride",
+                    "type": "getDynamicStoreValueVec3",
+                    "members": {
+                        "key": "avatarSDK_leftAnklePositionOverride"
+                    }
+                },
+                {
+                    "name": "avatarSDK_leftAnkleRotationOverride",
+                    "type": "getDynamicStoreValueQuat",
+                    "members": {
+                        "key": "avatarSDK_leftAnkleRotationOverride"
+                    }
+                },
+                {
+                    "name": "makeTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "avatarSDK_rightAnklePositionOverride",
+                    "type": "getDynamicStoreValueVec3",
+                    "members": {
+                        "key": "avatarSDK_rightAnklePositionOverride"
+                    }
+                },
+                {
+                    "name": "avatarSDK_rightAnkleRotationOverride",
+                    "type": "getDynamicStoreValueQuat",
+                    "members": {
+                        "key": "avatarSDK_rightAnkleRotationOverride"
+                    }
+                },
+                {
+                    "name": "makeTransform_1",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "ScaleLeftAnklePosition",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "anklePosition * inverseScaleFactor"
+                    }
+                },
+                {
+                    "name": "ScaleRightAnklePosition",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "anklePosition * inverseScaleFactor"
+                    }
+                }
+            ],
+            "links": [
+                [
+                    "GetLeftAnkleJoint:outputTransform",
+                    "SelectLeftAnkleJointByBool:inputFalse"
+                ],
+                [
+                    "SelectLeftAnkleJointByBool:output",
+                    "SetLeftAnkleJoint:inputTransform"
+                ],
+                [
+                    "getEnableLeftAnkleOverride:outputValue",
+                    "SelectLeftAnkleJointByBool:inputValue"
+                ],
+                [
+                    "GetLeftGroundBallPivotJoint:outputTransform",
+                    "SelectLeftGroundBallPivotJointByBool:inputFalse"
+                ],
+                [
+                    "SelectLeftGroundBallPivotJointByBool:output",
+                    "SetLeftGroundBallPivotJoint:inputTransform"
+                ],
+                [
+                    ":inputPose",
+                    "GetLeftAnkleJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "SetLeftAnkleJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetLeftGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    "SetLeftAnkleJoint:outputPose",
+                    "SetLeftGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    "GetRightAnkleJoint:outputTransform",
+                    "SelectRightAnkleJointByBool:inputFalse"
+                ],
+                [
+                    "SelectRightAnkleJointByBool:output",
+                    "SetRightAnkleJoint:inputTransform"
+                ],
+                [
+                    "getEnableRightAnkleOverride:outputValue",
+                    "SelectRightAnkleJointByBool:inputValue"
+                ],
+                [
+                    "getEnableRightAnkleOverride:outputValue",
+                    "SelectRightGroundBallPivotJointByBool:inputValue"
+                ],
+                [
+                    "GetRightGroundBallPivotJoint:outputTransform",
+                    "SelectRightGroundBallPivotJointByBool:inputFalse"
+                ],
+                [
+                    "SelectRightGroundBallPivotJointByBool:output",
+                    "SetRightGroundBallPivotJoint:inputTransform"
+                ],
+                [
+                    "SetRightAnkleJoint:outputPose",
+                    "SetRightGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetRightAnkleJoint:inputPose"
+                ],
+                [
+                    ":inputPose",
+                    "GetRightGroundBallPivotJoint:inputPose"
+                ],
+                [
+                    "SetLeftGroundBallPivotJoint:outputPose",
+                    "SetRightAnkleJoint:inputPose"
+                ],
+                [
+                    "SetRightGroundBallPivotJoint:outputPose",
+                    ":outputPose"
+                ],
+                [
+                    "getLeftAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform:blendFactor"
+                ],
+                [
+                    "GetLeftAnkleJoint:outputTransform",
+                    "blendLeftAnkleTransform:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform:value",
+                    "SelectLeftAnkleJointByBool:inputTrue"
+                ],
+                [
+                    "getLeftAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform_1:blendFactor"
+                ],
+                [
+                    "identityTransform:transform",
+                    "blendLeftAnkleTransform_1:overrideTransform"
+                ],
+                [
+                    "GetLeftGroundBallPivotJoint:outputTransform",
+                    "blendLeftAnkleTransform_1:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform_1:value",
+                    "SelectLeftGroundBallPivotJointByBool:inputTrue"
+                ],
+                [
+                    "getRightAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform_2:blendFactor"
+                ],
+                [
+                    "GetRightAnkleJoint:outputTransform",
+                    "blendLeftAnkleTransform_2:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform_2:value",
+                    "SelectRightAnkleJointByBool:inputTrue"
+                ],
+                [
+                    "getRightAnkleOverrideBlendFactor:outputValue",
+                    "blendLeftAnkleTransform_3:blendFactor"
+                ],
+                [
+                    "identityTransform_1:transform",
+                    "blendLeftAnkleTransform_3:overrideTransform"
+                ],
+                [
+                    "GetRightGroundBallPivotJoint:outputTransform",
+                    "blendLeftAnkleTransform_3:defaultTransform"
+                ],
+                [
+                    "blendLeftAnkleTransform_3:value",
+                    "SelectRightGroundBallPivotJointByBool:inputTrue"
+                ],
+                [
+                    "getEnableLeftAnkleOverride:outputValue",
+                    "SelectLeftGroundBallPivotJointByBool:inputValue"
+                ],
+                [
+                    "avatarSDK_leftAnkleRotationOverride:outputValue",
+                    "makeTransform:rotation"
+                ],
+                [
+                    "makeTransform:transform",
+                    "blendLeftAnkleTransform:overrideTransform"
+                ],
+                [
+                    "avatarSDK_rightAnkleRotationOverride:outputValue",
+                    "makeTransform_1:rotation"
+                ],
+                [
+                    "makeTransform_1:transform",
+                    "blendLeftAnkleTransform_2:overrideTransform"
+                ],
+                [
+                    "avatarSDK_leftAnklePositionOverride:outputValue",
+                    "ScaleLeftAnklePosition:anklePosition"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "ScaleLeftAnklePosition:inverseScaleFactor"
+                ],
+                [
+                    "ScaleLeftAnklePosition:value",
+                    "makeTransform:position"
+                ],
+                [
+                    ":inverseScaleFactor",
+                    "ScaleRightAnklePosition:inverseScaleFactor"
+                ],
+                [
+                    "avatarSDK_rightAnklePositionOverride:outputValue",
+                    "ScaleRightAnklePosition:anklePosition"
+                ],
+                [
+                    "ScaleRightAnklePosition:value",
+                    "makeTransform_1:position"
+                ]
+            ]
+        },
+        {
+            "name": "RotationalTrackingOffset",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "trackingPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "animatedPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outputPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "getPelvisTracking",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Pelvis",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getPelvisAnimated",
+                    "type": "getJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Pelvis",
+                        "coordinateSpace": "character"
+                    }
+                },
+                {
+                    "name": "getPelvisTrackingPosition",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "getPelvisAnimatedPosition",
+                    "type": "getComponentOfTransform"
+                },
+                {
+                    "name": "pelvisDiff",
+                    "type": "mathExpression",
+                    "members": {
+                        "expression": "trackingPosition - animatedPosition"
+                    }
+                },
+                {
+                    "name": "getPelvisHorizontalDiff",
+                    "type": "getComponentOfVec3"
+                },
+                {
+                    "name": "makeHorizontalDiffVector",
+                    "type": "makeVec3"
+                },
+                {
+                    "name": "applyOffsetToPelvisJoint",
+                    "type": "setJointTransform",
+                    "members": {
+                        "jointName": "RTRig_Pelvis",
+                        "coordinateSpace": "character",
+                        "applyAsOffset": true,
+                        "doReproportioning": true
+                    }
+                },
+                {
+                    "name": "makePelvisDiffTransform",
+                    "type": "makeTransform"
+                },
+                {
+                    "name": "avatarSDK_enableRotationalTrackingOffset",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableRotationalTrackingOffset"
+                    }
+                },
+                {
+                    "name": "SelectByBool",
+                    "type": "SelectByBool"
+                }
+            ],
+            "links": [
+                [
+                    "getPelvisTracking:outputTransform",
+                    "getPelvisTrackingPosition:transform"
+                ],
+                [
+                    "getPelvisAnimated:outputTransform",
+                    "getPelvisAnimatedPosition:transform"
+                ],
+                [
+                    "getPelvisTrackingPosition:position",
+                    "pelvisDiff:trackingPosition"
+                ],
+                [
+                    "getPelvisAnimatedPosition:position",
+                    "pelvisDiff:animatedPosition"
+                ],
+                [
+                    "pelvisDiff:value",
+                    "getPelvisHorizontalDiff:inputVec3"
+                ],
+                [
+                    "getPelvisHorizontalDiff:outputX",
+                    "makeHorizontalDiffVector:inputX"
+                ],
+                [
+                    "getPelvisHorizontalDiff:outputZ",
+                    "makeHorizontalDiffVector:inputZ"
+                ],
+                [
+                    "makeHorizontalDiffVector:outputVec3",
+                    "makePelvisDiffTransform:position"
+                ],
+                [
+                    "makePelvisDiffTransform:transform",
+                    "applyOffsetToPelvisJoint:inputTransform"
+                ],
+                [
+                    "avatarSDK_enableRotationalTrackingOffset:outputValue",
+                    "SelectByBool:inputValue"
+                ],
+                [
+                    "applyOffsetToPelvisJoint:outputPose",
+                    "SelectByBool:inputTrue"
+                ],
+                [
+                    ":trackingPose",
+                    "getPelvisTracking:inputPose"
+                ],
+                [
+                    "SelectByBool:output",
+                    ":outputPose"
+                ],
+                [
+                    ":animatedPose",
+                    "applyOffsetToPelvisJoint:inputPose"
+                ],
+                [
+                    ":animatedPose",
+                    "SelectByBool:inputFalse"
+                ],
+                [
+                    ":animatedPose",
+                    "getPelvisAnimated:inputPose"
+                ]
+            ]
+        },
+        {
+            "name": "UpperBodyAnimationBlending",
+            "type": "dataflow",
+            "inputs": [
+                {
+                    "name": "inputPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                },
+                {
+                    "name": "animatedPose",
+                    "type": "pose",
+                    "defaultLink": ""
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outputPose",
+                    "type": "pose"
+                }
+            ],
+            "nodes": [
+                {
+                    "name": "featherBlend_upperBody",
+                    "type": "featherBlend"
+                },
+                {
+                    "name": "makeObject_featherBlend_blendPoses_upperBody",
+                    "type": "makeObject",
+                    "members": {
+                        "elementType": "blendPoses",
+                        "blendJoint": "RTRig_SpineStart",
+                        "blendSpace": "character",
+                        "depth": 0,
+                        "featherWeightsDefault": []
+                    }
+                },
+                {
+                    "name": "makeArray_upperBodyBlend",
+                    "type": "makeArray",
+                    "members": {
+                        "length": 1,
+                        "elementType": "blendPoses"
+                    }
+                },
+                {
+                    "name": "upperBodyBlendFactor",
+                    "type": "getDynamicStoreValueCachedFloat",
+                    "members": {
+                        "key": "avatarSDK_upperBodyBlendFactor"
+                    }
+                },
+                {
+                    "name": "getEnableUpperBodyBlend",
+                    "type": "getDynamicStoreValueBool",
+                    "members": {
+                        "key": "avatarSDK_enableUpperBodyBlend"
+                    }
+                },
+                {
+                    "name": "ShouldUpperBodyBlend",
+                    "type": "SelectByBool"
+                }
+            ],
+            "links": [
+                [
+                    ":inputPose",
+                    "makeObject_featherBlend_blendPoses_upperBody:inputPose"
+                ],
+                [
+                    "upperBodyBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_upperBody:jointBaseWeight"
+                ],
+                [
+                    "upperBodyBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_upperBody:floatWeight"
+                ],
+                [
+                    "upperBodyBlendFactor:outputValue",
+                    "makeObject_featherBlend_blendPoses_upperBody:eventWeight"
+                ],
+                [
+                    "makeObject_featherBlend_blendPoses_upperBody:output",
+                    "makeArray_upperBodyBlend:0"
+                ],
+                [
+                    "makeArray_upperBodyBlend:output",
+                    "featherBlend_upperBody:blendPoses"
+                ],
+                [
+                    ":animatedPose",
+                    "featherBlend_upperBody:inputPose"
+                ],
+                [
+                    "getEnableUpperBodyBlend:outputValue",
+                    "ShouldUpperBodyBlend:inputValue"
+                ],
+                [
+                    ":animatedPose",
+                    "ShouldUpperBodyBlend:inputFalse"
+                ],
+                [
+                    "ShouldUpperBodyBlend:output",
+                    ":outputPose"
+                ],
+                [
+                    "featherBlend_upperBody:outputPose",
+                    "ShouldUpperBodyBlend:inputTrue"
                 ]
             ]
         }

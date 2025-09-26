@@ -60,11 +60,11 @@
       "hash": "075b8f0e1641bc6cacef05a57f25e82b985cb4bb"
     },
     "com.meta.xr.mrutilitykit": {
-      "version": "74.0.0",
+      "version": "78.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.core": "74.0.0",
+        "com.meta.xr.sdk.core": "78.0.0",
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.ai.navigation": "1.1.4",
         "com.unity.nuget.newtonsoft-json": "3.0.2"
@@ -72,14 +72,14 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.audio": {
-      "version": "74.0.0",
+      "version": "78.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.avatars": {
-      "version": "33.0.0",
+      "version": "40.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -88,19 +88,19 @@
         "com.meta.xr.sdk.platform": "69.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.xr.legacyinputhelpers": "2.1.9",
-        "com.meta.xr.sdk.avatars.sample.assets": "33.0.0"
+        "com.meta.xr.sdk.avatars.sample.assets": "40.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.avatars.sample.assets": {
-      "version": "33.0.0",
+      "version": "40.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.core": {
-      "version": "74.0.0",
+      "version": "78.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -127,7 +127,7 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.platform": {
-      "version": "74.0.0",
+      "version": "78.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -136,12 +136,10 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.simulator": {
-      "version": "74.0.0",
+      "version": "78.0.0",
       "depth": 0,
       "source": "registry",
-      "dependencies": {
-        "com.unity.editorcoroutines": "1.0.0"
-      },
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ai.navigation": {
