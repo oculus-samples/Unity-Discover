@@ -23,6 +23,11 @@
             "name": "com.unity.xr.oculus",
             "expression": "",
             "define": "USING_XR_SDK_OCULUS"
+        },
+        {
+            "name": "com.unity.xr.openxr",
+            "expression": "",
+            "define": "USING_XR_SDK_OPENXR"
         }
     ],
     "noEngineReferences": false

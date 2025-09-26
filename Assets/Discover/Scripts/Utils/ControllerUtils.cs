@@ -29,8 +29,8 @@ namespace Discover.Utils
 
         public static Handedness GetHandFromPointerData(PointerEventData eventData)
         {
-            var dotLeft = DotProductBetweenControllerAndEvent(OVRInput.Controller.LTouch, eventData);
-            var dotRight = DotProductBetweenControllerAndEvent(OVRInput.Controller.RTouch, eventData);
+            var dotLeft = DotProductBetweenControllerAndEvent(OVRInput.Controller.LHand, eventData);
+            var dotRight = DotProductBetweenControllerAndEvent(OVRInput.Controller.RHand, eventData);
 
             return dotLeft > dotRight ? Handedness.Left : Handedness.Right;
         }

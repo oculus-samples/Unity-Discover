@@ -1,11 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 18/09/2025
+## 09/26/2025
+### Update
+Update to OpenXR backend
+
+## 09/18/2025
 ### Update
 Update to Meta XR SDKs v78
 
-## 18/09/2025
+## 09/18/2025
 ### Update
 Update to Unity 6000.0.50f1
 

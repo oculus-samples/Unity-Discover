@@ -2,7 +2,7 @@
 // This script is based on  the SampleInputControlDelegate from Avatars Samples V33.0.0
 #nullable enable
 
-#if USING_XR_MANAGEMENT && USING_XR_SDK_OCULUS && !OVRPLUGIN_UNSUPPORTED_PLATFORM
+#if USING_XR_MANAGEMENT && (USING_XR_SDK_OCULUS || USING_XR_SDK_OPENXR) && !OVRPLUGIN_UNSUPPORTED_PLATFORM
 #define USING_XR_SDK
 #endif
 

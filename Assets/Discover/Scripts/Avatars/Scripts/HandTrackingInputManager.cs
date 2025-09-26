@@ -1,6 +1,6 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
-#if USING_XR_MANAGEMENT && USING_XR_SDK_OCULUS && !OVRPLUGIN_UNSUPPORTED_PLATFORM
+#if USING_XR_MANAGEMENT && (USING_XR_SDK_OCULUS || USING_XR_SDK_OPENXR) && !OVRPLUGIN_UNSUPPORTED_PLATFORM
 #define USING_XR_SDK
 #endif
 
@@ -17,8 +17,8 @@ namespace Oculus.Interaction.AvatarIntegration
 {
     public class HandTrackingInputManager : OvrAvatarInputManager
     {
-        [SerializeField]
 #if USING_XR_SDK
+        [SerializeField]
         private OVRCameraRig? _ovrCameraRig = null;
 #endif
         
