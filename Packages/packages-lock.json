@@ -28,6 +28,13 @@
       "dependencies": {},
       "hash": "dbd76ed996483d219c39d240f785b1790aa039ed"
     },
+    "com.meta.tutorial.framework": {
+      "version": "https://github.com/meta-quest/Unity-UtilityPackages.git?path=com.meta.tutorial.framework#com.meta.tutorial.framework-1.0.2",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3dd9868902b0da1cd7700c9da725aa9fb1ea5da5"
+    },
     "com.meta.utilities": {
       "version": "file:com.meta.utilities",
       "depth": 0,

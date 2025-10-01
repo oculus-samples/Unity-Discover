@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4510294d23d964fe59443526f1ca7c4b, type: 3}
+  m_Name: Configuration
+  m_EditorClassIdentifier: 
+  m_displayName: Configuration
+  m_hierarchyName: Configuration
+  m_context: {fileID: 11400000, guid: 9f11e759625f24c468381131c2c86c51, type: 2}
+  m_markdownFile: {fileID: 0}
+  m_priority: 1002
+  m_overrideMarkdownText: "# Project Configuration\r\n\r\nTo make this project functional
+    in the editor and on a device, some initial setup is necessary.\r\n\r\n## Application
+    Configuration\r\n\r\nTo run the project and use platform services, create an
+    application on the [Meta Quest Developer Center](https://developers.meta.com/horizon/).\r\n\r\nFor
+    device operation, you need a Quest application, and for editor operation, a PC
+    VR application. The following sections describe the necessary configuration.\r\n\r\n###
+    Data Use Checkup\r\n\r\nSpecify the type of data required for the application
+    in the _Data Use Checkup_ section.\r\n\r\n![data use checkup](./Media/dashboard/datausecheckup.png
+    \"Data use Checkup\")\r\n\r\nConfigure the required Data Usage:\r\n\r\n![data
+    use checkup options](./Media/dashboard/datausecheckup_options.png \"Data use
+    Checkup options\")\r\n\r\n- **User Id**: Avatars, Oculus Username\r\n- **User
+    Profile**: Avatars, Oculus Username\r\n- **Avatars**: Avatars\r\n\r\nAfter completing
+    this, submit the request by clicking the submit button at the bottom.\r\n\r\n![data
+    use checkup submit](./Media/dashboard/datausecheckup_submit.png \"Data use Checkup
+    submit\")\r\n\r\nTo enable sharing of Spatial Anchors, go to Cloud Storage under
+    Development.\r\n\r\n![cloud storage all platform](./Media/dashboard/cloudstorage_allplatform.png
+    \"Cloud Storage all platform\")\r\n\r\nEnable Automatic Cloud Backup and press
+    submit.\r\n\r\n![cloud storage enable](./Media/dashboard/cloudstorage_enable.png
+    \"Cloud Storage enable\")\r\n\r\n### Set the Application ID\r\n\r\nSet the application
+    ID in your Unity project.\r\n\r\nFind the identifier (__App ID__) in the _API_
+    section.\r\n\r\n![Application API](./Media/dashboard/dashboard_api.png \"Application
+    API\")\r\n\r\nPlace it in [Assets/Resources/OculusPlatformSettings.asset](../Assets/Resources/OculusPlatformSettings.asset),
+    accessible via _Meta_ > Platform > Edit Settings_ in the menubar.\r\n\r\n![Oculus
+    Platform Settings Menu](./Media/editor/oculusplatformsettings_menu.png \"Oculus
+    Platform Settings Menu\")\r\n\r\n![Oculus Platform Settings](./Media/editor/oculusplatformsettings.png
+    \"Oculus Platform Settings\")\r\n\r\n## Photon Configuration\r\n\r\nTo get the
+    sample working, configure Photon with your account and applications. The Photon
+    base plan is free.\r\n\r\n- Visit [photonengine.com](https://www.photonengine.com)
+    and [create an account](https://doc.photonengine.com/realtime/current/getting-started/obtain-your-app-id).\r\n-
+    From your Photon dashboard, click \"Create A New App\".\r\n    - Create two apps:
+    \"Fusion\" and \"Voice\".\r\n- Fill out the form for \"Photon Fusion\" and click
+    Create.\r\n    - Select \"Fusion 1\" in the Select SDK Version item.\r\n- Fill
+    out the form for \"Photon Voice\" and click Create.\r\n\r\nYour new app will
+    appear on your Photon dashboard. Click the App ID to reveal and copy the full
+    string for each app.\r\n\r\nOpen your Unity project and paste your Fusion App
+    ID and Voice App ID in [Assets/Photon/Fusion/Resources/PhotonAppSettings](../Assets/Photon/Fusion/Resources/PhotonAppSettings.asset),
+    accessible via _Fusion > RealtimeSettings_ in the menubar.\r\n\r\n![Photon App
+    Settings](./Media/editor/photonappsettings.png \"Photon App Settings\")\r\n\r\nThe
+    Photon Realtime transport should now work. Verify network traffic on your Photon
+    account dashboard.\r\n\r\n## Headset Permissions\r\n\r\nWhen you first launch
+    the application, a permission popup will ask to share the point cloud; select
+    yes to use colocation. If you select no, go to device settings: **Settings >
+    Privacy > Device Permissions > Share Point Cloud Data**. Enable it.\r\n\r\nEnsure
+    the application has Spatial Data permission enabled; verify on the device: **Settings
+    -> Apps -> Permissions -> Spatial Data**.\r\n\r\n## Upload to Release Channel\r\n\r\nTo
+    enable colocation using shared spatial anchors, upload an initial build to a
+    release channel. Refer to the [developer center](https://developers.meta.com/horizon/resources/publish-release-channels-upload/)
+    for instructions. To test with other users, add them to the channel; more information
+    is available in the [Add Users to Release Channel](https://developers.meta.com/horizon/resources/publish-release-channels-add-users/)
+    topic.\r\n\r\nOnce the initial build is uploaded, you can use any development
+    build with the same application ID, eliminating the need to upload every build
+    to test local changes.\r\n"
+  m_overrideMarkdownRoot: .\Documentation/

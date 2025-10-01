@@ -1,0 +1,227 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4510294d23d964fe59443526f1ca7c4b, type: 3}
+  m_Name: Overview
+  m_EditorClassIdentifier: 
+  m_displayName: Overview
+  m_hierarchyName: Overview
+  m_context: {fileID: 11400000, guid: 5a1a96e7db932a345a1d9bf30c82dc44, type: 2}
+  m_markdownFile: {fileID: 0}
+  m_priority: 1003
+  m_overrideMarkdownText: '# Discover Overview
+
+    
+
+    This document provides
+    a high-level explanation of the project''s functionality, detailing the application''s
+    flow and its technical components.
+
+    
+
+    ## 1. Launching
+
+    
+
+    Upon
+    launching the application, the splash screen appears, and the Discover scene
+    loads. This scene handles app setup, including platform initialization, entitlement
+    checks, and retrieval of the logged-in user''s information (username, profile
+    picture) for sharing with other players. It also gathers system data (userId
+    for Avatars and shared spatial anchors) and sets up the player rig for passthrough
+    rendering.
+
+    
+
+    ## 2. New User Experience (Networking)
+
+    
+
+    First-time
+    users see NUX panels that explain how to connect. These panels can be reset in
+    the settings for future viewing.
+
+    
+
+    ## 3. Networking Choice
+
+    
+
+    After
+    the NUX, an initial popup window appears. It includes an input field for the
+    session name, three connection options (Host, Join, Join Remote), and a settings
+    button.
+
+    
+
+    ### 3a. Host
+
+    
+
+    Clicking Host initiates a session.
+    If the room isn''t set up, you must do so first. Once set, the layout loads via
+    the Scene API, and you connect to the Photon session. If no session name is provided,
+    a random one is generated.
+
+    
+
+    As a host, you create the ColocationDriver,
+    a network component for colocation using the colocation package. This establishes
+    a shared spatial anchor for other players to access. After creating the anchor,
+    the player realigns to it.
+
+    
+
+    The host spawns the scene''s network
+    objects (walls, ceiling, floor, desks, etc.) based on the room layout. Any saved
+    3D icons are loaded in the space.
+
+    
+
+    ### 3b. Join
+
+    
+
+    Players
+    in the same room as the host can join as colocated. If not, they join as remote
+    players. To join, input the session name and click Join, connecting to the Photon
+    session. The ColocationDriver, already on the network, spawns, and the system
+    attempts colocation. A request is sent to the host to share the anchor. Once
+    shared, the player accesses and loads it, realigning to the anchor to match the
+    host''s frame of reference.
+
+    
+
+    All scene objects load once the player
+    joins the Photon session.
+
+    
+
+    ### 3c. Join Remote
+
+    
+
+    For players
+    not in the same space, they join as Avatars in the colocated session. They see
+    others as Avatars and can locomote using controllers or hand gestures, accommodating
+    different room sizes.
+
+    
+
+    The ColocationDriver skips colocation setup
+    when joining remotely.
+
+    
+
+    All scene objects load once the player joins
+    the Photon session.
+
+    
+
+    ### 3d. Settings
+
+    
+
+    Here, you can
+    reset the NUX and choose a networking region if connecting remotely to a host
+    in a different region. By default, it selects the Best region with the least
+    latency.
+
+    
+
+    ## 4. Application NUX
+
+    
+
+    After selecting a session
+    joining method, first-time users see a panel explaining the application''s functionality
+    before connecting. This can be reset in the settings.
+
+    
+
+    ## 5. Place/Move
+    Icons
+
+    
+
+    Once connected, icons can be placed and moved. The host and
+    colocated users can place icons in their space. Open the Menu with the left-hand
+    menu button. If an application isn''t placed, click the icon to start the placement
+    flow.
+
+    
+
+    A puck with the icon hovers, indicating allowed placement
+    surfaces. If allowed, click with your index (or pinch with hand tracking) to
+    place it. Rotate the icon using the joystick or by moving your hand while pinching.
+
+    
+
+    To
+    move icons, point at a 3D icon and long press. A move icon appears; release to
+    enter the placement flow.
+
+    
+
+    Once placed, icons are saved on disk for
+    future sessions, anchored in the scene with spatial anchors. The anchor and app
+    data are saved for reloading in the same spot.
+
+    
+
+    ## 6. Launch Applications
+
+    
+
+    Once
+    an icon is placed, anyone can launch the application by clicking the icon in
+    the menu or the 3D icon in the space.
+
+    
+
+    Applications are networked
+    containers with application logic. The host spawns the application, and everyone
+    sees it. Anyone can close the application from the menu.
+
+    
+
+    Each application
+    has its own logic and setup.
+
+    
+
+    ## 7. Menu
+
+    
+
+    The menu includes
+    several panels:
+
+    
+
+    * Apps: Launch or place an application.
+
+    *
+    Settings: Reset NUX, clear saved 3D Icons position, leave the session.
+
+    *
+    Info: Discover application and networking information.
+
+    * Scene: Toggle
+    scene highlight.
+
+    
+
+    The menu''s bottom bar displays the room session
+    name, time, and battery level.
+
+'
+  m_overrideMarkdownRoot: .\Documentation/

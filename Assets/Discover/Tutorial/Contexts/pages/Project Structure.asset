@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4510294d23d964fe59443526f1ca7c4b, type: 3}
+  m_Name: Project Structure
+  m_EditorClassIdentifier: 
+  m_displayName: Project Structure
+  m_hierarchyName: Project Structure
+  m_context: {fileID: 11400000, guid: a4fa8a7f241272d4299b856a86cf4955, type: 2}
+  m_markdownFile: {fileID: 0}
+  m_priority: 1004
+  m_overrideMarkdownText: "# Project Structure\r\n\r\nThis section provides an overview
+    of the project structure and its key elements.\r\n\r\n## Coding Standards\r\n\r\nTo
+    maintain readability and understanding, we have established a coding standard
+    for the entire project. We use the `dotnet format Unity-Discover.sln` function
+    to apply the appropriate formatting during development. The specific rules are
+    defined in the [.editorconfig](../.editorconfig), [Unity-Discover.sln.DotSettings](../Unity-Discover.sln.DotSettings),
+    and [Assembly-CSharp.csproj.DotSettings](../Assembly-CSharp.csproj.DotSettings)
+    files.\r\n\r\n## Discover Content\r\n\r\nThe project is organized by asset type
+    for easy navigation. However, internal applications like DroneRage and MRBike
+    have their own structures, which we will discuss later. While most directories
+    are self-explanatory, we will highlight some of interest.\r\n\r\n### Config\r\n\r\nThis
+    directory contains configurations related to Discover, including scriptable objects
+    for App Manifests and the App List.\r\n\r\n- **App List**: A list of manifests
+    used in the project, linked to various scripts on prefabs. This setup allows
+    easy modification without code changes and simplifies access logic.\r\n- **App
+    Manifests**: These contain the necessary information to set up applications in
+    the project, including data on icons, 3D icons, placement, names, and prefabs
+    for launching applications.\r\n\r\n### Scenes\r\n\r\n- **Main Scene**: [Discover.unity](../Assets/Discover/Scenes/Discover.unity)
+    serves as the entry point and is the only scene used to run the Discover Application.\r\n-
+    **Examples**: The [Examples](../Assets/Discover/Scenes/Examples) folder contains
+    scenes demonstrating specific features of the application. These scenes simplify
+    understanding of certain concepts.\r\n\r\n  - [Colocation](../Assets/Discover/Scenes/Examples/Colocation.unity):
+    Demonstrates colocation between players in the same room, showing scene elements
+    in the same location.\r\n  - [RoomMapping](../Assets/Discover/Scenes/Examples/RoomMapping.unity):
+    Shows how the Scene API loads rooms and generates elements once a room is mapped
+    by the user.\r\n  - [SimpleMRScene](../Assets/Discover/Scenes/Examples/SimpleMRScene.unity):
+    Demonstrates the setup required to use passthrough and start an MR application.\r\n 
+    - [StartupExample](../Assets/Discover/Scenes/Examples/StartupExample.unity):
+    A simple launcher for the application that handles entitlement checks and user
+    data.\r\n\r\n## Discover Scripts\r\n\r\nThis section provides more information
+    on some subgroups of scripts in [Assets/Discover/Scripts](../Assets/Discover/Scripts).\r\n\r\n###
+    Colocation\r\n\r\n- **Colocation**: Implements interfaces for the [colocation
+    package](https://github.com/oculus-samples/Unity-LocalMultiplayerMR/tree/main/colocation-package)
+    and its usage for colocating users.\r\n- **ColocationDriverNetObj**: A key component
+    that sets up colocation logic as a network behavior.\r\n- **ColocationTestBootStrapper**:
+    Used in the Colocation example scene to test the colocation flow.\r\n\r\n###
+    Networking\r\n\r\n- **Networking**: Contains functionalities related to Photon
+    Fusion Networking.\r\n\r\n### NUX\r\n\r\n- **NUX**: Manages new user experience
+    views with multiple pages. The NUXManager handles launching, stopping, and resetting
+    NUXControllers.\r\n\r\n### SpatialAnchors\r\n\r\n- **SpatialAnchors**: Provides
+    functionalities to save, load, and erase local anchors to a file. This system
+    is reusable for saving anchors to a file or any desired location, including custom
+    cloud solutions.\r\n\r\n### Fake Room\r\n\r\n- **Fake Room**: Allows faster loading
+    in the editor without using Link and the XRSimulator. It includes a custom implementation
+    for classifications, creating equivalence from the OVRSemanticClassification.\r\n-
+    **MRSceneLoader**: Handles loading the correct scene. If no headsets are connected,
+    it loads the [FakeRoom](../Assets/Discover/Prefabs/FakeRoom/FakeRoom.prefab)
+    prefab.\r\n\r\n## Applications\r\n\r\n### DroneRage\r\n\r\nLocated at [Assets/Discover/DroneRage](../Assets/Discover/DroneRage),
+    this application organizes content by game elements rather than asset type. All
+    scripts are in the [Scripts](../Assets/Discover/DroneRage/Scripts) folder.\r\n\r\n###
+    MRBike\r\n\r\nLocated at [Assets/MRBike](../Assets/MRBike), this standalone application
+    is integrated into Discover. The root is the [BikeInteraction prefab](../Assets/MRBike/Prefabs/BikeInteraction.prefab),
+    which can be instantiated by the photon runner to launch the bike application.
+    BikeVisibleObjects are networked to maintain their state as parts are placed
+    or moved.\r\n"
+  m_overrideMarkdownRoot: .\Documentation/

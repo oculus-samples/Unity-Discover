@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76e6abd3187436f921d7ea43f255255, type: 3}
+  m_Name: TutorialFeedback
+  m_EditorClassIdentifier: 
+  m_title: Give Feedback
+  m_priority: 1010
+  m_tutorialConfig: {fileID: 11400000, guid: b1e3f01fd83db824aa1172a1497b776e, type: 2}
+  m_showBanner: 1
+  GitHubUrl: https://github.com/oculus-samples/Unity-Discover
+  ShowMQDHLink: 1

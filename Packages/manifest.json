@@ -4,6 +4,7 @@
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.dbrizov.naughtyattributes": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
     "com.marijnzwemmer.unity-toolbar-extender": "https://github.com/marijnz/unity-toolbar-extender.git",
+    "com.meta.tutorial.framework": "https://github.com/meta-quest/Unity-UtilityPackages.git?path=com.meta.tutorial.framework#com.meta.tutorial.framework-1.0.2",
     "com.meta.xr.colocation": "https://github.com/oculus-samples/Unity-LocalMultiplayerMR.git?path=colocation-package#075b8f0e1641bc6cacef05a57f25e82b985cb4bb",
     "com.meta.xr.mrutilitykit": "78.0.0",
     "com.meta.xr.sdk.audio": "78.0.0",
