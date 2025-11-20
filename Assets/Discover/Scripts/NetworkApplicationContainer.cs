@@ -44,6 +44,9 @@ namespace Discover
 
         private void DespawnContainedObjects()
         {
+            // Need to call ForceGlobalUpdateTrigger() when destroying one or more InteractableTriggerBroadcaster since Physics.autoSimulation is set to false
+            Oculus.Interaction.InteractableTriggerBroadcaster.ForceGlobalUpdateTriggers();
+            
             foreach (var obj in m_instantiatedObjects)
                 Destroy(obj);
             foreach (var obj in m_spawnedObjects)
