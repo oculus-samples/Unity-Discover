@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645f4231a451006409b7afbabdd9f82d, type: 3}
+  m_Name: Discover Scene Walkthrough
+  m_EditorClassIdentifier: 
+  m_displayName: Discover Scene Walkthrough
+  m_hierarchyName: 
+  m_context: {fileID: 11400000, guid: ad2d4e0f8f9a17744a91a985200f4f9d, type: 2}
+  m_markdownFile: {fileID: 0}
+  m_priority: 0
+  <References>k__BackingField:
+  - Header: Discover Scene
+    Description: This scene serves as the entry point and is the only scene used
+      to run the Discover Application.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: 0543e87c0093a2c419c1c09ff6873b02, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: AppStartup
+    Description: Initializes the application.
+    Reference:
+      m_referenceType: 5
+      m_obj: {fileID: 0}
+      m_classType: 
+      m_scene: {fileID: 102900000, guid: 0543e87c0093a2c419c1c09ff6873b02, type: 3}
+      m_name: AppStartup
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: TabletUI
+    Description: This is the UI system. The main menu is shown here.
+    Reference:
+      m_referenceType: 5
+      m_obj: {fileID: 0}
+      m_classType: 
+      m_scene: {fileID: 102900000, guid: 0543e87c0093a2c419c1c09ff6873b02, type: 3}
+      m_name: TabletUI
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: SceneElementManager
+    Description: Handles spawning and highlighting elements in the scene.
+    Reference:
+      m_referenceType: 5
+      m_obj: {fileID: 0}
+      m_classType: 
+      m_scene: {fileID: 102900000, guid: 0543e87c0093a2c419c1c09ff6873b02, type: 3}
+      m_name: SceneElementsManager
+      m_path: 
+      m_guid: 
+      m_instanceID: 0

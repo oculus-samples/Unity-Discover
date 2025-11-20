@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee262462c8042e840a3146c602914c9a, type: 3}
+  m_Name: DroneWalkthrough
+  m_EditorClassIdentifier: 
+  m_title: DroneRage Walkthrough
+  m_priority: 1012
+  m_tutorialConfig: {fileID: 11400000, guid: b1e3f01fd83db824aa1172a1497b776e, type: 2}
+  m_showBanner: 0
+  m_references:
+  - Header: DroneRage
+    Description: This is an application that is located under the DroneRage folder,
+      all related game elements related will be found here.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: 51fb0bcd9fbc0cf40aac378d8f21cb6a, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: DroneRageGameController
+    Description: This prefab manages the game logic for the Drone Rage application.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 7497158581494567899, guid: 181aa2f4f4db74304acddeac59d0118f, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: Player
+    Description: This prefab sets up and manages the player logic including movements,
+      stats, health, and powerups.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 7100864977352065010, guid: 0bb7d063733a946bfa2843c3ef5fcc5a, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: Scripts
+    Description: This folder holds all the scripts related to Drone Rage.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: 94082b6f2043be04f99eae4b0cf2da2f, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: DroneRageBootstrapper
+    Description: This is the entry point for Drone Rage.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 3357176763144424830, guid: a476b77eaebdb4c2996cbff9cf420cce, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: AppManifest
+    Description: This is the AppManifest for Drone Rage.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 11400000, guid: 3cbed3ee187785d46aa09b77fedb4e53, type: 2}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0

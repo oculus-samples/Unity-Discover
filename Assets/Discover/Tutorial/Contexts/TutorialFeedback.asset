@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialFeedback
   m_EditorClassIdentifier: 
   m_title: Give Feedback
-  m_priority: 1010
+  m_priority: 1100
   m_tutorialConfig: {fileID: 11400000, guid: b1e3f01fd83db824aa1172a1497b776e, type: 2}
   m_showBanner: 1
   GitHubUrl: https://github.com/oculus-samples/Unity-Discover

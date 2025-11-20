@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645f4231a451006409b7afbabdd9f82d, type: 3}
+  m_Name: MRBike Walkthrough
+  m_EditorClassIdentifier: 
+  m_displayName: MRBike Walkthrough
+  m_hierarchyName: 
+  m_context: {fileID: 11400000, guid: 68037e88b7239c44a9522a2c75f4152c, type: 2}
+  m_markdownFile: {fileID: 0}
+  m_priority: 0
+  <References>k__BackingField:
+  - Header: MRBike
+    Description: This standalone application is integrated into Discover. The root
+      is the BikeInteraction prefab, which can be instantiated by the photon runner
+      to launch the bike application. BikeVisibleObjects are networked to maintain
+      their state as parts are placed or moved.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: 2c06b70af4ed8cf48a0d8f25b175808e, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: BikeInteraction
+    Description: This is the root of the application and the entry point prefab,
+      which can be instantiated by the photon runner.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 8097772316023474308, guid: 5d1c8cf7fbce9f84ab950bf74a330336, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: BikeVisibleObject
+    Description: BikeVisibleObjects are networked to maintain their state as parts
+      are placed or moved.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 11500000, guid: b686ec31233464a4eae605c08d38522c, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: Grabbables
+    Description: The different objects the player can interact are under this folder.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: 73175678b93f5b14ebe922080292bfba, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: AppManifest
+    Description: This is the AppManifest for MRBike.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 11400000, guid: 8e5e809f6ff54324985dca298d911987, type: 2}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee262462c8042e840a3146c602914c9a, type: 3}
+  m_Name: ProjectWalkthrough
+  m_EditorClassIdentifier: 
+  m_title: Project Walkthrough
+  m_priority: 1010
+  m_tutorialConfig: {fileID: 11400000, guid: b1e3f01fd83db824aa1172a1497b776e, type: 2}
+  m_showBanner: 0
+  m_references:
+  - Header: Discover
+    Description: This is where all the project specific code and assets are located.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: 20922596669947443a44e03fdfeddb0c, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: Prefabs
+    Description: Prefabs used in Discover can be found here.
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: b5277e67c27999944b7dc2d1aed1ffa4, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
+  - Header: Scenes
+    Description: "Scenes are located here. You can also quickly access the main scene
+      from the top bar. The Examples folder under Scenes contains scenes demonstrating
+      specific features of the application. These scenes simplify understanding of
+      certain concepts.\r"
+    Reference:
+      m_referenceType: 0
+      m_obj: {fileID: 102900000, guid: 6159c755545d18a4abc6cb9f16ae0763, type: 3}
+      m_classType: 
+      m_scene: {fileID: 0}
+      m_name: 
+      m_path: 
+      m_guid: 
+      m_instanceID: 0
