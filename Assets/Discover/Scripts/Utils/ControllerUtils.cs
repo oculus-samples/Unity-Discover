@@ -53,18 +53,61 @@ namespace Discover.Utils
 
         public static Handedness GetHandFromPointerEvent(PointerEvent pointerEvent)
         {
-            var dotLeft = DotProductBetweenControllerAndPose(OVRInput.Controller.LTouch, pointerEvent.Pose);
-            var dotRight = DotProductBetweenControllerAndPose(OVRInput.Controller.RTouch, pointerEvent.Pose);
+            if (pointerEvent.Data is RayInteractor or PokeInteractor)
+            {
+                var behavior =  pointerEvent.Data as MonoBehaviour; 
+                if (behavior != null)
+                {
+                    if (behavior.TryGetComponent<ControllerRef>(out var controllerRef))
+                    {
+                        return controllerRef.Handedness;
+                    }
+                    else if (behavior.TryGetComponent<HandRef>(out var handRef))
+                    {
+                        return handRef.Handedness;
+                    }
+                }
+            }
+            
+            // Fallback to dot product calculation
+            var dotLeft = DotProductBetweenControllerAndPosition(OVRInput.Controller.LHand, pointerEvent.Pose.position);
+            var dotRight = DotProductBetweenControllerAndPosition(OVRInput.Controller.RHand, pointerEvent.Pose.position);
 
             return dotLeft > dotRight ? Handedness.Left : Handedness.Right;
         }
 
         public static OVRInput.Controller GetControllerFromPointerEvent(PointerEvent pointerEvent)
         {
-            var dotLeft = DotProductBetweenControllerAndPose(OVRInput.Controller.LTouch, pointerEvent.Pose);
-            var dotRight = DotProductBetweenControllerAndPose(OVRInput.Controller.RTouch, pointerEvent.Pose);
+            var controller = OVRInput.Controller.None;
+            if (pointerEvent.Data is RayInteractor or PokeInteractor)
+            {
+                var behavior =  pointerEvent.Data as MonoBehaviour; 
+                if (behavior != null)
+                {
+                    if (behavior.TryGetComponent<ControllerRef>(out var controllerRef))
+                    {
+                        var handedness = controllerRef.Handedness;
+                        controller = ControllerUtils.GetControllerFromHandedness(handedness);
+                    }
+                    else if (behavior.TryGetComponent<HandRef>(out var handRef))
+                    {
+                        var handedness = handRef.Handedness;
+                        controller = handedness == Handedness.Left
+                            ? OVRInput.Controller.LHand
+                            : OVRInput.Controller.RHand;
+                    }
+                }
+            }
 
-            return dotLeft > dotRight ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
+            if (controller == OVRInput.Controller.None)
+            {
+                var dotLeft = DotProductBetweenControllerAndPose(OVRInput.Controller.LTouch, pointerEvent.Pose);
+                var dotRight = DotProductBetweenControllerAndPose(OVRInput.Controller.RTouch, pointerEvent.Pose);
+                
+                return dotLeft > dotRight ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
+            }
+
+            return controller;
         }
 
         public static OVRInput.Controller GetControllerFromHandedness(Handedness handedness)

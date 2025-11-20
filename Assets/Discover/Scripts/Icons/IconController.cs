@@ -73,7 +73,7 @@ namespace Discover.Icons
                 return;
             }
 
-            m_currentController = GetControllerFromPointerEvent(pointerEvent);
+            m_currentController = ControllerUtils.GetControllerFromPointerEvent(pointerEvent);
 
             m_clickState = ClickState.CLICK;
             m_clickTimer = 0;
@@ -81,7 +81,7 @@ namespace Discover.Icons
 
         private void OnPointerRelease(PointerEvent pointerEvent)
         {
-            var controller = GetControllerFromPointerEvent(pointerEvent);
+            var controller = ControllerUtils.GetControllerFromPointerEvent(pointerEvent);
             if (controller != m_currentController)
             {
                 return;
@@ -108,7 +108,7 @@ namespace Discover.Icons
 
         private void OnPointerEnter(PointerEvent pointerEvent)
         {
-            var controller = GetControllerFromPointerEvent(pointerEvent);
+            var controller = ControllerUtils.GetControllerFromPointerEvent(pointerEvent);
             if (m_currentController != OVRInput.Controller.None && controller != m_currentController)
             {
                 return;
@@ -120,7 +120,7 @@ namespace Discover.Icons
 
         private void OnPointerExit(PointerEvent pointerEvent)
         {
-            var controller = GetControllerFromPointerEvent(pointerEvent);
+            var controller = ControllerUtils.GetControllerFromPointerEvent(pointerEvent);
             if (m_currentController != OVRInput.Controller.None && controller != m_currentController)
             {
                 return;
@@ -253,36 +253,6 @@ namespace Discover.Icons
 
                 yield return null;
             }
-        }
-
-        private OVRInput.Controller GetControllerFromPointerEvent(PointerEvent pointerEvent)
-        {
-            var controller = OVRInput.Controller.None;
-            if (pointerEvent.Data is RayInteractor ri)
-            {
-                if (ri != null)
-                {
-                    if (ri.TryGetComponent<ControllerRef>(out var controllerRef))
-                    {
-                        var handedness = controllerRef.Handedness;
-                        controller = ControllerUtils.GetControllerFromHandedness(handedness);
-                    }
-                    else if (ri.TryGetComponent<HandRef>(out var handRef))
-                    {
-                        var handedness = handRef.Handedness;
-                        controller = handedness == Handedness.Left
-                            ? OVRInput.Controller.LHand
-                            : OVRInput.Controller.RHand;
-                    }
-                }
-            }
-
-            if (controller == OVRInput.Controller.None)
-            {
-                controller = ControllerUtils.GetControllerFromPointerEvent(pointerEvent);
-            }
-
-            return controller;
         }
     }
 }

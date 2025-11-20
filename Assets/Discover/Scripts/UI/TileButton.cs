@@ -1,5 +1,6 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using System;
 using Discover.Haptics;
 using Discover.Utils;
 using Meta.XR.Samples;
@@ -10,13 +11,15 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Oculus.Interaction;
 
 namespace Discover.UI
 {
     [MetaCodeSample("Discover")]
-    public class TileButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+    public class TileButton : MonoBehaviour, IPointableElement
     {
         public UnityEvent<Handedness> OnClick;
+        public event Action<PointerEvent> WhenPointerEventRaised = delegate { };
 
         [SerializeField]
         private Sprite m_sourceImage;
@@ -65,22 +68,22 @@ namespace Discover.UI
             Title = m_title;
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public void OnPointerClick(PointerEvent eventData)
         {
-            Debug.Log($"tile button with {m_title} pressed {eventData.pointerId}");
-            var handedness = ControllerUtils.GetHandFromPointerData(eventData);
+            Debug.Log($"tile button with {m_title} pressed {eventData.Identifier}");
+            var handedness = ControllerUtils.GetHandFromPointerEvent(eventData);
             var controller = ControllerUtils.GetControllerFromHandedness(handedness);
             HapticsManager.Instance.VibrateForDuration(m_hapticsPressForce, m_hapticsDuration, controller);
             Click(handedness);
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public void OnPointerEnter(PointerEvent eventData)
         {
-            var controller = ControllerUtils.GetControllerFromPointerData(eventData);
+            var controller = ControllerUtils.GetControllerFromPointerEvent(eventData);
             HapticsManager.Instance.VibrateForDuration(m_hapticsHoverForce, m_hapticsDuration, controller);
         }
 
-        public void OnPointerExit(PointerEventData eventData) { }
+        public void OnPointerExit(PointerEvent eventData) { }
 
         private void Click(Handedness handedness)
         {
@@ -100,6 +103,30 @@ namespace Discover.UI
                 {
                     m_imageComponent = imageTransform.gameObject.GetComponentInChildren<Image>();
                 }
+            }
+        }
+
+        public void ProcessPointerEvent(PointerEvent pointerEvent)
+        {
+            switch (pointerEvent.Type)
+            {
+                case PointerEventType.Hover:
+                    OnPointerEnter(pointerEvent);
+                    break;
+                case PointerEventType.Unhover:
+                    OnPointerExit(pointerEvent);
+                    break;
+                case PointerEventType.Select:
+                    break;
+                case PointerEventType.Unselect:
+                    OnPointerClick(pointerEvent);
+                    break;
+                case PointerEventType.Move:
+                    break;
+                case PointerEventType.Cancel:
+                    break;
+                default:
+                    break;
             }
         }
 
