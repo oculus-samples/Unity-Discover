@@ -2,6 +2,7 @@
 
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Haptics
@@ -13,6 +14,7 @@ namespace Discover.Haptics
         HARD,
     }
 
+    [MetaCodeSample("Discover")]
     public class HapticsManager : MonoBehaviour
     {
         private readonly Dictionary<OVRInput.Controller, float> m_stopVibratingControllersAt =
@@ -115,6 +117,7 @@ namespace Discover.Haptics
         }
     }
 
+    [MetaCodeSample("Discover")]
     public class VibrationSettings
     {
         public VibrationForce Force;

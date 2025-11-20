@@ -2,10 +2,12 @@
 
 using Meta.Utilities;
 using Meta.Utilities.Avatars;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class FollowAvatar : MonoBehaviour
     {
         [SerializeField, AutoSet] private AvatarEntity m_avatar;

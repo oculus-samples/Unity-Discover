@@ -2,12 +2,14 @@
 
 using System;
 using System.Collections.Generic;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Discover.UI.Taskbar
 {
+    [MetaCodeSample("Discover")]
     public class BatteryStatusUpdater : MonoBehaviour
     {
         [Serializable]

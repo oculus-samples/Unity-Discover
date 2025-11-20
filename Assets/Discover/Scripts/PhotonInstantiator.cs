@@ -3,6 +3,7 @@
 using System.Linq;
 using Fusion;
 using Meta.Utilities;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover
@@ -10,6 +11,7 @@ namespace Discover
     /// <summary>
     /// When instantiated it will spawn the network object specified
     /// </summary>
+    [MetaCodeSample("Discover")]
     public class PhotonInstantiator : Multiton<PhotonInstantiator>
     {
         [SerializeField] private NetworkObject m_networkObject;

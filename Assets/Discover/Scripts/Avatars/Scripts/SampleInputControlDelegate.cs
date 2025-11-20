@@ -6,6 +6,7 @@
 #define USING_XR_SDK
 #endif
 
+using Meta.XR.Samples;
 using Oculus.Avatar2;
 
 #if USING_XR_SDK
@@ -13,6 +14,7 @@ using Button = OVRInput.Button;
 using Touch = OVRInput.Touch;
 #endif
 
+[MetaCodeSample("Discover")]
 public class SampleInputControlDelegate : OvrAvatarInputControlDelegate
 {
     public override bool GetInputControlState(out OvrAvatarInputControlState inputControlState)

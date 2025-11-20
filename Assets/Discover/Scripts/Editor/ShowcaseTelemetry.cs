@@ -1,5 +1,6 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using Meta.XR.Samples;
 using UnityEditor;
 
 namespace Discover.Editor
@@ -8,6 +9,7 @@ namespace Discover.Editor
     /// This class helps us track the usage of this showcase
     /// </summary>
     [InitializeOnLoad]
+    [MetaCodeSample("Discover")]
     public static class ShowcaseTelemetry
     {
         // This is the name of this showcase

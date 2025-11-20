@@ -2,6 +2,7 @@
 
 using System;
 using Meta.Utilities;
+using Meta.XR.Samples;
 using Oculus.Platform;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Discover
     /// Handles the Abuse reporting flow. This needs to be enabled at the startup of the app.
     /// https://developer.oculus.com/resources/reporting-plugin/?intern_source=devblog&intern_content=user-reporting-requirements-developer-tools-updates
     /// </summary>
+    [MetaCodeSample("Discover")]
     public class AbuseReportingHandler : Singleton<AbuseReportingHandler>
     {
         [SerializeField] private ReportRequestResponse m_reportHandlingType = ReportRequestResponse.Unhandled;

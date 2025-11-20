@@ -3,11 +3,13 @@
 using System;
 using Discover.Icons;
 using Meta.XR.MRUtilityKit;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Configs
 {
     [CreateAssetMenu(menuName = "Discover/App Manifest")]
+    [MetaCodeSample("Discover")]
     public class AppManifest : ScriptableObject
     {
         public enum SurfaceType

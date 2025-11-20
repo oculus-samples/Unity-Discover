@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using Discover.Networking;
 using Discover.NUX;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Discover.UI.Modal
 {
+    [MetaCodeSample("Discover")]
     public class ModalAppSettingsMenu : MonoBehaviour
     {
         [SerializeField] private TMP_Dropdown m_regionDropdown;

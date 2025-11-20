@@ -1,12 +1,14 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Cysharp.Threading.Tasks;
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace Discover.UI.Taskbar
 {
+    [MetaCodeSample("Discover")]
     public class ProfilePicAssigner : MonoBehaviour
     {
         [SerializeField] private Image m_profilePicImage;

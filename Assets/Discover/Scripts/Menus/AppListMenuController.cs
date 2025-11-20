@@ -2,11 +2,13 @@
 
 using System.Collections.Generic;
 using Discover.UI;
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class AppListMenuController : MonoBehaviour
     {
         [SerializeField] private GameObject m_appTilePrefab;

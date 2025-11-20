@@ -6,6 +6,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
+using Meta.XR.Samples;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -17,6 +18,7 @@ namespace Discover.Avatars
 {
     // From Avatar packages samples
     [RequireComponent(typeof(AudioSource))]
+    [MetaCodeSample("Discover")]
     public class AvatarLipSyncMicInput : MonoBehaviour
     {
         public enum AvatarLipSyncMicInputMode

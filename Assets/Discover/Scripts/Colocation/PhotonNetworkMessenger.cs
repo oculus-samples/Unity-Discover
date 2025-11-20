@@ -4,6 +4,7 @@ using System;
 using System.Text;
 using com.meta.xr.colocation;
 using Fusion;
+using Meta.XR.Samples;
 
 namespace Discover.Colocation
 {
@@ -11,6 +12,7 @@ namespace Discover.Colocation
     ///     Provides a mean to send network messages among all connected users.
     ///     It holds the dictionary of all connected users, who can be included into the messaging system.
     /// </summary>
+    [MetaCodeSample("Discover")]
     public class PhotonNetworkMessenger : NetworkBehaviour, INetworkMessenger
     {
         [Networked, Capacity(10)]

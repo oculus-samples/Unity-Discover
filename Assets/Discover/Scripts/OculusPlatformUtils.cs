@@ -2,6 +2,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Meta.XR.Samples;
 using Oculus.Platform;
 using Oculus.Platform.Models;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Discover
     /// Make sure to add "OVR_PLATFORM_ASYNC_MESSAGES" to Script Defined Symbols in Player Settings,
     /// for the async Gen functions.
     /// </summary>
+    [MetaCodeSample("Discover")]
     public static class OculusPlatformUtils
     {
         private const string INITIALIZED_ERROR_MSG = "Failed to initialize Oculus Platform SDK";

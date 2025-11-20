@@ -2,10 +2,12 @@
 
 using System;
 using System.Text;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.SpatialAnchors
 {
+    [MetaCodeSample("Discover")]
     public class AnchorUtils
     {
         // Converts Byte array to string with Uuid format "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"

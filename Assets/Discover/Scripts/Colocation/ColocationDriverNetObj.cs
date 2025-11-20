@@ -6,11 +6,13 @@ using com.meta.xr.colocation;
 using Cysharp.Threading.Tasks;
 using Fusion;
 using Fusion.Sockets;
+using Meta.XR.Samples;
 using Oculus.Platform.Models;
 using UnityEngine;
 
 namespace Discover.Colocation
 {
+    [MetaCodeSample("Discover")]
     public class ColocationDriverNetObj : NetworkBehaviour
     {
         public static ColocationDriverNetObj Instance { get; private set; }

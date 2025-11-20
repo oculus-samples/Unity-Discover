@@ -3,10 +3,12 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Meta.XR.MRUtilityKit;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class MRSceneLoader : MonoBehaviour
     {
         // fake room prefab loaded in editor mode

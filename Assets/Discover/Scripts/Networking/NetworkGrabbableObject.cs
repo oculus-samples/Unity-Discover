@@ -2,6 +2,7 @@
 
 using Fusion;
 using Meta.Utilities;
+using Meta.XR.Samples;
 using Oculus.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +10,7 @@ using UnityEngine.Events;
 namespace Discover.Networking
 {
     [RequireComponent(typeof(Grabbable))]
+    [MetaCodeSample("Discover")]
     public class NetworkGrabbableObject : NetworkBehaviour
     {
         [AutoSet]

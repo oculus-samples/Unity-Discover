@@ -6,11 +6,13 @@ using System.Linq;
 using Fusion;
 using Meta.Utilities;
 using Meta.Utilities.Avatars;
+using Meta.XR.Samples;
 using UnityEngine;
 using static Oculus.Avatar2.OvrAvatarEntity;
 
 namespace Discover.Networking
 {
+    [MetaCodeSample("Discover")]
     public class PhotonFusionAvatarNetworking : NetworkBehaviour, IAvatarNetworking
     {
         [SerializeField, AutoSet] private AvatarEntity m_entity;

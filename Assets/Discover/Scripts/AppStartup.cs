@@ -1,5 +1,6 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using Meta.XR.Samples;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +10,7 @@ namespace Discover
     /// <summary>
     /// Entry point of the Application where all the initialization occurs
     /// </summary>
+    [MetaCodeSample("Discover")]
     public class AppStartup : MonoBehaviour
     {
         public UnityEvent<string> OnErrorOccured;

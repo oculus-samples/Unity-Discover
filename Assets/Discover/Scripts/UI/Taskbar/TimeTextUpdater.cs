@@ -1,11 +1,13 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 
 namespace Discover.UI.Taskbar
 {
+    [MetaCodeSample("Discover")]
     public class TimeTextUpdater : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI m_timeText;

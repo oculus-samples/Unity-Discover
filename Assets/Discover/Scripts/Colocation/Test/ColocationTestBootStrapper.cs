@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using Discover.Networking;
 using Fusion;
 using Fusion.Sockets;
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Discover.Colocation.Test
 {
+    [MetaCodeSample("Discover")]
     public class ColocationTestBootStrapper : MonoBehaviour, INetworkRunnerCallbacks
     {
         [SerializeField] private NetworkRunner m_networkRunner;

@@ -4,12 +4,14 @@ using Discover.Configs;
 using Discover.Haptics;
 using Discover.Utils;
 using Meta.XR.MRUtilityKit;
+using Meta.XR.Samples;
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class AppIconPlacementController : MonoBehaviour
     {
         public delegate void AppPlacedAction(AppManifest appManifest, /*Guid surfaceID,*/ Vector3 position, Quaternion rotation);
@@ -298,7 +300,7 @@ namespace Discover
                 }
             }
 
-            // Press B or Y to exit 
+            // Press B or Y to exit
             var cancelButton = m_handedness == Handedness.Right ? OVRInput.RawButton.B : OVRInput.RawButton.Y;
             if (OVRInput.GetDown(cancelButton))
             {

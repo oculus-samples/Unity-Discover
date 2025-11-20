@@ -1,11 +1,13 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Discover.NUX;
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class DebugWindow : MonoBehaviour
     {
         [SerializeField] private Toggle m_showPlayerIdToggle;

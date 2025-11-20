@@ -5,10 +5,12 @@ using Discover.FakeRoom;
 using Fusion;
 using Meta.Utilities;
 using Meta.XR.MRUtilityKit;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class SceneElement : NetworkBehaviour
     {
         // We simply show a mesh on top. We could include this in the shaders

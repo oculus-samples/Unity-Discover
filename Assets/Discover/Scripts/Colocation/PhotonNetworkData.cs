@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using com.meta.xr.colocation;
 using Discover.Utilities;
 using Fusion;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Colocation
@@ -11,6 +12,7 @@ namespace Discover.Colocation
     /// <summary>
     ///     Holds the count for all colocation groups, the anchors list, and players list.
     /// </summary>
+    [MetaCodeSample("Discover")]
     public class PhotonNetworkData : NetworkSingleton<PhotonNetworkData>, INetworkData
     {
         [Networked] private uint ColocationGroupCount { get; set; }

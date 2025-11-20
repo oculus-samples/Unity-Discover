@@ -1,7 +1,7 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
-
 using Meta.Utilities;
+using Meta.XR.Samples;
 using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using Oculus.Interaction.Input;
@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class AppInteractionController : Singleton<AppInteractionController>
     {
         [field: SerializeField, AutoSet] public OVRCameraRig CameraRig { get; private set; }
@@ -19,7 +20,7 @@ namespace Discover
         [SerializeField] private RayInteractor m_leftControllerInteractor;
         [SerializeField] private RayInteractor m_rightHandInteractor;
         [SerializeField] private RayInteractor m_leftHandInteractor;
-        
+
         [Header("Poke Interactors")]
         [SerializeField] private PokeInteractor[] m_pokeInteractors;
 
@@ -199,7 +200,7 @@ namespace Discover
                 visuals.GetChild(i).gameObject.SetActive(doEnable);
             }
         }
-        
+
         private void EnablePokeInteractorVisuals(PokeInteractor poke, bool doEnable)
         {
             // we'll allow a string search here because this is a system prefab and unlikely to change

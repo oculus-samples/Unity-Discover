@@ -3,10 +3,12 @@
 using System;
 using System.Collections;
 using Meta.Utilities;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.UI.Modal
 {
+    [MetaCodeSample("Discover")]
     public class NetworkModalWindowController : Singleton<NetworkModalWindowController>
     {
         [SerializeField] private GameObject m_uiParent;

@@ -7,6 +7,7 @@ using Discover.Utilities;
 using Fusion;
 using Meta.Utilities;
 using Meta.Utilities.Avatars;
+using Meta.XR.Samples;
 using Oculus.Avatar2;
 using Photon.Voice.Fusion;
 using UnityEngine;
@@ -15,6 +16,7 @@ using UnityEngine.Networking;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class DiscoverPlayer : NetworkPlayerBehaviour<DiscoverPlayer>
     {
         [SerializeField, AutoSet] private AvatarEntity m_avatar;

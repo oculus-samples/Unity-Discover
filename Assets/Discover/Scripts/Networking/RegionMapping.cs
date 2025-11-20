@@ -2,9 +2,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Meta.XR.Samples;
 
 namespace Discover.Networking
 {
+    [MetaCodeSample("Discover")]
     public static class RegionMapping
     {
         public enum Regions

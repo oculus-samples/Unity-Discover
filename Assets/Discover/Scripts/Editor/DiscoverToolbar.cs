@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Discover.DroneRage.Enemies;
 using Discover.UI.Modal;
 using Fusion;
+using Meta.XR.Samples;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -11,6 +12,7 @@ using UnityToolbarExtender;
 
 namespace Discover.Editor
 {
+    [MetaCodeSample("Discover")]
     public static class DiscoverToolbar
     {
         [InitializeOnLoadMethod]

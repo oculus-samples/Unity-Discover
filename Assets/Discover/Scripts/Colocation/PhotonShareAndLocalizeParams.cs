@@ -2,6 +2,7 @@
 
 using com.meta.xr.colocation;
 using Fusion;
+using Meta.XR.Samples;
 
 namespace Discover.Colocation
 {
@@ -9,6 +10,7 @@ namespace Discover.Colocation
     ///     A Photon Fusion wrapper for ShareAndLocalizeParams
     ///     Used to be able to serialize and send the ShareAndLocalizeParams data over the network
     /// </summary>
+    [MetaCodeSample("Discover")]
     public struct PhotonShareAndLocalizeParams : INetworkStruct
     {
         public ulong RequestingPlayerId;

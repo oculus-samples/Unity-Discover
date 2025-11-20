@@ -2,6 +2,7 @@
 
 using com.meta.xr.colocation;
 using Cysharp.Threading.Tasks;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Colocation
@@ -9,6 +10,7 @@ namespace Discover.Colocation
     /// <summary>
     ///     Manages the AlignCameraToAnchor to realign when user recenter
     /// </summary>
+    [MetaCodeSample("Discover")]
     public class AlignCameraToAnchorManager : MonoBehaviour
     {
         public AlignCameraToAnchor CameraAlignmentBehaviour { get; set; }

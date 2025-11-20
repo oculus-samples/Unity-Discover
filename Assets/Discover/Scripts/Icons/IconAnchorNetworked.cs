@@ -2,10 +2,12 @@
 
 using Discover.Configs;
 using Fusion;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Icons
 {
+    [MetaCodeSample("Discover")]
     public class IconAnchorNetworked : NetworkBehaviour
     {
         [SerializeField] private AppList m_appList;

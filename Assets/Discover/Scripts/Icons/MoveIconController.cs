@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Discover.Icons
 {
+    [MetaCodeSample("Discover")]
     public class MoveIconController : MonoBehaviour
     {
         [SerializeField] private Image m_circleFill;

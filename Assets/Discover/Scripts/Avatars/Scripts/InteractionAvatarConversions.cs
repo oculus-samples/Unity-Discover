@@ -4,11 +4,13 @@
 
 #pragma warning disable IDE1006
 
+using Meta.XR.Samples;
 using Oculus.Avatar2;
 using UnityEngine;
 
 namespace Oculus.Interaction.AvatarIntegration
 {
+    [MetaCodeSample("Discover")]
     public class InteractionAvatarConversions
     {
         public static CAPI.ovrAvatar2Transform PoseToAvatarTransform(Pose pose)

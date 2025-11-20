@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Meta.Utilities;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Utilities
 {
+    [MetaCodeSample("Discover")]
     public class MainLightForBuiltInShaders : MonoBehaviour
     {
         [SerializeField, AutoSet] private Transform m_transform;

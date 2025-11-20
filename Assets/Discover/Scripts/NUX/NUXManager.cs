@@ -3,10 +3,12 @@
 using System;
 using System.Collections.Generic;
 using Meta.Utilities;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.NUX
 {
+    [MetaCodeSample("Discover")]
     public class NUXManager : Singleton<NUXManager>
     {
         [SerializeField] private NUXController[] m_nuxControllers;

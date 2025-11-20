@@ -2,12 +2,14 @@
 
 using System.ComponentModel;
 using Discover.Configs;
+using Meta.XR.Samples;
 using Oculus.Interaction.Input;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class CurrentAppMenuController : MonoBehaviour
     {
         [Description("The game object to de-activate/reactivate when launching an app")]

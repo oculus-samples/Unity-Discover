@@ -3,11 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Meta.XR.Samples;
 using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Discover.SpatialAnchors
 {
+    [MetaCodeSample("Discover")]
     public class AnchorJsonFileManager<TData> : ISpatialAnchorFileManager<TData>
         where TData : SpatialAnchorSaveData
     {

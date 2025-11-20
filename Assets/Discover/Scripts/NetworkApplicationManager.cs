@@ -5,10 +5,12 @@ using Discover.Configs;
 using Discover.Icons;
 using Discover.Utilities;
 using Fusion;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class NetworkApplicationManager : NetworkSingleton<NetworkApplicationManager>
     {
         public static Action OnInstanceCreated;

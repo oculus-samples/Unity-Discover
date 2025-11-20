@@ -2,6 +2,7 @@
 
 using Discover.Haptics;
 using Discover.Utils;
+using Meta.XR.Samples;
 using Oculus.Interaction.Input;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +10,7 @@ using UnityEngine.EventSystems;
 
 namespace Discover.UI
 {
+    [MetaCodeSample("Discover")]
     public class HapticButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     {
         [SerializeField] private bool m_useHaptic = true;

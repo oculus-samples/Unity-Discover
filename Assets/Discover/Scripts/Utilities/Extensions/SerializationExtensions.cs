@@ -2,9 +2,11 @@
 
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Meta.XR.Samples;
 
 namespace Discover.Utilities.Extensions
 {
+    [MetaCodeSample("Discover")]
     public static class SerializationExtensions
     {
 

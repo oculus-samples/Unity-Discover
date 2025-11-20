@@ -1,9 +1,11 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System;
+using Meta.XR.Samples;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class AvatarColocationManager
     {
         private static AvatarColocationManager s_instance;

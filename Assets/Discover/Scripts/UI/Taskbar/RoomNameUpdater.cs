@@ -1,11 +1,13 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Fusion;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 
 namespace Discover.UI.Taskbar
 {
+    [MetaCodeSample("Discover")]
     public class RoomNameUpdater : MonoBehaviour
     {
         [SerializeField] private TMP_Text m_text;

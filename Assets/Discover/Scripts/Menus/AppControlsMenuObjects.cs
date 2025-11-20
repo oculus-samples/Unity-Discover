@@ -1,12 +1,14 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Discover.UI;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class AppControlsMenuObjects : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI m_appTitle;

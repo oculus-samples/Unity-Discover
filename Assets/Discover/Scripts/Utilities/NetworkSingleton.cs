@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Fusion;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Utilities
 {
+    [MetaCodeSample("Discover")]
     public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkSingleton<T>
     {
         public static T Instance { get; private set; }

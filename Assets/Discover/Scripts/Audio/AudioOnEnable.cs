@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System.Collections;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Audio
 {
+    [MetaCodeSample("Discover")]
     public class AudioOnEnable : MonoBehaviour
     {
         [Tooltip("Audio clip to play on Gameobject enable, can be a loop or not")]

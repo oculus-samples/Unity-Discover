@@ -6,10 +6,12 @@
 #define USING_XR_SDK
 #endif
 
+using Meta.XR.Samples;
 using Oculus.Avatar2;
 using UnityEngine;
 using Node = UnityEngine.XR.XRNode;
 
+[MetaCodeSample("Discover")]
 public class SampleInputTrackingDelegate : OvrAvatarInputTrackingDelegate
 {
 

@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.SpatialAnchors
 {
+    [MetaCodeSample("Discover")]
     public class SpatialAnchorManager<TData> where TData : SpatialAnchorSaveData
     {
         private Dictionary<Guid, TData> m_anchorUidToData;

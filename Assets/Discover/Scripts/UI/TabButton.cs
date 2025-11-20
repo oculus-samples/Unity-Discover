@@ -1,6 +1,7 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Meta.Utilities;
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 namespace Discover.UI
 {
     [RequireComponent(typeof(Image))]
+    [MetaCodeSample("Discover")]
     public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
     {
         [SerializeField] private TabGroup m_tabGroup;

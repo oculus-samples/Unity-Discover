@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class AppPlacementVisual : MonoBehaviour
     {
         private static readonly int s_isValidPlacementProperty = Shader.PropertyToID("_IsValidPlacement");

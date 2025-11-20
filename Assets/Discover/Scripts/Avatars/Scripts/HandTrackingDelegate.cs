@@ -4,6 +4,7 @@
 
 #pragma warning disable IDE1006
 
+using Meta.XR.Samples;
 using Oculus.Avatar2;
 using Oculus.Interaction.Input;
 using UnityEngine;
@@ -11,6 +12,7 @@ using UnityEngine.Assertions;
 
 namespace Oculus.Interaction.AvatarIntegration
 {
+    [MetaCodeSample("Discover")]
     public class HandTrackingDelegate : IOvrAvatarHandTrackingDelegate
     {
         private Transform _root;

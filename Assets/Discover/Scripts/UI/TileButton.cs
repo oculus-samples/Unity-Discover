@@ -2,6 +2,7 @@
 
 using Discover.Haptics;
 using Discover.Utils;
+using Meta.XR.Samples;
 using Oculus.Interaction.Input;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ using UnityEngine.UI;
 
 namespace Discover.UI
 {
+    [MetaCodeSample("Discover")]
     public class TileButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
     {
         public UnityEvent<Handedness> OnClick;

@@ -4,11 +4,13 @@
 using System.Text;
 using Discover.Networking;
 using Fusion;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class InfoWindow : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI m_text;

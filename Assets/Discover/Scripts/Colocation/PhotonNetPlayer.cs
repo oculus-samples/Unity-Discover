@@ -3,12 +3,14 @@
 using System;
 using com.meta.xr.colocation;
 using Fusion;
+using Meta.XR.Samples;
 
 namespace Discover.Colocation
 {
     /// <summary>
     ///     Represents a connected user, identified by Oculus ID and Colocation group ID.
     /// </summary>
+    [MetaCodeSample("Discover")]
     public struct PhotonNetPlayer : INetworkStruct, IEquatable<PhotonNetPlayer>
     {
         public ulong PlayerId;

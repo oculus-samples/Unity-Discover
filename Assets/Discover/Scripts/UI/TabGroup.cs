@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System.Collections.Generic;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.UI
 {
+    [MetaCodeSample("Discover")]
     public class TabGroup : MonoBehaviour
     {
         [SerializeField] private Color m_tabIdleColor = new Color32(166, 64, 64, 255);

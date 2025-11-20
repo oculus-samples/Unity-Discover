@@ -2,10 +2,12 @@
 
 using System;
 using System.Collections;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.NUX
 {
+    [MetaCodeSample("Discover")]
     public class NUXController : MonoBehaviour
     {
         [SerializeField] private string m_nuxKey;

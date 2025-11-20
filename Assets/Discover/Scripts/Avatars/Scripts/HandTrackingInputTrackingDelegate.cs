@@ -4,12 +4,14 @@
 
 #pragma warning disable IDE1006
 
+using Meta.XR.Samples;
 using Oculus.Avatar2;
 using Oculus.Interaction.Input;
 using UnityEngine;
 
 namespace Oculus.Interaction.AvatarIntegration
 {
+    [MetaCodeSample("Discover")]
     public class HandTrackingInputTrackingDelegate : OvrAvatarInputTrackingDelegate
     {
         private Transform _root;

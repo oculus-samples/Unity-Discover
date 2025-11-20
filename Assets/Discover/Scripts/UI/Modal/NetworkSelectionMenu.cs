@@ -1,11 +1,13 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 
 namespace Discover.UI.Modal
 {
+    [MetaCodeSample("Discover")]
     public class NetworkSelectionMenu : MonoBehaviour
     {
         [SerializeField] private TMP_InputField m_inputField;

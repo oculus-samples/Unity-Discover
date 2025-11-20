@@ -3,12 +3,14 @@
 using System.Linq;
 using Discover.Networking;
 using Fusion;
+using Meta.XR.Samples;
 using TMPro;
 using UnityEngine;
 using Assert = UnityEngine.Assertions.Assert;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class NetworkedMainMenuController : MonoBehaviour
     {
         private const string HOST_ONLY_CONTROL_MESSAGE =

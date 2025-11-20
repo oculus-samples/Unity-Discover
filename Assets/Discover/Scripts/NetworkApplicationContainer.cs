@@ -4,11 +4,13 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Fusion;
+using Meta.XR.Samples;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class NetworkApplicationContainer : NetworkBehaviour
     {
         [Networked] public string AppName { get; set; }

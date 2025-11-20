@@ -3,12 +3,14 @@
 using System.Collections;
 using Discover.Haptics;
 using Discover.Utils;
+using Meta.XR.Samples;
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
 using UnityEngine;
 
 namespace Discover.Icons
 {
+    [MetaCodeSample("Discover")]
     public class IconController : MonoBehaviour
     {
         private enum ClickState

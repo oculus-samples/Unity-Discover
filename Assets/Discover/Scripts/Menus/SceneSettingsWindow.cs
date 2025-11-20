@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class SceneSettingsWindow : MonoBehaviour
     {
         [SerializeField] private Toggle m_highlightToggle;

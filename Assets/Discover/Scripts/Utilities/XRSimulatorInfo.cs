@@ -1,11 +1,13 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System;
+using Meta.XR.Samples;
 
 #if UNITY_EDITOR
 
 namespace Discover.Utilities
 {
+    [MetaCodeSample("Discover")]
     public static class XRSimulatorInfo
     {
         // As of XR Simulator v68, there is function to know if the Synthetic environment is running.

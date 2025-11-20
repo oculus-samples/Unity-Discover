@@ -12,12 +12,14 @@ using Fusion;
 using Fusion.Photon.Realtime;
 using Fusion.Sockets;
 using Meta.Utilities;
+using Meta.XR.Samples;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class DiscoverAppController : Singleton<DiscoverAppController>, INetworkRunnerCallbacks
     {
         private const string NUX_NETWORK_KEY = "NUX_Network";

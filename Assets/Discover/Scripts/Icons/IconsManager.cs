@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System.Collections.Concurrent;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover.Icons
 {
+    [MetaCodeSample("Discover")]
     public class IconsManager
     {
         private static IconsManager s_instance;

@@ -2,9 +2,11 @@
 
 using System.Collections.Generic;
 using Fusion;
+using Meta.XR.Samples;
 
 namespace Discover.Utilities
 {
+    [MetaCodeSample("Discover")]
     public class NetworkPlayerBehaviour<T> : NetworkBehaviour
         where T : NetworkPlayerBehaviour<T>
     {

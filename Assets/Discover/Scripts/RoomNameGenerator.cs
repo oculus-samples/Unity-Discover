@@ -1,10 +1,12 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using System.Text;
+using Meta.XR.Samples;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class RoomNameGenerator
     {
         private const string DATA_SOURCE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

@@ -5,9 +5,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Meta.Utilities;
 using Meta.XR.MRUtilityKit;
+using Meta.XR.Samples;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class SceneElementsManager : Singleton<SceneElementsManager>
     {
         private List<SceneElement> m_sceneElements = new();

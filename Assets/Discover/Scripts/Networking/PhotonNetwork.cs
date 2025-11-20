@@ -2,9 +2,11 @@
 
 using System.Linq;
 using Fusion;
+using Meta.XR.Samples;
 
 namespace Discover.Networking
 {
+    [MetaCodeSample("Discover")]
     public static class PhotonNetwork
     {
         private static NetworkRunner s_runner;

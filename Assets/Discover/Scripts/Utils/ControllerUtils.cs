@@ -1,5 +1,6 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+using Meta.XR.Samples;
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace Discover.Utils
 {
+    [MetaCodeSample("Discover")]
     public static class ControllerUtils
     {
         public static float DotProductBetweenControllerAndPosition(OVRInput.Controller controller, Vector3 position)

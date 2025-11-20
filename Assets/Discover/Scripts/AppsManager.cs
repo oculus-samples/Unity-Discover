@@ -7,11 +7,13 @@ using Discover.Menus;
 using Discover.SpatialAnchors;
 using Fusion;
 using Meta.Utilities;
+using Meta.XR.Samples;
 using Oculus.Interaction.Input;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class AppsManager : Singleton<AppsManager>
     {
         [SerializeField] private MainMenuController m_mainMenuController;

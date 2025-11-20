@@ -2,11 +2,13 @@
 
 using Discover.DroneRage.UI.EndScreen;
 using Discover.Menus;
+using Meta.XR.Samples;
 using Oculus.Interaction;
 using UnityEngine;
 
 namespace Discover
 {
+    [MetaCodeSample("Discover")]
     public class MenuActiveState : MonoBehaviour, IActiveState
     {
         public bool ActiveWhenMenuUp;

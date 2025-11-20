@@ -1,12 +1,14 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
 using Discover.Configs;
+using Meta.XR.Samples;
 using Oculus.Interaction.Input;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Discover.Menus
 {
+    [MetaCodeSample("Discover")]
     public class MainMenuController : MonoBehaviour
     {
         private const float TARGET_MENU_RADIUS = 0.3f;
