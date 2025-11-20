@@ -8,7 +8,7 @@
     "com.meta.xr.colocation": "https://github.com/oculus-samples/Unity-LocalMultiplayerMR.git?path=colocation-package#075b8f0e1641bc6cacef05a57f25e82b985cb4bb",
     "com.meta.xr.mrutilitykit": "78.0.0",
     "com.meta.xr.sdk.audio": "78.0.0",
-    "com.meta.xr.sdk.avatars": "40.0.0",
+    "com.meta.xr.sdk.avatars": "38.0.1",
     "com.meta.xr.sdk.avatars.sample.assets": "40.0.0",
     "com.meta.xr.sdk.core": "78.0.0",
     "com.meta.xr.sdk.interaction.ovr": "74.0.0",

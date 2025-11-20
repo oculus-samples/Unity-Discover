@@ -86,7 +86,7 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.avatars": {
-      "version": "40.0.0",
+      "version": "38.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -95,7 +95,7 @@
         "com.meta.xr.sdk.platform": "69.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.xr.legacyinputhelpers": "2.1.9",
-        "com.meta.xr.sdk.avatars.sample.assets": "40.0.0"
+        "com.meta.xr.sdk.avatars.sample.assets": "38.0.1"
       },
       "url": "https://packages.unity.com"
     },
