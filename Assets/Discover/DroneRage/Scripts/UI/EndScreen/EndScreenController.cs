@@ -124,7 +124,8 @@ namespace Discover.DroneRage.UI.EndScreen
 
         private void ShowStatisticsForPlayer(int playerIndex)
         {
-            var player = Player.Player.Players.ElementAt(playerIndex);
+            var player = Player.Player.Players.FirstOrDefault(p => p.PlayerUid == playerIndex);
+            if(player == null) player = Player.Player.Players.First();
             var playerName = DiscoverPlayer.Get(player.Object.StateAuthority).PlayerName;
 
             var accuracy = (float)player.PlayerStats.CalculateAccuracy();
