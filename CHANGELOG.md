@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 10/02/2025
+### Update
+Updated ISDK Hands to OpenXR.
+Converted all hand grab poses to OpenXR.
+Replaced the OVR Rig with the comprehensive OVR Rig from ISDK.
+
 ## 09/26/2025
 ### Update
 Update to OpenXR backend
