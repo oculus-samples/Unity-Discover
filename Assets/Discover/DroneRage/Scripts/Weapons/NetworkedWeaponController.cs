@@ -161,6 +161,8 @@ namespace Discover.DroneRage.Weapons
                 player.OnDeath += () =>
                 {
                     _ = changed.Behaviour.m_controlledWeaponVisuals.SpawnDroppedWeapon();
+                    // Need to call ForceGlobalUpdateTrigger() when disabling an InteractableTriggerBroadcaster since Physics.autoSimulation is set to false
+                    Oculus.Interaction.InteractableTriggerBroadcaster.ForceGlobalUpdateTriggers();
                     changed.Behaviour.gameObject.SetActive(false);
                 };
 
