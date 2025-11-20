@@ -333,11 +333,11 @@ namespace Discover.DroneRage.Enemies
         public bool FlyTo(Vector3 target)
         {
             var targetVel = target - Rigidbody.position;
+            var reachedTarget = targetVel.sqrMagnitude <= 0.1f;
             targetVel = Vector3.Lerp(
                 Vector3.zero,
                 targetVel.normalized * MaxVelocity,
                 EasingDists.y * (Mathf.Sqrt(targetVel.magnitude) - EasingDists.x));
-            var reachedTarget = targetVel.sqrMagnitude <= 0.1f;
             targetVel -= Rigidbody.linearVelocity;
 
             // We want to try to accelerate to this velocity within the next fixed time step
