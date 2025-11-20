@@ -64,6 +64,8 @@ namespace Discover.DroneRage.Weapons
                     laser.SetActive(false);
                 }
             }
+            
+            DroneRageGameController.WhenInstantiated(c => c.OnGameOver += OnGameOver);
         }
 
         private void OnEnable()
@@ -158,14 +160,6 @@ namespace Discover.DroneRage.Weapons
             var player = changed.Behaviour.Owner;
             if (player != null)
             {
-                player.OnDeath += () =>
-                {
-                    _ = changed.Behaviour.m_controlledWeaponVisuals.SpawnDroppedWeapon();
-                    // Need to call ForceGlobalUpdateTrigger() when disabling an InteractableTriggerBroadcaster since Physics.autoSimulation is set to false
-                    Oculus.Interaction.InteractableTriggerBroadcaster.ForceGlobalUpdateTriggers();
-                    changed.Behaviour.gameObject.SetActive(false);
-                };
-
                 changed.Behaviour.m_powerUpCollector.Player = player;
             }
         }
@@ -173,6 +167,14 @@ namespace Discover.DroneRage.Weapons
         private void OnDamage(IDamageable damageableAffected, float hpAffected, bool targetDied)
         {
             Owner.TrackDamageStats(damageableAffected, hpAffected, targetDied);
+        }
+        
+        private void OnGameOver(bool victory)
+        {
+            _ = m_controlledWeaponVisuals.SpawnDroppedWeapon();
+            // Need to call ForceGlobalUpdateTrigger() when disabling an InteractableTriggerBroadcaster since Physics.autoSimulation is set to false
+            Oculus.Interaction.InteractableTriggerBroadcaster.ForceGlobalUpdateTriggers();
+            gameObject.SetActive(false);
         }
     }
 }
